@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 2: الطبيعة المادية للضوء</title>
+<style>
+  :root{
+    --main:#0d6e8f; --main2:#0a4d63; --bg:#f4f8fa; --card:#ffffff;
+    --accent:#f0a500; --green:#1b8a5a; --red:#c0392b; --line:#d8e6ec;
+    --purple:#6a4c93;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 60px;
+    font-family:"Segoe UI","Tahoma","Arial",sans-serif;
+    background:var(--bg); color:#20323c; line-height:1.9;
+  }
+  header{
+    background:linear-gradient(135deg,var(--main2),var(--main));
+    color:#fff; padding:28px 20px; text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.15);
+  }
+  header h1{margin:0; font-size:26px;}
+  header p{margin:6px 0 0; opacity:.9; font-size:15px;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 16px;}
+  .card{
+    background:var(--card); border-radius:14px; padding:20px 22px;
+    margin:22px 0; box-shadow:0 2px 10px rgba(13,110,143,.08);
+    border:1px solid var(--line);
+  }
+  h2{
+    color:var(--main2); font-size:21px; margin:0 0 14px;
+    border-right:6px solid var(--accent); padding-right:12px;
+  }
+  h3{color:var(--main); font-size:17px; margin:18px 0 8px;}
+  ul{margin:8px 0; padding-right:22px;}
+  li{margin:7px 0;}
+  .formula{
+    background:#eaf6fa; border:1px dashed var(--main);
+    border-radius:10px; padding:12px 16px; text-align:center;
+    font-size:18px; font-weight:bold; color:var(--main2);
+    margin:12px 0; direction:ltr;
+  }
+  .note{
+    background:#fff8e6; border-right:5px solid var(--accent);
+    padding:12px 16px; border-radius:8px; margin:12px 0; font-size:15px;
+  }
+  .keys{background:#eef8f2; border-right:5px solid var(--green);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  .warn{background:#fdecea; border-right:5px solid var(--red);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  .dual{background:#f3eefb; border-right:5px solid var(--purple);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:15px;}
+  th,td{border:1px solid var(--line); padding:9px 10px; text-align:center;}
+  th{background:var(--main); color:#fff;}
+  tr:nth-child(even) td{background:#f7fbfd;}
+  .quiz{background:linear-gradient(180deg,#fff,#f2f9fc);}
+  .q{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px; margin:14px 0;
+  }
+  .q p{margin:0 0 10px; font-weight:bold; color:var(--main2);}
+  .opt{
+    display:block; width:100%; text-align:right; background:#f7fbfd;
+    border:1px solid var(--line); border-radius:8px; padding:9px 14px;
+    margin:7px 0; cursor:pointer; font-size:15px; font-family:inherit;
+    transition:.2s;
+  }
+  .opt:hover{background:#e3f1f7; border-color:var(--main);}
+  .opt.correct{background:#d7f2e3; border-color:var(--green); color:var(--green); font-weight:bold;}
+  .opt.wrong{background:#fadbd8; border-color:var(--red); color:var(--red);}
+  .fb{margin-top:8px; font-size:14px; font-weight:bold; display:none;}
+  .fb.show{display:block;}
+  .score{
+    text-align:center; font-size:18px; font-weight:bold;
+    color:var(--main2); background:#eaf6fa; border-radius:10px;
+    padding:12px; margin-top:16px;
+  }
+  footer{text-align:center; color:#7a8f99; font-size:13px; margin-top:30px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>الدرس 2 — الطبيعة المادية للضوء</h1>
+  <p>ملخص مفاهيم + 10 أسئلة اختيار من متعدد</p>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>1) لماذا فشل النموذج الموجي للضوء؟</h2>
+    <ul>
+      <li>نجح النموذج الموجي في تفسير كثير من سلوك الضوء، لكنه <b>فشل</b> في تفسير ظواهر معينة، مثل:
+        <ul>
+          <li>لماذا تطلق الأجسام الساخنة ترددات محددة فقط من الضوء عند درجات حرارة معينة؟</li>
+          <li>لماذا تطلق بعض الفلزات إلكترونات عندما يسقط عليها ضوء ذو تردد معين؟</li>
+        </ul>
+      </li>
+      <li>لذلك احتاج العلماء إلى <b>نموذج جديد</b> أو مراجعة النموذج الموجي.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2) مفهوم الكم (Quantum)</h2>
+    <ul>
+      <li>عند تسخين جسم صلب، يبدأ بإصدار ضوء أحمر خافت، ثم يتحول مع زيادة الحرارة إلى البرتقالي ثم الأبيض المزرق.</li>
+      <li>هذا يعني أن <b>درجة الحرارة</b> مقياس لطاقة حركة الجسيمات المكوّنة له.</li>
+      <li>كلما ارتفعت درجة الحرارة، زادت طاقة الجسم، وأصبح يبعث ضوءًا ذا ترددات أعلى وأطوال موجية أقصر.</li>
+    </ul>
+
+    <div class="warn">
+      <b>مشكلة النموذج الموجي:</b> توقّع أن تنبعث طاقة مستمرة من الأجسام الساخنة، لكن الواقع أنّ الطاقة تُبعث في <b>كميات محددة صغيرة</b>.
+    </div>
+
+    <div class="keys">
+      <b>الكم (Quantum):</b> أقل كمية من الطاقة يمكن أن تكتسبها المادة أو تفقدها.
+    </div>
+
+    <p>في عام 1900م اقترح الفيزيائي الألماني <b>ماكس بلانك</b> أن الطاقة تُبعث أو تُمتص في <b>كميات صغيرة محددة</b> تُسمى الكم.</p>
+  </div>
+
+  <div class="card">
+    <h2>3) طاقة الكم — معادلة بلانك</h2>
+    <p>أثبت بلانك أن الطاقة المنبعثة من الأجسام الساخنة تتناسب طرديًا مع تردد الإشعاع:</p>
+    <div class="formula">E = h · f</div>
+    <table>
+      <tr><th>الرمز</th><th>المعنى</th><th>الوحدة</th></tr>
+      <tr><td>E</td><td>طاقة الكم</td><td>الجول (J)</td></tr>
+      <tr><td>h</td><td>ثابت بلانك</td><td dir="ltr">6.626 × 10⁻³⁴ J.s</td></tr>
+      <tr><td>f</td><td>التردد</td><td>هرتز (Hz) أو s⁻¹</td></tr>
+    </table>
+
+    <div class="note">
+      <b>ملاحظة:</b> تزداد طاقة الإشعاع بزيادة تردده. والطاقة تُبعث أو تُمتص بمضاعفات صحيحة للكم:
+      <span dir="ltr">h f , 1 h f , 2 h f , 3 h f …</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4) التأثير الكهروضوئي</h2>
+    <ul>
+      <li>هو <b>انبعاث إلكترونات</b> من سطح فلز عند سقوط ضوء عليه.</li>
+      <li>الإلكترونات المنبعثة تُسمى <b>الفوتوإلكترونات</b> (Photoelectrons).</li>
+      <li>لم يستطع النموذج الموجي تفسير هذه الظاهرة.</li>
+    </ul>
+
+    <h3>شروط حدوث التأثير الكهروضوئي</h3>
+    <ul>
+      <li>يجب أن يكون <b>تردد الضوء الساقط</b> مساويًا أو أكبر من <b>تردد الحد الأدنى</b> (التردد الحرج) للفلز.</li>
+      <li>إذا كان التردد أقل من التردد الحرج، فلا تنبعث إلكترونات مهما كانت شدة الضوء أو مدة سقوطه.</li>
+      <li>مثال: الفضة لا يطلق إلكتروناتها ضوء تردده أقل من <span dir="ltr">1.14 × 10¹⁵ Hz</span>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>5) الطبيعة المزدوجة للضوء (أينشتاين)</h2>
+    <div class="dual">
+      <b>افتراض أينشتاين (1905م):</b> للضوء <b>طبيعة مزدوجة</b>:
+      <ul>
+        <li>خواص <b>موجية</b> (كما في الانعكاس والانكسار والتداخل).</li>
+        <li>خواص <b>مادية جسيمية</b> (كما في التأثير الكهروضوئي).</li>
+      </ul>
+    </div>
+
+    <h3>الفوتون (Photon)</h3>
+    <ul>
+      <li>جسيم <b>لا كتلة له</b>، يحمل كمية محددة من الطاقة.</li>
+      <li>طاقة الفوتون تعتمد على تردده.</li>
+    </ul>
+
+    <div class="formula">E<sub>photon</sub> = h · f</div>
+
+    <p>حيث E طاقة الفوتون، h ثابت بلانك، f التردد.</p>
+
+    <div class="keys">
+      <b>شرط انبعاث الفوتوإلكترون:</b> يجب أن يمتلك الفوتون طاقة أعلى من أو تساوي <b>الحد المعيّن</b> للفلز.
+      الفوتونات الأقل من هذا الحد لا تُحدث التأثير الكهروضوئي مهما زاد عددها.
+    </div>
+
+    <div class="note">
+      فاز <b>أينشتاين</b> بجائزة نوبل في الفيزياء عام 1921م لعمله في تفسير التأثير الكهروضوئي.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>6) مثال محلول — حساب طاقة الفوتون</h2>
+    <p>ما طاقة فوتون الضوء البنفسجي إذا كان تردده <span dir="ltr">7.230 × 10¹⁴ s⁻¹</span>؟</p>
+
+    <h3>الخطوة 1: المعطيات</h3>
+    <ul>
+      <li><span dir="ltr">f = 7.230 × 10¹⁴ s⁻¹</span></li>
+      <li><span dir="ltr">h = 6.626 × 10⁻³⁴ J.s</span></li>
+    </ul>
+
+    <h3>الخطوة 2: القانون والتعويض</h3>
+    <div class="formula">
+      E = h f<br>
+      E = (6.626 × 10⁻³⁴)(7.230 × 10¹⁴)<br>
+      E = 4.791 × 10⁻¹⁹ J
+    </div>
+
+    <h3>الخطوة 3: تقويم الإجابة</h3>
+    <ul>
+      <li>الوحدة صحيحة (الجول).</li>
+      <li>الطاقة صغيرة جدًا كما هو متوقع لفوتون واحد.</li>
+      <li>عدد الأرقام المعنوية = 4.</li>
+    </ul>
+  </div>
+
+  <div class="card quiz">
+    <h2>اختبر نفسك — 10 أسئلة</h2>
+    <div id="quiz"></div>
+    <div class="score" id="score">النقاط: 0 / 10</div>
+  </div>
+
+  <footer>إعداد للمراجعة الدراسية — الدرس 2</footer>
+</div>
+
+<script>
+const questions = [
+  {q:"ما هو الكم (Quantum) وفق نظرية بلانك؟",
+   o:["أقل كمية من الطاقة يمكن أن تكتسبها المادة أو تفقدها","جسيم لا كتلة له يحمل طاقة","ثابت عالمي قيمته 6.626 × 10⁻³⁴","موجة كهرومغناطيسية ذات تردد عالٍ"], a:0,
+   e:"الكم هو أقل كمية من الطاقة يمكن أن تكتسبها المادة أو تفقدها، وقد اقترحه ماكس بلانك عام 1900م."},
+
+  {q:"ثابت بلانك قيمته تساوي:",
+   o:["6.626 × 10⁻³⁴ J.s","3.00 × 10⁸ m/s","1.14 × 10¹⁵ Hz","9.11 × 10⁻³¹ kg"], a:0,
+   e:"ثابت بلانك h = 6.626 × 10⁻³⁴ J.s، وهو ثابت عالمي."},
+
+  {q:"معادلة طاقة الكم هي:",
+   o:["c = λ f","E = h f","E = m c²","F = m a"], a:1,
+   e:"طاقة الكم = حاصل ضرب ثابت بلانك في التردد: E = h f."},
+
+  {q:"الظاهرة التي تنبعث فيها الإلكترونات من سطح فلز عند سقوط ضوء عليه تُسمى:",
+   o:["التأثير الكهروضوئي","الانكسار","التداخل","الاستقطاب"], a:0,
+   e:"التأثير الكهروضوئي هو انبعاث الإلكترونات (الفوتوإلكترونات) من سطح فلز عند سقوط ضوء عليه."},
+
+  {q:"الفوتون جسيم:",
+   o:["له كتلة كبيرة","لا كتلة له ويحمل كمية طاقة","يحمل شحنة سالبة","يتحرك بسرعة أقل من الضوء"], a:1,
+   e:"الفوتون جسيم لا كتلة له، يحمل كمية محددة من الطاقة (كم) تعتمد على تردده."},
+
+  {q:"من افترض أن للضوء طبيعة مزدوجة (موجية ومادية)؟",
+   o:["بلانك","أينشتاين","نيوتن","بور"], a:1,
+   e:"أينشتاين عام 1905م افترض أن للضوء طبيعة مزدوجة: خواص موجية وخواص مادية جسيمية."},
+
+  {q:"ما طاقة فوتون تردده 7.230 × 10¹⁴ s⁻¹؟ (h = 6.626 × 10⁻³⁴ J.s)",
+   o:["4.791 × 10⁻¹⁹ J","4.791 × 10⁻¹⁵ J","1.090 × 10⁻⁴⁷ J","9.11 × 10⁻³¹ J"], a:0,
+   e:"E = hf = (6.626×10⁻³⁴)(7.230×10¹⁴) = 4.791 × 10⁻¹⁹ J."},
+
+  {q:"لكي يحدث التأثير الكهروضوئي، يجب أن يكون تردد الضوء الساقط:",
+   o:["أقل من التردد الحرج","مساويًا أو أكبر من التردد الحرج","أي قيمة","صفرًا"], a:1,
+   e:"يجب أن يكون التردد مساويًا أو أكبر من تردد الحد الأدنى (التردد الحرج) للفلز، وإلا فلا تنبعث إلكترونات."},
+
+  {q:"في تجربة التأثير الكهروضوئي، ما الأثر المباشر لزيادة شدة الضوء (السطوع) مع بقاء تردده فوق العتبة؟",
+   o:["زيادة عدد الإلكترونات المنبعثة من سطح الفلز","زيادة طاقة وسرعة الإلكترونات المتحررة","لا يحدث أي تغيير على الإطلاق","توقف انبعاث الإلكترونات"], a:0,
+   e:"زيادة شدة الضوء تزيد عدد الفوتونات الساقطة، وبالتالي تزيد عدد الإلكترونات المنبعثة، لكنها لا تؤثر في طاقتها أو سرعتها."},
+
+  {q:"لماذا فشل النموذج الموجي للضوء في تفسير سلوك الأجسام الساخنة؟",
+   o:["لأنه توقع طاقة مستمرة بينما الطاقة تُبعث بكميات محددة","لأنه توقع طاقة متقطعة","لأنه لم يعطِ أي توقع","لأنه اعتمد على الجسيمات فقط"], a:0,
+   e:"النموذج الموجي توقع انبعاث طاقة مستمرة، لكن الواقع أن الطاقة تُبعث في كميات محددة صغيرة (كم)."}
+];
+
+let answered = 0, score = 0;
+const container = document.getElementById('quiz');
+
+questions.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'q';
+  let html = `<p>${i+1}) ${item.q}</p>`;
+  item.o.forEach((opt, j) => {
+    html += `<button class="opt" data-q="${i}" data-o="${j}">${opt}</button>`;
+  });
+  html += `<div class="fb" id="fb-${i}"></div>`;
+  div.innerHTML = html;
+  container.appendChild(div);
+});
+
+container.addEventListener('click', e => {
+  const btn = e.target.closest('.opt');
+  if(!btn) return;
+  const qi = +btn.dataset.q, oi = +btn.dataset.o;
+  const parent = btn.parentElement;
+  if(parent.dataset.done) return;
+  parent.dataset.done = "1";
+
+  const opts = parent.querySelectorAll('.opt');
+  opts.forEach((b, k) => {
+    if(k === questions[qi].a) b.classList.add('correct');
+    else if(k === oi) b.classList.add('wrong');
+    b.disabled = true;
+  });
+
+  const fb = document.getElementById('fb-' + qi);
+  if(oi === questions[qi].a){
+    score++;
+    fb.style.color = '#1b8a5a';
+    fb.textContent = '✔ إجابة صحيحة! ' + questions[qi].e;
+  } else {
+    fb.style.color = '#c0392b';
+    fb.textContent = '✘ إجابة خاطئة. ' + questions[qi].e;
+  }
+  fb.classList.add('show');
+
+  answered++;
+  document.getElementById('score').textContent = `النقاط: ${score} / ${answered}`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الضوء: الطبيعة الموجية — مراجعة وتدريب تفاعلي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #091a2b;
+    --navy-light: #132d4a;
+    --primary: #0e7c86;
+    --primary-dark: #09575e;
+    --primary-tint: #e4f4f5;
+    --sky: #2980b9;
+    --amber: #b9720e;
+    --amber-tint: #fef5e7;
+    --green: #15803d;
+    --green-tint: #ecfdf5;
+    --red: #b91c1c;
+    --red-tint: #fef2f2;
+    --indigo: #4338ca;
+    --indigo-tint: #eef2ff;
+    --purple: #8b5cf6;
+    --bg: #f3f7fa;
+    --surface: #ffffff;
+    --ink: #1e293b;
+    --muted: #64748b;
+    --border: #cce0f5;
+    --card-border: #e2e8f0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Tajawal', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.85;
+    direction:rtl;
+    padding-bottom:70px;
+  }
+
+  /* ═══ HERO SECTION ═══ */
+  .hero{
+    background:linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 60%, var(--primary-dark) 100%);
+    color:#fff;
+    padding:45px 20px 35px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 15% 40%, rgba(14,124,134,.25) 0%, transparent 45%),
+               radial-gradient(circle at 85% 70%, rgba(185,114,14,.18) 0%, transparent 45%);
+    pointer-events:none;
+  }
+  .hero-chip{
+    display:inline-block;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    color:#67e8f9;
+    border-radius:50px;
+    padding:4px 16px;
+    font-size:.85rem;
+    font-weight:700;
+    margin-bottom:12px;
+    position:relative; z-index:1;
+  }
+  .hero h1{
+    font-family:'Cairo', sans-serif;
+    font-size:clamp(1.8rem, 4.5vw, 2.7rem);
+    font-weight:900;
+    margin-bottom:8px;
+    position:relative; z-index:1;
+  }
+  .hero h1 span{color:#38bdf8;}
+  .hero-desc{
+    font-size:1rem;
+    color:rgba(255,255,255,.8);
+    max-width:640px;
+    margin:0 auto 18px;
+    position:relative; z-index:1;
+  }
+  .hero-tags{
+    display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+    position:relative; z-index:1;
+  }
+  .tag-pill{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:8px;
+    padding:4px 12px;
+    font-size:.82rem;
+    font-weight:700;
+    color:rgba(255,255,255,.9);
+  }
+
+  /* ═══ TABS NAVIGATION ═══ */
+  .tab-nav{
+    display:flex;
+    justify-content:center;
+    background:var(--surface);
+    border-bottom:2px solid var(--card-border);
+    position:sticky; top:0; z-index:100;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    overflow-x:auto;
+  }
+  .tbtn{
+    background:none; border:none;
+    padding:14px 20px;
+    font-family:'Tajawal', sans-serif;
+    font-size:.96rem;
+    font-weight:700;
+    color:var(--muted);
+    border-bottom:3px solid transparent;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:all .2s;
+  }
+  .tbtn:hover{color:var(--primary);}
+  .tbtn.active{
+    color:var(--navy);
+    border-bottom-color:var(--primary);
+  }
+
+  /* ═══ WRAPPER & SECTIONS ═══ */
+  .wrap{max-width:880px; margin:0 auto; padding:24px 16px;}
+  .sec-panel{display:none;}
+  .sec-panel.active{display:block;}
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:22px 24px;
+    margin-bottom:18px;
+    box-shadow:0 2px 6px rgba(0,0,0,.03);
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:''; position:absolute; right:0; top:0; bottom:0;
+    width:5px; background:var(--primary);
+  }
+  .card.amber::before{background:var(--amber);}
+  .card.indigo::before{background:var(--indigo);}
+
+  .card h2{
+    font-family:'Cairo', sans-serif;
+    font-size:1.25rem;
+    font-weight:800;
+    color:var(--navy);
+    margin-bottom:8px;
+  }
+  .card h3{
+    color:var(--primary-dark);
+    font-size:1.05rem;
+    font-weight:800;
+    margin:16px 0 6px;
+  }
+  .card .sub{
+    font-size:.88rem;
+    color:var(--muted);
+    margin-bottom:14px;
+    font-weight:500;
+  }
+  .card ul{
+    margin:8px 0;
+    padding-right:22px;
+  }
+  .card li{
+    margin:7px 0;
+    font-size:.96rem;
+  }
+
+  /* Boxes & Highlights */
+  .def-box{
+    background:var(--primary-tint);
+    border:1px solid #bce3e6;
+    border-radius:10px;
+    padding:14px 16px;
+    margin:12px 0;
+    font-size:.97rem;
+  }
+  .bridge-box{
+    background:var(--indigo-tint);
+    border:1px solid #c7d2fe;
+    border-radius:10px;
+    padding:14px 16px;
+    margin:12px 0;
+    font-size:.97rem;
+  }
+  .formula{
+    background:#eaf6fa;
+    border:1.5px dashed var(--primary);
+    border-radius:10px;
+    padding:12px 16px;
+    text-align:center;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:var(--navy);
+    margin:14px 0;
+    direction:ltr;
+    font-family:'Courier New', monospace;
+  }
+  .note{
+    background:#fff8e6;
+    border-right:5px solid var(--amber);
+    padding:12px 16px;
+    border-radius:8px;
+    margin:12px 0;
+    font-size:.95rem;
+    line-height:1.85;
+  }
+  .keys{
+    background:#eef8f2;
+    border-right:5px solid var(--green);
+    padding:12px 16px;
+    border-radius:8px;
+    margin:12px 0;
+    font-size:.96rem;
+  }
+
+  .card table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0;
+    font-size:.95rem;
+  }
+  .card th, .card td{
+    border:1px solid var(--card-border);
+    padding:10px 14px;
+    text-align:center;
+  }
+  .card th{
+    background:var(--navy);
+    color:#fff;
+    font-weight:800;
+  }
+  .card tr:nth-child(even) td{
+    background:#f8fafc;
+  }
+
+  /* Grid 2 */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0;}
+  @media (max-width:600px){.grid2{grid-template-columns:1fr;}}
+
+  /* ═══ EQUATIONS & CALCULATIONS ═══ */
+  .sec-h{margin-bottom:1.5rem;}
+  .sec-h .tag{
+    font-size:.78rem;font-weight:800;color:var(--sky);
+    letter-spacing:.8px;text-transform:uppercase;margin-bottom:.3rem;
+  }
+  .sec-h h2{
+    font-family:'Cairo',sans-serif;font-weight:900;
+    font-size:clamp(1.4rem,3vw,1.8rem);color:var(--navy);
+    border-right:5px solid var(--primary);padding-right:.8rem;
+  }
+
+  .ccard{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:16px;padding:1.6rem 1.8rem;margin-bottom:1.2rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    position:relative;overflow:hidden;
+  }
+  .ccard::before{
+    content:'';position:absolute;right:0;top:0;bottom:0;
+    width:4px;background:var(--primary);
+    border-radius:0 4px 4px 0;
+  }
+  .ccard.gold::before{background:var(--amber);}
+
+  .ccard h3{
+    font-family:'Cairo',sans-serif;font-size:1.2rem;font-weight:900;
+    color:var(--navy);margin-bottom:.7rem;
+  }
+
+  .eqbox{
+    background:#f0f8ff;border:1.5px solid var(--border);
+    border-radius:12px;padding:1.1rem 1.6rem;
+    text-align:center;margin:1rem 0;
+  }
+  .eqbox .eq{
+    font-family:'Courier New',monospace;font-size:1.35rem;
+    font-weight:700;color:var(--navy);
+  }
+  .eqbox .vars{
+    display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;
+    margin-top:.7rem;
+  }
+  .eqbox .vr{
+    background:rgba(41,128,185,.1);border-radius:8px;
+    padding:.3rem .8rem;font-size:.88rem;font-weight:700;color:var(--sky);
+  }
+
+  .alert{
+    border-radius:12px;padding:1rem 1.3rem;
+    margin:1rem 0;display:flex;gap:.8rem;align-items:flex-start;font-size:.97rem;
+  }
+  .alert.good{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
+  .alert .ai{font-size:1.3rem;flex-shrink:0;margin-top:.05rem;}
+
+  .ex-box{
+    background:#f7f3ff;border:1.5px solid #ddd6fe;
+    border-radius:14px;padding:1.5rem 1.8rem;margin:1.2rem 0;
+  }
+  .ex-box .ex-tag{
+    font-size:.78rem;font-weight:800;color:var(--purple);
+    letter-spacing:.8px;text-transform:uppercase;margin-bottom:.5rem;
+  }
+  .ex-box h4{
+    font-family:'Cairo',sans-serif;font-size:1.1rem;
+    font-weight:900;color:var(--navy);margin-bottom:.8rem;
+  }
+  .ex-steps{display:flex;flex-direction:column;gap:.6rem;margin-top:.8rem;}
+  .ex-step{
+    display:flex;gap:.8rem;align-items:flex-start;
+    background:#fff;border-radius:10px;padding:.7rem 1rem;
+    border:1px solid #ede9fe;
+  }
+  .ex-step .sn{
+    width:28px;height:28px;border-radius:50%;flex-shrink:0;
+    background:var(--purple);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:.82rem;margin-top:.05rem;
+  }
+  .ex-step p{font-size:.95rem;line-height:1.7;}
+
+  .ctable{width:100%;border-collapse:collapse;font-size:.97rem;margin:1rem 0;}
+  .ctable th{
+    background:var(--navy);color:#fff;
+    padding:.75rem 1rem;font-weight:800;text-align:center;
+  }
+  .ctable th:first-child{border-radius:10px 0 0 0;}
+  .ctable th:last-child{border-radius:0 10px 0 0;}
+  .ctable td{padding:.7rem 1rem;border-bottom:1px solid var(--border);text-align:center;}
+  .ctable tr:nth-child(even) td{background:#f7faff;}
+  .ctable tr:hover td{background:#eff6ff;}
+  .ctable .hl{color:var(--sky);font-weight:800;}
+
+  .keybox{
+    background:linear-gradient(135deg,#fffbeb,#fef3c7);
+    border:1.5px solid #fcd34d;border-radius:14px;
+    padding:1.2rem 1.5rem;margin:1rem 0;
+    display:flex;gap:.8rem;align-items:flex-start;
+    font-size:1rem;
+  }
+  .keybox .ki{font-size:1.4rem;flex-shrink:0;margin-top:.1rem;}
+  .keybox .kt{line-height:1.75;color:#78350f;}
+  .keybox strong{font-weight:800;color:#92400e;}
+
+  /* ═══ QUIZ SYSTEM ═══ */
+  .quiz-intro{
+    background:linear-gradient(135deg, #eff6ff, #f0fdf4);
+    border:1px solid #bfdbfe;
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:16px;
+  }
+  .quiz-intro h3{
+    font-family:'Cairo', sans-serif;
+    color:var(--navy); font-size:1.3rem; font-weight:900;
+  }
+
+  .progress-wrap{
+    background:#e2e8f0; border-radius:10px; height:8px;
+    margin:12px 0 6px; overflow:hidden;
+  }
+  .progress-bar{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--sky), var(--primary));
+    transition:width .3s ease;
+  }
+  .progress-labels{
+    display:flex; justify-content:space-between;
+    font-size:.82rem; color:var(--muted); font-weight:700;
+  }
+
+  .qcard{
+    background:var(--surface);
+    border:1.5px solid var(--card-border);
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,.03);
+    transition:border-color .2s;
+  }
+  .qcard.ok{border-color:var(--green);}
+  .qcard.bad{border-color:var(--red);}
+
+  .qhead{display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;}
+  .qbadge{
+    width:34px; height:34px; border-radius:8px;
+    background:#eff6ff; border:1px solid #bfdbfe;
+    color:var(--sky); font-family:'Cairo', sans-serif;
+    font-weight:900; font-size:.9rem;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .qtitle{font-size:.98rem; font-weight:700; color:var(--navy); line-height:1.6;}
+
+  .opts-list{display:flex; flex-direction:column; gap:8px;}
+  .obtn{
+    display:flex; align-items:center; gap:10px;
+    width:100%; text-align:right;
+    background:#fafcfd; border:1.5px solid var(--card-border);
+    border-radius:10px; padding:10px 14px;
+    font-family:'Tajawal', sans-serif; font-size:.94rem;
+    cursor:pointer; color:var(--ink);
+    transition:all .15s ease;
+  }
+  .obtn:hover:not(:disabled){
+    border-color:var(--primary); background:var(--primary-tint);
+  }
+  .olet{
+    width:28px; height:28px; border-radius:6px;
+    background:#fff; border:1px solid var(--card-border);
+    color:var(--muted); font-family:'Cairo', sans-serif;
+    font-weight:800; font-size:.85rem;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .obtn.correct{background:var(--green-tint); border-color:var(--green); color:var(--green); font-weight:700;}
+  .obtn.correct .olet{background:var(--green); color:#fff; border-color:var(--green);}
+  .obtn.wrong{background:var(--red-tint); border-color:var(--red); color:var(--red); font-weight:700;}
+  .obtn.wrong .olet{background:var(--red); color:#fff; border-color:var(--red);}
+  .obtn:disabled{cursor:default;}
+
+  .explain{
+    display:none; margin-top:12px;
+    background:#f8fafc; border-radius:8px;
+    padding:10px 14px; font-size:.88rem;
+    border-top:1px dashed var(--card-border);
+  }
+  .explain.show{display:block;}
+
+  /* Floating Score & Result */
+  .floating-score{
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%);
+    background:var(--surface); border:1px solid var(--card-border);
+    border-radius:50px; padding:6px 18px;
+    display:flex; align-items:center; gap:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,.12);
+    z-index:90; font-size:.85rem; font-weight:800;
+  }
+  .fdot{width:8px; height:8px; border-radius:50%; display:inline-block; margin-left:4px;}
+  .fdot.g{background:var(--green);}
+  .fdot.r{background:var(--red);}
+
+  #result-box{
+    display:none; background:var(--surface);
+    border:1px solid var(--card-border);
+    border-radius:18px; padding:28px 20px;
+    text-align:center; margin-top:16px;
+  }
+  #result-box.show{display:block;}
+  .res-circle{
+    width:110px; height:110px; border-radius:50%;
+    border:6px solid var(--primary); background:var(--primary-tint);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    margin:0 auto 14px;
+  }
+  .res-score{font-family:'Cairo', sans-serif; font-size:2rem; font-weight:900; color:var(--primary-dark);}
+  .res-sub{font-size:.75rem; color:var(--muted); font-weight:700;}
+  .res-msg{font-family:'Cairo', sans-serif; font-size:1.3rem; font-weight:900; margin-bottom:6px; color:var(--navy);}
+  .reset-btn{
+    background:var(--primary); color:#fff; border:none; border-radius:10px;
+    padding:10px 24px; font-family:'Tajawal', sans-serif;
+    font-size:1rem; font-weight:800; cursor:pointer; margin-top:10px;
+    transition:background .2s;
+  }
+  .reset-btn:hover{background:var(--primary-dark);}
+
+  footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:30px;}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-chip">🔬 كيمياء 2-1 — الفصل 1: الإلكترونات في الذرات</div>
+  <h1>الضوء و<span>طاقة الكم</span></h1>
+  <p class="hero-desc">ورقة مراجعة شاملة لربط خصائص الضوء الموجية بالبنية الذرية، مع حسابات سرعة الضوء والاختبار التفاعلي المباشر.</p>
+  <div class="hero-tags">
+    <div class="tag-pill">🌊 الخصائص الموجية</div>
+    <div class="tag-pill">📐 قانون c = λ · f</div>
+    <div class="tag-pill">🌈 الطيف الكهرومغناطيسي</div>
+    <div class="tag-pill">🎯 10 أسئلة تقييمية</div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══ -->
+<nav class="tab-nav">
+  <button class="tbtn active" onclick="switchTab('t1', this)">📖 الشرح والمفاهيم</button>
+  <button class="tbtn" onclick="switchTab('t2', this)">📐 المعادلات والحسابات</button>
+  <button class="tbtn" onclick="switchTab('t3', this)">🌈 الطيف الكهرومغناطيسي</button>
+  <button class="tbtn" onclick="switchTab('t4', this)">✏️ اختبر فهمك (10 أسئلة)</button>
+</nav>
+
+<div class="wrap">
+
+  <!-- ════════ TAB 1: الشرح والمفاهيم ════════ -->
+  <main id="t1" class="sec-panel active">
+    <!-- المدخل الكيميائي -->
+    <div class="card">
+      <h2>لماذا يدرس الكيميائي الضوء لفهم بنية الذرة؟</h2>
+      <div class="sub">قصور نموذج رذرفورد وبداية ثورة الكم</div>
+      
+      <div class="def-box">
+        <b>قصور نموذج رذرفورد:</b> اقترح رذرفورد تركز كتلة الذرة وشحنتها الموجبة في النواة وتدور حولها إلكترونات سالبة، لكنه عجز عن:
+        <br>1. تفسير كيفية ترتيب وتوزيع الإلكترونات في الفراغ المحيط بالنواة.
+        <br>2. تفسير سبب عدم انجذاب الإلكترونات السالبة للنواة الموجبة وانهيار الذرة.
+        <br>3. تفسير الاختلاف والتشابه في السلوك الكيميائي للعناصر (مثل تشابه تفاعل الليثيوم والصوديوم والبوتاسيوم مع الماء مع تباين شدة التفاعل).
+      </div>
+
+      <div class="bridge-box">
+        <b>💡 الربط بالكيمياء:</b> لاحظ العلماء انبعاث ضوء مرئي مميز من العناصر عند تسخينها باللهب. وأثبت التحليل أن هذا الضوء يرتبط مباشرة بحركة الإلكترونات وطاقتها، ما جعل دراسة الضوء المدخل الحقيقي لحل لغز توزيع الإلكترونات ومستويات الطاقة.
+      </div>
+    </div>
+
+    <!-- 1) ما هو الإشعاع الكهرومغناطيسي؟ -->
+    <div class="card">
+      <h2>1) ما هو الإشعاع الكهرومغناطيسي؟</h2>
+      <ul>
+        <li>الضوء المرئي نوع من <b>الإشعاع الكهرومغناطيسي</b>، وهو شكل من أشكال الطاقة.</li>
+        <li>يسلك <b>السلوك الموجي</b> أثناء انتقاله في الفضاء.</li>
+        <li>من أمثلته: الميكروويف، الأشعة السينية، موجات الراديو والتلفاز، الضوء المرئي.</li>
+      </ul>
+    </div>
+
+    <!-- 2) خصائص الموجات -->
+    <div class="card">
+      <h2>2) خصائص الموجات</h2>
+
+      <h3>الطول الموجي (λ)</h3>
+      <ul>
+        <li>أقصر مسافة بين <b>قمتين متتاليتين</b> أو <b>قاعين متتاليين</b>.</li>
+        <li>يقاس بالمتر أو السنتيمتر أو <b>النانومتر (nm)</b>.</li>
+        <li><span dir="ltr">1 nm = 1 × 10⁻⁹ m</span></li>
+      </ul>
+
+      <h3>التردد (f)</h3>
+      <ul>
+        <li>عدد الموجات التي تعبر نقطة محددة خلال <b>ثانية واحدة</b>.</li>
+        <li>يقاس بالهرتز <b>Hz</b>، و <span dir="ltr">1 Hz = 1 s⁻¹</span></li>
+        <li><span dir="ltr">1 Hz = 10⁻³ kHz</span> &nbsp;،&nbsp; <span dir="ltr">1 Hz = 10⁻⁶ MHz</span></li>
+      </ul>
+
+      <h3>السعة</h3>
+      <ul>
+        <li>مقدار ارتفاع <b>القمة</b> أو انخفاض <b>القاع</b> عن مستوى خط الأصل.</li>
+        <li><b>لا</b> يؤثر الطول الموجي ولا التردد في السعة.</li>
+      </ul>
+    </div>
+
+    <!-- 3) سرعة الموجة الكهرومغناطيسية -->
+    <div class="card">
+      <h2>3) سرعة الموجة الكهرومغناطيسية</h2>
+      <p>تنتقل الموجات الكهرومغناطيسية في الفراغ بسرعة ثابتة مقدارها:</p>
+      <div class="formula">c = 3.00 × 10⁸ m/s</div>
+      <p>وتُعطى العلاقة بين السرعة والتردد والطول الموجي بالمعادلة:</p>
+      <div class="formula">c = λ · f</div>
+      <p>ومنها: <span dir="ltr">λ = c / f</span> &nbsp; و &nbsp; <span dir="ltr">f = c / λ</span></p>
+
+      <div class="note">
+        <b>مثال محلول:</b> ما الطول الموجي لموجات ميكروويف ترددها <span dir="ltr">3.44 × 10⁸ Hz</span>؟<br>
+        <span dir="ltr">λ = c/f = (3.00×10⁸) / (3.44×10⁸) = 8.72 × 10⁻² m</span>
+      </div>
+    </div>
+
+    <!-- 4) العلاقة بين الطول الموجي والتردد -->
+    <div class="card">
+      <h2>4) العلاقة بين الطول الموجي والتردد</h2>
+      <div class="keys">
+        <b>علاقة عكسية:</b> كلما <b>زاد</b> الطول الموجي <b>قلّ</b> التردد، والعكس صحيح.
+      </div>
+      <table>
+        <thead>
+          <tr><th>اللون</th><th>الطول الموجي</th><th>التردد</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>الأحمر</td><td>الأطول</td><td>الأقل</td></tr>
+          <tr><td>البنفسجي</td><td>الأقصر</td><td>الأعلى</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ════════ TAB 2: المعادلات والحسابات ════════ -->
+  <section id="t2" class="sec-panel">
+    <div class="sec-h">
+      <div class="tag">Equations & Calculations</div>
+      <h2>المعادلات الأساسية والتطبيق الحسابي</h2>
+    </div>
+
+    <!-- المعادلة الرئيسية -->
+    <div class="ccard">
+      <h3>📐 المعادلة الأساسية: سرعة الموجة الكهرومغناطيسية</h3>
+      <div class="eqbox">
+        <div class="eq">c = λ × f</div>
+        <div class="vars">
+          <div class="vr">c = 3.00×10⁸ m/s (سرعة الضوء)</div>
+          <div class="vr">λ = الطول الموجي (m)</div>
+          <div class="vr">f = التردد (Hz = s⁻¹)</div>
+        </div>
+      </div>
+      <p style="margin-top:.5rem">يمكن حل المعادلة للحصول على أي مجهول:</p>
+      <div class="grid2" style="margin-top:.8rem">
+        <div style="background:#f7faff;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;text-align:center;font-family:'Courier New',monospace;font-weight:700;color:var(--sky)">
+          λ = c ÷ f
+        </div>
+        <div style="background:#f7faff;border:1px solid var(--border);border-radius:10px;padding:.8rem 1rem;text-align:center;font-family:'Courier New',monospace;font-weight:700;color:var(--sky)">
+          f = c ÷ λ
+        </div>
+      </div>
+    </div>
+
+    <!-- معادلة الطاقة -->
+    <div class="ccard gold">
+      <h3>⚡ معادلة طاقة الفوتون (الكم)</h3>
+      <div class="eqbox">
+        <div class="eq">E = h × f</div>
+        <div class="vars">
+          <div class="vr">E = الطاقة (Joule)</div>
+          <div class="vr">h = 6.626×10⁻³⁴ J·s (ثابت بلانك)</div>
+          <div class="vr">f = التردد (Hz)</div>
+        </div>
+      </div>
+      <div class="alert good" style="margin-top:.5rem">
+        <span class="ai">✅</span>
+        <div>يمكن دمج المعادلتين: E = h × (c/λ) — إذا كان المعطى هو الطول الموجي مباشرة</div>
+      </div>
+    </div>
+
+    <!-- مثال محلول 1 -->
+    <div class="ex-box">
+      <div class="ex-tag">مثال محلول 1 — من الكتاب المدرسي</div>
+      <h4>ما الطول الموجي لموجات الميكروويف التي ترددها f = 3.44×10⁹ Hz؟</h4>
+      <div class="ex-steps">
+        <div class="ex-step">
+          <div class="sn">1</div>
+          <p><strong>تحليل المسألة:</strong> المعطى f = 3.44×10⁹ Hz وc = 3.00×10⁸ m/s. المطلوب λ.</p>
+        </div>
+        <div class="ex-step">
+          <div class="sn">2</div>
+          <p><strong>اختيار المعادلة:</strong> c = λ × f → نعزل λ: λ = c/f</p>
+        </div>
+        <div class="ex-step">
+          <div class="sn">3</div>
+          <p><strong>التعويض:</strong> λ = (3.00×10⁸ m/s) ÷ (3.44×10⁹ s⁻¹)</p>
+        </div>
+        <div class="ex-step">
+          <div class="sn">4</div>
+          <p><strong>الحل:</strong> λ = <strong style="color:var(--purple)">8.72×10⁻² m</strong> — وهو ضمن نطاق الميكروويف ✅</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- مثال محلول 2 -->
+    <div class="ex-box">
+      <div class="ex-tag">مثال محلول 2 — إيجاد التردد</div>
+      <h4>ورقة خضراء تعكس الضوء بطول موجي λ = 4.90×10⁻⁷ m. ما تردد هذا الضوء؟</h4>
+      <div class="ex-steps">
+        <div class="ex-step">
+          <div class="sn">1</div>
+          <p><strong>المعطيات:</strong> λ = 4.90×10⁻⁷ m ، c = 3.00×10⁸ m/s. <strong>المطلوب:</strong> f</p>
+        </div>
+        <div class="ex-step">
+          <div class="sn">2</div>
+          <p><strong>المعادلة:</strong> f = c/λ = (3.00×10⁸) ÷ (4.90×10⁻⁷)</p>
+        </div>
+        <div class="ex-step">
+          <div class="sn">3</div>
+          <p><strong>الحل:</strong> f = <strong style="color:var(--purple)">6.12×10¹⁴ Hz</strong> — هذا تردد الضوء الأخضر المرئي ✅</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- تحويلات الوحدات -->
+    <div class="ccard">
+      <h3>🔁 تحويلات الوحدات المهمة</h3>
+      <table class="ctable">
+        <thead><tr><th>الوحدة</th><th>الرمز</th><th>التحويل</th><th>تُستخدم لـ</th></tr></thead>
+        <tbody>
+          <tr><td>هرتز</td><td class="hl">Hz</td><td>1 Hz = 1 s⁻¹</td><td>التردد</td></tr>
+          <tr><td>كيلوهرتز</td><td class="hl">KHz</td><td>1 KHz = 10³ Hz</td><td>راديو AM</td></tr>
+          <tr><td>ميغاهرتز</td><td class="hl">MHz</td><td>1 MHz = 10⁶ Hz</td><td>راديو FM</td></tr>
+          <tr><td>نانومتر</td><td class="hl">nm</td><td>1 nm = 10⁻⁹ m</td><td>الطول الموجي للضوء المرئي</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="keybox">
+      <span class="ki">⚠️</span>
+      <div class="kt"><strong>تنبيه مهم عند الحساب:</strong> تأكد دائمًا من تحويل الوحدات لتكون متوافقة (Hz → s⁻¹، nm → m) قبل التعويض في المعادلة. الإجابة النهائية تكون بنفس عدد الأرقام المعنوية في المعطيات.</div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 3: الطيف الكهرومغناطيسي ════════ -->
+  <section id="t3" class="sec-panel">
+    <div class="card">
+      <h2>5) الطيف الكهرومغناطيسي والطيف المستمر</h2>
+      <ul>
+        <li><b>الطيف الكهرومغناطيسي:</b> مدّى متصل من أطوال الموجات والترددات.</li>
+        <li>الضوء الأبيض (ضوء الشمس) يحتوي على <b>مدّى متصل</b> من الأطوال الموجية.</li>
+        <li>عند مروره في <b>منشور زجاجي</b> ينفصل إلى <b>طيف مستمر</b> من الألوان:
+          الأحمر، البرتقالي، الأصفر، الأخضر، الأزرق، النيلي، البنفسجي.</li>
+        <li>يتشكل <b>قوس قزح</b> عندما تشتت قطرات الماء ضوء الشمس.</li>
+      </ul>
+
+      <div class="note">
+        <b>محللو الطيف:</b> يستخدمون <b>طيف الامتصاص النجمي</b> لمعرفة العناصر المكوّنة للنجوم،
+        لأن كل عنصر له بصمة طيفية مميزة.
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 4: الاختبار التفاعلي ════════ -->
+  <section id="t4" class="sec-panel">
+    <div class="quiz-intro">
+      <h3>🎯 10 أسئلة امتحانية نموذجية</h3>
+      <p style="font-size:.9rem; color:var(--muted); margin-top:4px;">مبنية وفق أحدث معايير الاختبارات الشهرية والنهائية</p>
+      
+      <div class="progress-wrap">
+        <div class="progress-bar" id="pbar"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="pCount">التقدم: 0 / 10</span>
+        <span id="pScore">النقاط: 0</span>
+      </div>
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <div id="result-box">
+      <div class="res-circle">
+        <span class="res-score" id="resScore">0</span>
+        <span class="res-sub">من 10</span>
+      </div>
+      <div class="res-msg" id="resMsg"></div>
+      <button class="reset-btn" onclick="resetQuiz()">🔄 إعادة المحاولة</button>
+    </div>
+  </section>
+
+  <footer>مادة الكيمياء 2-1 — إعداد تعليمي للمراجعة المركزة</footer>
+</div>
+
+<!-- Floating Score Pill -->
+<div class="floating-score">
+  <span><span class="fdot g"></span> صحيح: <b id="floatOk" style="color:var(--green)">0</b></span>
+  <span>|</span>
+  <span><span class="fdot r"></span> خطأ: <b id="floatBad" style="color:var(--red)">0</b></span>
+</div>
+
+<script>
+/* ── Tabs Switching ── */
+function switchTab(id, btn){
+  document.querySelectorAll('.sec-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── 10 Best Selected Questions ── */
+const QUESTIONS = [
+  {
+    q: "أيّ من القضايا الآتية عجز نموذج رذرفورد للذرة عن تفسيرها مما دفع الكيميائيين لدراسة انبعاث الضوء؟",
+    opts: [
+      "وجود شحنة موجبة متركزة داخل النواة",
+      "كيفية ترتيب الإلكترونات حول النواة وسبب عدم انجذابها إليها واختلاف النشاط الكيميائي",
+      "وجود جسيمات مشحونة سالبة داخل الذرة",
+      "تركز معظم كتلة الذرة في حجم صغير بمركزها"
+    ],
+    ans: 1,
+    exp: "نموذج رذرفورد لم يوضح كيفية ترتيب وتوزيع الإلكترونات في الفراغ، ولم يفسر سبب عدم انهيارها نحو النواة الموجبة، ولا سبب تشابه واختلاف النشاط الكيميائي بين العناصر."
+  },
+  {
+    q: "يُعرّف «الطول الموجي (λ)» للموجات الكهرومغناطيسية بأنه:",
+    opts: [
+      "أقصر مسافة بين قمتين متتاليتين أو قاعين متتاليين",
+      "عدد الموجات التي تعبر نقطة خلال ثانية واحدة",
+      "مقدار ارتفاع القمة عن مستوى خط الأصل",
+      "المسافة التي تقطعها الموجة خلال ثانية واحدة"
+    ],
+    ans: 0,
+    exp: "الطول الموجي (λ) هو أقصر مسافة بين نقطتين متتاليتين لهما نفس الطور (كقمتين متتاليتين أو قاعين متتاليين)، ويقاس بالمتر أو النانومتر."
+  },
+  {
+    q: "وحدة قياس التردد العالمية هي الهرتز (Hz)، وتكافئ رياضياً في حل المسائل:",
+    opts: [
+      "متر لكل ثانية (m/s)",
+      "ثانية مقلوبة (s⁻¹ أو 1/s)",
+      "جول في ثانية (J·s)",
+      "نانومتر (nm)"
+    ],
+    ans: 1,
+    exp: "الهرتز يعني دورة واحدة أو موجة واحدة في الثانية، وبما أن عدد الموجات مجرد، يُكتب رياضياً كوحدة مقلوب الثانية (s⁻¹ أو 1/s)."
+  },
+  {
+    q: "أي خصائص الموجة الكهرومغناطيسية «لا يتأثر مطلقاً» بالطول الموجي ولا بالتردد؟",
+    opts: [
+      "طاقة الإشعاع",
+      "السرعة في الأوساط المختلفة",
+      "سعة الموجة (شدة الإضاءة)",
+      "العدد الموجي"
+    ],
+    ans: 2,
+    exp: "سعة الموجة (مقدار ارتفاع القمة أو انخفاض القاع عن الأصل) تعبر عن شدة وسطوع الإشعاع فقط، ولا ترتبط نهائياً بالتردد أو بالطول الموجي."
+  },
+  {
+    q: "تنتقل جميع الموجات الكهرومغناطيسية (كالراديو والضوء المرئي وجاما) في الفراغ بـ:",
+    opts: [
+      "السرعة الثابتة نفسها وتساوي 3.00 × 10⁸ m/s",
+      "سرعات مختلفة تعتمد كلياً على طاقتها وترددها",
+      "نفس التردد والطول الموجي دائماً",
+      "سرعات تزداد كلما كان الإشعاع مرئياً"
+    ],
+    ans: 0,
+    exp: "تشترك جميع الإشعاعات الكهرومغناطيسية في الفراغ بسرعة انتشار موحدة وثابتة وهي سرعة الضوء c = 3.00 × 10⁸ m/s."
+  },
+  {
+    q: "العلاقة بين الطول الموجي والتردد علاقة عكسية؛ فإذا تضاعف الطول الموجي لموجة في الفراغ إلى المثلين، فإن ترددها:",
+    opts: [
+      "يتضاعف إلى المثلين",
+      "يقل إلى النصف",
+      "يبقى ثابتاً دون تغيير",
+      "ينعدم تماماً"
+    ],
+    ans: 1,
+    exp: "حسب القانون c = λ · f وبما أن سرعة الضوء c مقدار ثابت، فالتناسب عكسي: مضاعفة الطول الموجي تجعل التردد يقل إلى النصف."
+  },
+  {
+    q: "موجات ميكروويف ترددها 3.44 × 10⁸ Hz، ما طولها الموجي في الفراغ؟",
+    opts: [
+      "8.72 × 10⁻² m",
+      "8.72 × 10² m",
+      "1.15 × 10⁻² m",
+      "3.44 × 10⁻² m"
+    ],
+    ans: 0,
+    exp: "بالتعويض في القانون: λ = c / f = (3.00 × 10⁸ m/s) / (3.44 × 10⁸ s⁻¹) = 8.72 × 10⁻² m."
+  },
+  {
+    q: "في نطاق الطيف المرئي، أي ألوان الضوء الآتية يمتلك «أطول طول موجي وأقل تردد»؟",
+    opts: [
+      "الضوء البنفسجي",
+      "الضوء الأخضر",
+      "الضوء الأحمر",
+      "الضوء الأزرق"
+    ],
+    ans: 2,
+    exp: "الضوء الأحمر يمتلك أطول طول موجي وأقل تردد وطاقة بين ألوان الطيف المرئي، بينما الضوء البنفسجي يمتلك أقصر طول موجي وأعلى تردد."
+  },
+  {
+    q: "لماذا يُطلق على طيف الضوء الأبيض بعد مروره عبر المنشور اسم «الطيف المستمر»؟",
+    opts: [
+      "لأنه ينبعث نهاراً دون انقطاع",
+      "لأن كل نقطة فيه تتوافق مع طول موجة وتردد محدد دون وجود فواصل أو مسافات معتمة بين الألوان",
+      "لأنه يحتوي على موجات الراديو فقط",
+      "لأن سرعته تزيد باستمرار داخل المنشور"
+    ],
+    ans: 1,
+    exp: "سُمي طيفاً مستمراً لأن ألوانه متصلة وتتداخل تدريجياً دون فراغات أو خطوط داكنة تفصل بين لون وآخر."
+  },
+  {
+    q: "يستخدم العلماء ومحللو الطيف «طيف الامتصاص النجمي» من أجل:",
+    opts: [
+      "قياس سرعة الضوء المنبعث من النجوم",
+      "معرفة وتحديد العناصر الكيميائية المكوّنة للنجوم",
+      "حساب سعة موجات النجوم",
+      "توليد الأشعة السينية في الفضاء"
+    ],
+    ans: 1,
+    exp: "لكل عنصر كيميائي بصمة طيفية مميزة وخاصة به، لذا يُستخدم طيف الامتصاص لمعرفة نوع العناصر الموجودة في النجوم البعيدة."
+  }
+];
+
+let answeredCount = 0;
+let correctCount = 0;
+let wrongCount = 0;
+const LETTERS = ['أ', 'ب', 'ج', 'د'];
+
+function renderQuiz(){
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  
+  QUESTIONS.forEach((qItem, qi) => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + qi;
+
+    const optsHtml = qItem.opts.map((opt, oi) => `
+      <button class="obtn" onclick="handleChoice(${qi}, ${oi})">
+        <span class="olet">${LETTERS[oi]}</span>
+        <span>${opt}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="qhead">
+        <div class="qbadge">${qi + 1}</div>
+        <div class="qtitle">${qItem.q}</div>
+      </div>
+      <div class="opts-list" id="opts-${qi}">${optsHtml}</div>
+      <div class="explain" id="exp-${qi}">
+        <b>💡 الشرح والتعليل:</b> ${qItem.exp}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function handleChoice(qi, chosenIdx){
+  const card = document.getElementById('qcard-' + qi);
+  const optsContainer = document.getElementById('opts-' + qi);
+  const buttons = optsContainer.querySelectorAll('.obtn');
+  
+  if(buttons[0].disabled) return;
+  
+  const correctIdx = QUESTIONS[qi].ans;
+  const isCorrect = (chosenIdx === correctIdx);
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if(idx === correctIdx) btn.classList.add('correct');
+    else if(idx === chosenIdx) btn.classList.add('wrong');
+  });
+
+  if(isCorrect){
+    correctCount++;
+    card.classList.add('ok');
+  } else {
+    wrongCount++;
+    card.classList.add('bad');
+  }
+
+  document.getElementById('exp-' + qi).classList.add('show');
+  answeredCount++;
+  updateStatus();
+
+  if(answeredCount === QUESTIONS.length){
+    showResult();
+  }
+}
+
+function updateStatus(){
+  const pct = (answeredCount / QUESTIONS.length) * 100;
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('pCount').textContent = `التقدم: ${answeredCount} / 10`;
+  document.getElementById('pScore').textContent = `النقاط: ${correctCount}`;
+  document.getElementById('floatOk').textContent = correctCount;
+  document.getElementById('floatBad').textContent = wrongCount;
+}
+
+function showResult(){
+  const resBox = document.getElementById('result-box');
+  const resScore = document.getElementById('resScore');
+  const resMsg = document.getElementById('resMsg');
+  
+  resScore.textContent = correctCount;
+  if(correctCount >= 9){
+    resMsg.textContent = "🏆 إنجاز مذهل! إتقان تام للمفاهيم الأساسية.";
+  } else if(correctCount >= 7){
+    resMsg.textContent = "⭐ مستوى جيد جداً! راجع الأسئلة التي تعثرت فيها.";
+  } else {
+    resMsg.textContent = "📚 تحتاج إلى مراجعة الشرح والمعادلات مرة أخرى.";
+  }
+  resBox.classList.add('show');
+  resBox.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function resetQuiz(){
+  answeredCount = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  updateStatus();
+  document.getElementById('result-box').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuiz();
+</script>
+</body>
+</html>

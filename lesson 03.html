@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 3: طيف الانبعاث الذري</title>
+<style>
+  :root{
+    --main:#0d6e8f; --main2:#0a4d63; --bg:#f4f8fa; --card:#ffffff;
+    --accent:#f0a500; --green:#1b8a5a; --red:#c0392b; --line:#d8e6ec;
+    --purple:#6a4c93;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 60px;
+    font-family:"Segoe UI","Tahoma","Arial",sans-serif;
+    background:var(--bg); color:#20323c; line-height:1.9;
+  }
+  header{
+    background:linear-gradient(135deg,#6a4c93,#8e6bb5);
+    color:#fff; padding:28px 20px; text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.15);
+  }
+  header h1{margin:0; font-size:26px;}
+  header p{margin:6px 0 0; opacity:.9; font-size:15px;}
+  .wrap{max-width:900px; margin:0 auto; padding:0 16px;}
+  .card{
+    background:var(--card); border-radius:14px; padding:20px 22px;
+    margin:22px 0; box-shadow:0 2px 10px rgba(106,76,147,.08);
+    border:1px solid var(--line);
+  }
+  h2{
+    color:var(--main2); font-size:21px; margin:0 0 14px;
+    border-right:6px solid var(--accent); padding-right:12px;
+  }
+  h3{color:var(--main); font-size:17px; margin:18px 0 8px;}
+  ul{margin:8px 0; padding-right:22px;}
+  li{margin:7px 0;}
+  .formula{
+    background:#eaf6fa; border:1px dashed var(--main);
+    border-radius:10px; padding:12px 16px; text-align:center;
+    font-size:18px; font-weight:bold; color:var(--main2);
+    margin:12px 0; direction:ltr;
+  }
+  .note{
+    background:#fff8e6; border-right:5px solid var(--accent);
+    padding:12px 16px; border-radius:8px; margin:12px 0; font-size:15px;
+  }
+  .keys{background:#eef8f2; border-right:5px solid var(--green);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  .warn{background:#fdecea; border-right:5px solid var(--red);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  .dual{background:#f3eefb; border-right:5px solid var(--purple);
+    padding:12px 16px; border-radius:8px; margin:12px 0;}
+  table{width:100%; border-collapse:collapse; margin:12px 0; font-size:15px;}
+  th,td{border:1px solid var(--line); padding:9px 10px; text-align:center;}
+  th{background:#6a4c93; color:#fff;}
+  tr:nth-child(even) td{background:#f7fbfd;}
+  .steps{counter-reset:step; padding-right:0; list-style:none;}
+  .steps li{
+    counter-increment:step; position:relative; padding-right:42px;
+    margin:12px 0;
+  }
+  .steps li::before{
+    content:counter(step); position:absolute; right:0; top:0;
+    width:30px; height:30px; background:var(--main); color:#fff;
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-weight:bold; font-size:14px;
+  }
+  .colorbar{
+    display:flex; height:40px; border-radius:8px; overflow:hidden;
+    margin:14px 0; box-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .colorbar div{flex:1; display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:12px; font-weight:bold; text-shadow:0 1px 2px rgba(0,0,0,.5);}
+  .quiz{background:linear-gradient(180deg,#fff,#f2f9fc);}
+  .q{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px; margin:14px 0;
+  }
+  .q p{margin:0 0 10px; font-weight:bold; color:var(--main2);}
+  .opt{
+    display:block; width:100%; text-align:right; background:#f7fbfd;
+    border:1px solid var(--line); border-radius:8px; padding:9px 14px;
+    margin:7px 0; cursor:pointer; font-size:15px; font-family:inherit;
+    transition:.2s;
+  }
+  .opt:hover{background:#e3f1f7; border-color:var(--main);}
+  .opt.correct{background:#d7f2e3; border-color:var(--green); color:var(--green); font-weight:bold;}
+  .opt.wrong{background:#fadbd8; border-color:var(--red); color:var(--red);}
+  .fb{margin-top:8px; font-size:14px; font-weight:bold; display:none;}
+  .fb.show{display:block;}
+  .score{
+    text-align:center; font-size:18px; font-weight:bold;
+    color:var(--main2); background:#eaf6fa; border-radius:10px;
+    padding:12px; margin-top:16px;
+  }
+  footer{text-align:center; color:#7a8f99; font-size:13px; margin-top:30px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>الدرس 3 — طيف الانبعاث الذري</h1>
+  <p>ملخص مفاهيم + 10 أسئلة اختيار من متعدد</p>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2>1) كيف ينشأ ضوء النيون؟</h2>
+    <p>عند مرور <b>الكهرباء</b> في أنبوب مملوء بغاز النيون:</p>
+    <ol class="steps">
+      <li><b>تمتص</b> ذرات النيون الطاقة وتنتقل إلى حالة <b>عدم الاستقرار</b> (حالة الإثارة).</li>
+      <li>لكي تعود إلى حالة <b>الاستقرار</b>، يجب أن تُطلق الطاقة التي امتصتها على شكل <b>ضوء</b>.</li>
+      <li>عند مرور ضوء النيون خلال <b>منشور زجاجي</b> ينتج <b>طيف الانبعاث الذري</b> للنيون.</li>
+    </ol>
+
+    <div class="warn">
+      <b>مهم:</b> هذه الظاهرة <b>لا يمكن تفسيرها</b> بالنموذج الموجي للضوء، بل تحتاج إلى نموذج الكم.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2) ما هو طيف الانبعاث الذري؟</h2>
+    <div class="keys">
+      <b>التعريف:</b> طيف الانبعاث الذري لعنصر ما هو <b>مجموعة من ترددات الموجات الكهرومغناطيسية</b>
+      المنطلقة من ذرات العنصر.
+    </div>
+
+    <h3>خصائصه:</h3>
+    <ul>
+      <li>يتكون من <b>عدة خطوط منفصلة</b> من الألوان، وليس مدى متصلًا.</li>
+      <li>كل خط مرتبط بـ <b>تردد محدد</b> للإشعاع المنبعث من الذرات.</li>
+      <li>لكل عنصر <b>طيف انبعاث فريد ومميز</b> يختلف عن بقية العناصر.</li>
+    </ul>
+
+    <div class="note">
+      <b>الفرق الجوهري:</b> الضوء الأبيض يعطي <b>طيفًا مستمرًا</b> من الألوان، أما عنصر مثل الهيدروجين
+      فيعطي <b>خطوطًا منفصلة</b> محددة فقط.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3) طيف انبعاث الهيدروجين</h2>
+    <p>عند تمرير ضوء الهيدروجين خلال منشور زجاجي، ينتج <b>أربعة خطوط</b> مميزة بأطوال موجية مختلفة:</p>
+
+    <div class="colorbar">
+      <div style="background:#6a3a9c;">410 nm</div>
+      <div style="background:#2a4fa8;">434 nm</div>
+      <div style="background:#1a9fc4;">486 nm</div>
+      <div style="background:#c0392b;">656 nm</div>
+    </div>
+
+    <table>
+      <tr><th>اللون</th><th>الطول الموجي (nm)</th><th>التردد</th><th>الطاقة</th></tr>
+      <tr><td>بنفسجي</td><td>410</td><td>الأعلى</td><td>الأعلى</td></tr>
+      <tr><td>بنفسجي مزرق</td><td>434</td><td>عالٍ</td><td>عالية</td></tr>
+      <tr><td>أزرق مخضر</td><td>486</td><td>متوسط</td><td>متوسطة</td></tr>
+      <tr><td>أحمر</td><td>656</td><td>الأقل</td><td>الأقل</td></tr>
+    </table>
+
+    <div class="keys">
+      <b>القاعدة:</b> كلما <b>قصر</b> الطول الموجي، <b>زاد</b> التردد و<b>زادت</b> الطاقة.
+      لذا الخط عند 410 nm له <b>أعلى طاقة</b>، والخط عند 656 nm له <b>أقل طاقة</b>.
+    </div>
+
+    <div class="formula">E<sub>photon</sub> = h · f</div>
+    <p>لأن الطاقة ترتبط بالتردد، فإن كل خط طيفي يمثل فوتونات ذات طاقة محددة.</p>
+  </div>
+
+  <div class="card">
+    <h2>4) لماذا يعتبر الطيف الذري بصمة للعنصر؟</h2>
+    <ul>
+      <li>لكل عنصر <b>ترددات محددة</b> ينبعث بها الضوء.</li>
+      <li>لذلك يُستخدم طيف الانبعاث الذري <b>للتعرّف على العنصر</b> أو لمعرفة ما إذا كان جزءًا من مركب.</li>
+    </ul>
+
+    <div class="note">
+      <b>مثال تطبيقي:</b> عند غمس سلك بلاتين في محلول نترات السترونشيوم وعرضه على لهب بنزن،
+      تبعث ذرات السترونشيوم لونًا <b>أحمر مميزًا</b>. ويمكن إجراء اختبار لون اللهب هذا على
+      مجموعة من العناصر في المختبر.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>5) تجربة: تحديد ماهية المركبات (اختبار اللهب)</h2>
+
+    <h3>خطوات العمل:</h3>
+    <ol class="steps">
+      <li>اقرأ تعليمات السلامة في المختبر.</li>
+      <li>اغمس سلك بلاتين (أو عود تنظيف أذن قطنية) في محلول كلوريد الليثيوم، ثم عرضه للهب بنزن، ولاحظ لون اللهب وسجّله.</li>
+      <li>كرر الخطوة السابقة مع محاليل: كلوريد الصوديوم، كلوريد البوتاسيوم، كلوريد الكالسيوم، كلوريد السترونشيوم، وسجّل لون كل لهب.</li>
+      <li>قارن نتائجك بما في كتيب المختبر.</li>
+      <li>كرر باستخدام عينة من محلول مجهول يزودك به المعلم، وسجّل لون اللهب الناتج.</li>
+      <li>تخلص من عيدان القطن المستعملة كما يرشدك المعلم.</li>
+    </ol>
+
+    <h3>التحليل:</h3>
+    <ul>
+      <li><b>لماذا يختلف لون اللهب؟</b> لأن كل فلز له طاقة إثارة مختلفة، فينبعث ضوء بترددات (ألوان) مختلفة.</li>
+      <li><b>لماذا لا يعطي الكلوريد لونًا مميزًا؟</b> لأن اللون ناتج عن <b>الفلز</b> وليس عن أيون الكلوريد.</li>
+      <li><b>الربط:</b> يرتبط اختبار لون اللهب مع <b>طيف الانبعاث الذري</b> للعنصر نفسه.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>6) طيف الامتصاص الذري</h2>
+    <ul>
+      <li>عندما يمر ضوء أبيض خلال غاز بارد، <b>تمتص</b> الذرات ترددات محددة من الضوء.</li>
+      <li>يظهر طيف الامتصاص كـ <b>خطوط سوداء</b> فوق خلفية طيف مستمر.</li>
+      <li>الخطوط السوداء تتوافق <b>تمامًا</b> مع الخطوط الملونة في طيف الانبعاث لنفس العنصر.</li>
+    </ul>
+
+    <div class="dual">
+      <b>تطبيق فلكي:</b> عند مقارنة الخطوط السوداء (الامتصاص) بطيف الانبعاث للعناصر،
+      يستطيع العلماء تحديد <b>تركيب الطبقات الخارجية للنجوم</b> ومعرفة العناصر الموجودة فيها.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>7) مقارنة شاملة</h2>
+    <table>
+      <tr><th>وجه المقارنة</th><th>الطيف المستمر</th><th>طيف الانبعاث الذري</th></tr>
+      <tr><td>المصدر</td><td>الضوء الأبيض / الأجسام الساخنة</td><td>ذرات عنصر مثارة</td></tr>
+      <tr><td>الشكل</td><td>مدى متصل من الألوان</td><td>خطوط منفصلة ملونة</td></tr>
+      <tr><td>التمييز</td><td>لا يميز عنصرًا معينًا</td><td>فريد لكل عنصر</td></tr>
+      <tr><td>مثال</td><td>ضوء الشمس</td><td>طيف الهيدروجين (4 خطوط)</td></tr>
+    </table>
+  </div>
+
+  <div class="card quiz">
+    <h2>اختبر نفسك — 10 أسئلة</h2>
+    <div id="quiz"></div>
+    <div class="score" id="score">النقاط: 0 / 10</div>
+  </div>
+
+  <footer>إعداد للمراجعة الدراسية — الدرس 3</footer>
+</div>
+
+<script>
+const questions = [
+  {q:"طيف الانبعاث الذري لعنصر ما هو:",
+   o:["مدى متصل من الألوان","مجموعة من ترددات الموجات الكهرومغناطيسية المنطلقة من ذرات العنصر","خطوط سوداء على خلفية ملونة","انعكاس الضوء عن سطح الفلز"], a:1,
+   e:"طيف الانبعاث الذري هو مجموعة الترددات المميزة المنبعثة من ذرات العنصر، وتظهر كخطوط منفصلة."},
+
+  {q:"عند مرور الكهرباء في أنبوب النيون، ماذا يحدث لذرات النيون أولًا؟",
+   o:["تفقد طاقتها","تمتص الطاقة وتنتقل إلى حالة الإثارة","تتحول إلى أيونات فقط","تنبعث منها إلكترونات"], a:1,
+   e:"تمتص ذرات النيون الطاقة وتنتقل إلى حالة عدم الاستقرار (الإثارة)، ثم تعود بإطلاق الضوء."},
+
+  {q:"يتكون طيف انبعاث الهيدروجين من:",
+   o:["مدى متصل من الألوان","أربعة خطوط منفصلة","خطين فقط","خط واحد"], a:1,
+   e:"يتكون طيف انبعاث الهيدروجين من أربعة خطوط بأطوال موجية: 410، 434، 486، 656 نانومتر."},
+
+  {q:"أي خط في طيف الهيدروجين له أعلى طاقة؟",
+   o:["410 nm","434 nm","486 nm","656 nm"], a:0,
+   e:"الخط عند 410 nm له أقصر طول موجي، وبالتالي أعلى تردد وأعلى طاقة."},
+
+  {q:"أي خط في طيف الهيدروجين له أقل تردد؟",
+   o:["410 nm","434 nm","486 nm","656 nm"], a:3,
+   e:"الخط عند 656 nm له أطول طول موجي، لذا له أقل تردد وأقل طاقة."},
+
+  {q:"لماذا يُعتبر طيف الانبعاث الذري بمثابة بصمة للعنصر؟",
+   o:["لأنه متطابق لكل العناصر","لأن لكل عنصر ترددات مميزة وفريدة","لأنه لا يتغير بتغير العنصر","لأنه طيف مستمر"], a:1,
+   e:"لكل عنصر ترددات محددة ينبعث بها الضوء، لذا يُستخدم طيف الانبعاث للتعرف على العنصر."},
+
+  {q:"في اختبار لون اللهب، لون اللهب المميز ناتج عن:",
+   o:["أيون الكلوريد","الفلز المستخدم","الماء المقطر","الهواء"], a:1,
+   e:"اللون المميز ناتج عن الفلز (مثل الليثيوم، الصوديوم، السترونشيوم)، وليس عن أيون الكلوريد."},
+
+  {q:"يظهر طيف الامتصاص الذري على شكل:",
+   o:["خطوط ملونة على خلفية سوداء","خطوط سوداء على خلفية طيف مستمر","مدى متصل فقط","نقاط متفرقة"], a:1,
+   e:"طيف الامتصاص يظهر كخطوط سوداء فوق طيف مستمر، وترتبط بترددات تمتصها الذرات."},
+
+  {q:"العلاقة بين الخطوط السوداء في طيف الامتصاص والخطوط الملونة في طيف الانبعاث لنفس العنصر:",
+   o:["عشوائية","متطابقة في الترددات","معاكسة تمامًا","لا علاقة بينهما"], a:1,
+   e:"الخطوط السوداء في طيف الامتصاص تتوافق تمامًا مع الخطوط الملونة في طيف الانبعاث لنفس العنصر."},
+
+  {q:"كيف يستفيد العلماء من طيف الامتصاص النجمي؟",
+   o:["لقياس سرعة الضوء","لتحديد تركيب الطبقات الخارجية للنجوم","لحساب سعة الموجة","لقياس درجة حرارة الأرض"], a:1,
+   e:"بمقارنة الخطوط السوداء بطيف الانبعاث للعناصر، يحدد العلماء العناصر الموجودة في الطبقات الخارجية للنجوم."}
+];
+
+let answered = 0, score = 0;
+const container = document.getElementById('quiz');
+
+questions.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'q';
+  let html = `<p>${i+1}) ${item.q}</p>`;
+  item.o.forEach((opt, j) => {
+    html += `<button class="opt" data-q="${i}" data-o="${j}">${opt}</button>`;
+  });
+  html += `<div class="fb" id="fb-${i}"></div>`;
+  div.innerHTML = html;
+  container.appendChild(div);
+});
+
+container.addEventListener('click', e => {
+  const btn = e.target.closest('.opt');
+  if(!btn) return;
+  const qi = +btn.dataset.q, oi = +btn.dataset.o;
+  const parent = btn.parentElement;
+  if(parent.dataset.done) return;
+  parent.dataset.done = "1";
+
+  const opts = parent.querySelectorAll('.opt');
+  opts.forEach((b, k) => {
+    if(k === questions[qi].a) b.classList.add('correct');
+    else if(k === oi) b.classList.add('wrong');
+    b.disabled = true;
+  });
+
+  const fb = document.getElementById('fb-' + qi);
+  if(oi === questions[qi].a){
+    score++;
+    fb.style.color = '#1b8a5a';
+    fb.textContent = '✔ إجابة صحيحة! ' + questions[qi].e;
+  } else {
+    fb.style.color = '#c0392b';
+    fb.textContent = '✘ إجابة خاطئة. ' + questions[qi].e;
+  }
+  fb.classList.add('show');
+
+  answered++;
+  document.getElementById('score').textContent = `النقاط: ${score} / ${answered}`;
+});
+</script>
+</body>
+</html>
