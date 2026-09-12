@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 6: مستويات ذرة الهيدروجين والأفلاك الذرية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --card-border: #e2e8f0;
+    --navy: #0f172a;
+    --navy-light: #1e293b;
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --primary-soft: #e0f2fe;
+    --purple: #7c3aed;
+    --purple-soft: #f3e8ff;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --rose: #e11d48;
+    --rose-soft: #ffe4e6;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    padding-bottom: 80px;
+    font-size: 1.05rem;
+  }
+
+  .cite { display: none !important; }
+
+  /* ═══ HERO HEADER ═══ */
+  .hero {
+    background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 60%, #4338ca 100%);
+    color: #ffffff;
+    padding: clamp(35px, 6vw, 55px) 20px 35px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 16px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #e0f2fe;
+  }
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    font-weight: 900;
+    margin-bottom: 8px;
+    line-height: 1.35;
+  }
+  .hero h1 span { color: #bae6fd; }
+  .hero p {
+    font-size: clamp(0.95rem, 3vw, 1.08rem);
+    color: #f1f5f9;
+    max-width: 680px;
+    margin: 0 auto 16px;
+    line-height: 1.7;
+  }
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  /* ═══ TABS NAVIGATION ═══ */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    border-bottom: 2px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+  }
+  .tbtn {
+    background: transparent;
+    border: 1.5px solid transparent;
+    color: var(--muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .tbtn:hover {
+    color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .tbtn.active {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border-color: #7dd3fc;
+  }
+
+  /* ═══ WRAPPER & CARDS ═══ */
+  .container { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: clamp(18px, 4vw, 26px);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; width: 5px; height: 100%;
+    background: var(--primary);
+  }
+  .card.purple::after { background: var(--purple); }
+  .card.amber::after { background: var(--amber); }
+
+  .card h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .card h3 {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    margin: 18px 0 8px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .card p {
+    color: #334155;
+    font-size: 1.02rem;
+    margin-bottom: 12px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  .card ul li {
+    position: relative;
+    padding-right: 22px;
+    margin-bottom: 10px;
+    color: #1e293b;
+    font-size: 1rem;
+  }
+  .card ul li::before {
+    content: '◆';
+    position: absolute;
+    right: 0;
+    color: var(--primary);
+    font-size: 0.85rem;
+  }
+
+  /* Educational Highlight Boxes */
+  .concept-box {
+    background: var(--primary-soft);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-size: 1.02rem;
+  }
+  .concept-box b { color: var(--primary-dark); }
+
+  .theater-box {
+    background: var(--amber-soft);
+    border-right: 5px solid var(--amber);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    font-size: 1.02rem;
+    color: #78350f;
+  }
+  .theater-box b { color: #92400e; font-size: 1.1rem; }
+
+  .formula-box {
+    background: #f0fdf4;
+    border: 1.5px dashed var(--emerald);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .formula-eq {
+    font-family: 'Courier New', monospace;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--emerald);
+    direction: ltr;
+  }
+
+  /* Tables */
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.96rem;
+    min-width: 480px;
+  }
+  .data-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 12px 14px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    color: #1e293b;
+  }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+
+  /* Grid of Orbitals */
+  .orbitals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .orbital-card {
+    background: #ffffff;
+    border: 1.5px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .orbital-card h4 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.15rem;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .orbital-shape {
+    font-size: 0.92rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .orbital-cap {
+    background: #f1f5f9;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  /* ═══ QUIZ SYSTEM ═══ */
+  .quiz-header {
+    background: linear-gradient(135deg, #f0f9ff, #ede9fe);
+    border: 1px solid #bae6fd;
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .quiz-header h3 {
+    font-family: 'Cairo', sans-serif;
+    color: var(--navy);
+    font-size: 1.35rem;
+  }
+  .progress-wrap {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 14px 0 8px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--purple));
+    transition: width 0.3s ease;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .q-card {
+    background: var(--surface);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .q-card.ok { border-color: var(--emerald); }
+  .q-card.bad { border-color: var(--rose); }
+
+  .q-head { display: flex; gap: 12px; margin-bottom: 14px; }
+  .q-badge {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border: 1px solid #bae6fd;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .q-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.55;
+  }
+
+  .opts-stack { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.98rem;
+    text-align: right;
+    transition: all 0.15s ease;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #e0f2fe;
+    border-color: var(--primary);
+  }
+  .opt-letter {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--muted);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .opt-btn.correct {
+    background: var(--emerald-soft);
+    border-color: var(--emerald);
+    color: var(--emerald);
+    font-weight: 800;
+  }
+  .opt-btn.correct .opt-letter {
+    background: var(--emerald);
+    color: #ffffff;
+    border-color: var(--emerald);
+  }
+  .opt-btn.wrong {
+    background: var(--rose-soft);
+    border-color: var(--rose);
+    color: var(--rose);
+    font-weight: 800;
+  }
+  .opt-btn.wrong .opt-letter {
+    background: var(--rose);
+    color: #ffffff;
+    border-color: var(--rose);
+  }
+  .opt-btn:disabled { cursor: default; }
+
+  .q-explain {
+    display: none;
+    margin-top: 12px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #334155;
+    border-right: 4px solid var(--primary);
+    line-height: 1.7;
+  }
+  .q-explain.show { display: block; }
+  .q-explain b { color: var(--primary-dark); }
+
+  /* Floating Score Capsule */
+  .score-capsule {
+    position: fixed;
+    bottom: 14px; left: 50%; transform: translateX(-50%);
+    background: #ffffff;
+    border: 1.5px solid var(--card-border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 50px;
+    padding: 8px 22px;
+    display: flex;
+    gap: 16px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    z-index: 1000;
+  }
+
+  /* Result Banner */
+  .result-banner {
+    display: none;
+    background: #ffffff;
+    border: 2px solid #bae6fd;
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  }
+  .result-banner.show { display: block; }
+  .res-score {
+    font-family: 'Cairo', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+  }
+  .res-btn {
+    background: var(--primary);
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 10px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background 0.2s;
+  }
+  .res-btn:hover { background: var(--primary-dark); }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-badge">🔬 كيمياء 2-1 — الفصل 1: الإلكترونات في الذرات</div>
+  <h1>مستويات <span>ذرة الهيدروجين والأفلاك</span></h1>
+  <p>دليل شامل لفهم أعداد الكم، حدود المستوى بنسبة 90%، تشبيه صفوف المسرح الأثري، وأشكال وسعات المستويات الثانوية (s, p, d, f).</p>
+  <div class="hero-tags">
+    <div class="tag">🎯 احتمال 90% لموقع الإلكترون</div>
+    <div class="tag">🔢 عدد الكم الرئيس (n)</div>
+    <div class="tag">🏛️ تشبيه صفوف مقاعد المسرح</div>
+    <div class="tag">📐 قاعدة n² للأفلاك</div>
+    <div class="tag">✏️ 10 أسئلة تفاعلية</div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══ -->
+<nav class="nav-tabs">
+  <button class="tbtn active" onclick="switchTab('t1', this)">📖 عدد الكم وحدود المستوى</button>
+  <button class="tbtn" onclick="switchTab('t2', this)">🏛️ المستويات الثانوية وتشبيه المسرح</button>
+  <button class="tbtn" onclick="switchTab('t3', this)">🎨 أشكال المستويات وسعتها</button>
+  <button class="tbtn" onclick="switchTab('t4', this)">✏️ اختبر فهمك (10 أسئلة)</button>
+</nav>
+
+<div class="container">
+
+  <!-- ════════ TAB 1: عدد الكم وحدود المستوى ════════ -->
+  <main id="t1" class="tab-pane active">
+    
+    <div class="card">
+      <h2>1) حدود المستوى الذري (نسبة الـ 90%)</h2>
+      <p>لأن حدود المستوى غير واضحة المعالم، فليس للمستوى الذري حجم ثابت ودقيق قطعي <span class="cite">[cite: 7]</span>. وللتغلب على عدم التحديد المؤكد في موقع الإلكترون، اتفق الكيميائيون على الآتي <span class="cite">[cite: 7]</span>:</p>
+      
+      <div class="concept-box">
+        <b>سطح احتمال 90%:</b> يرسم الكيميائيون سطحاً كروياً أو حدياً للمستوى يحتوي على <b>90% (0.9)</b> من الاحتمال الكلي لوجود الإلكترون عند أي لحظة، ويكون احتمال وجوده خارج هذه الحدود هو <b>10% (0.1)</b> فقط <span class="cite">[cite: 7]</span>.
+      </div>
+      <p>وهذا يعني أن احتمال وجود الإلكترون قريباً من النواة وضمن هذا الحجم المعرف أكبر بكثير من احتمال تواجده بعيداً عنها <span class="cite">[cite: 7]</span>.</p>
+    </div>
+
+    <div class="card purple">
+      <h2>2) عدد الكم الرئيس (n)</h2>
+      <p>عيّن النموذج الميكانيكي الكمي أربعة أعداد كم للمستويات الذرية، أولها وأهمها هو <b>عدد الكم الرئيس (n)</b> <span class="cite">[cite: 7]</span>:</p>
+      <ul>
+        <li><b>دلالته الفيزيائية:</b> يشير إلى <b>الحجم النسبي وطاقة المستويات</b> <span class="cite">[cite: 7]</span>.</li>
+        <li><b>أثره على الإلكترون:</b> كلما ازدادت قيمة (n) <b>زاد حجم المستوى</b>، لذا يقضي الإلكترون وقتاً أكبر بعيداً عن النواة، و<b>تزداد طاقة الذرة</b> <span class="cite">[cite: 7]</span>.</li>
+        <li><b>قيم مستويات الهيدروجين:</b> حُددت 7 مستويات طاقة رئيسة لذرة الهيدروجين تأخذ أعداداً صحيحة من <b>1 إلى 7</b> <span class="cite">[cite: 7]</span>.</li>
+        <li><b>الحالة المستقرة:</b> عندما يحتل إلكترون الهيدروجين الوحيد المستوى <b>n = 1</b> تكون الذرة في أدنى طاقة (حالة الاستقرار) <span class="cite">[cite: 7]</span>.</li>
+      </ul>
+
+      <h3>رموز مستويات الطاقة الرئيسة (جدول 2-1)</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>عدد الكم الرئيس (n)</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>رمز المستوى الرئيس</b></td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ════════ TAB 2: المستويات الثانوية وتشبيه المسرح ════════ -->
+  <section id="t2" class="tab-pane">
+    
+    <div class="card amber">
+      <h2>3) تشبيه صفوف مقاعد المسرح الأثري</h2>
+      <div class="theater-box">
+        <b>🏛️ الربط مع الواقع (صفوف المقاعد المدرجة):</b><br>
+        في المسارح الأثرية القديمة، كلما صعدت إلى الصفوف العليا احتوت على عدد مقاعد أكثر لاتساع دائرتها <span class="cite">[cite: 7]</span>.
+        <br><br>
+        بشكل مماثل تماماً: <b>يتزايد عدد المستويات الثانوية للطاقة في مستوى الطاقة الرئيس كلما زادت قيمة (n)</b> وابتعدنا عن النواة <span class="cite">[cite: 7]</span>:
+        <ul style="margin-top:8px;">
+          <li>المستوى الأول (n = 1): يتألف من <b>مستوى ثانوي واحد</b> فقط (s) <span class="cite">[cite: 7]</span>.</li>
+          <li>المستوى الثاني (n = 2): يتألف من <b>مستويين ثانويين</b> (s, p) <span class="cite">[cite: 7]</span>.</li>
+          <li>المستوى الثالث (n = 3): يتألف من <b>3 مستويات ثانوية</b> (s, p, d) <span class="cite">[cite: 7]</span>.</li>
+          <li>المستوى الرابع (n = 4): يتألف من <b>4 مستويات ثانوية</b> (s, p, d, f) <span class="cite">[cite: 7]</span>.</li>
+          <li>المستويات الرئيسة (5 - 7): تحتوي أيضاً على <b>4 مستويات ثانوية</b> كالمستوى الرئيس الرابع <span class="cite">[cite: 7]</span>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>4) أين يوجد إلكترون ذرة الهيدروجين؟</h2>
+      <div class="concept-box">
+        <b>قاعدة الشغور والانتقال:</b> يمتلك الهيدروجين إلكتروناً واحداً فقط يشغل في أي وقت <b>مستوياً فرعياً واحداً فقط</b> (المستوى 1s في حالة الاستقرار) <span class="cite">[cite: 7]</span>.<br>
+        أما بقية المستويات الفرعية فما هي إلا <b>مساحات شاغرة (متوافرة)</b> ينتقل إليها الإلكترون إذا امتص طاقة من مصدر خارجي، مثل الانتقال إلى 2s أو 2p <span class="cite">[cite: 7]</span>.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ════════ TAB 3: أشكال المستويات وسعتها ════════ -->
+  <section id="t3" class="tab-pane">
+    
+    <div class="card">
+      <h2>5) أشكال وسعات المستويات الفرعية الأربعة</h2>
+      <p>يحتوي كل مستوى فرعي (فلك) على <b>إلكترونين كحد أقصى</b> <span class="cite">[cite: 7]</span>. وتختلف أشكالها الهندسية تبعاً لنوع المستوى الثانوي <span class="cite">[cite: 7]</span>:</p>
+
+      <div class="orbitals-grid">
+        <div class="orbital-card">
+          <h4>المستوى s</h4>
+          <div class="orbital-shape">كروي الشكل (Spherical)</div>
+          <p style="font-size:0.9rem; color:var(--muted);">يزداد حجمه مع ازدياد قيمة n (المستوى 2s أكبر حجماً من 1s) <span class="cite">[cite: 7]</span>.</p>
+          <div class="orbital-cap">فلك واحد (1) | يتسع لـ 2 إلكترون كحد أقصى <span class="cite">[cite: 7]</span></div>
+        </div>
+
+        <div class="orbital-card">
+          <h4>المستوى p</h4>
+          <div class="orbital-shape">يتكون من فصين (Dumbbell)</div>
+          <p style="font-size:0.9rem; color:var(--muted);">3 أفلاك متعامدة وموجهة نحو المحاور الثلاثة: px, py, pz <span class="cite">[cite: 7]</span>.</p>
+          <div class="orbital-cap">3 أفلاك | يتسع لـ 6 إلكترونات كحد أقصى <span class="cite">[cite: 7]</span></div>
+        </div>
+
+        <div class="orbital-card">
+          <h4>المستوى d</h4>
+          <div class="orbital-shape">أشكال معقدة (رباعية الفصوص)</div>
+          <p style="font-size:0.9rem; color:var(--muted);">4 منها متشابهة ومختلفة الاتجاه، والخامس (dz²) له شكل وحلقة مميزة <span class="cite">[cite: 7]</span>.</p>
+          <div class="orbital-cap">5 أفلاك | يتسع لـ 10 إلكترونات كحد أقصى <span class="cite">[cite: 7]</span></div>
+        </div>
+
+        <div class="orbital-card">
+          <h4>المستوى f</h4>
+          <div class="orbital-shape">أشكال معقدة متعددة الفصوص</div>
+          <p style="font-size:0.9rem; color:var(--muted);">توجد في المستويات الرئيسة المتقدمة (من الرابع فما فوق) <span class="cite">[cite: 7]</span>.</p>
+          <div class="orbital-cap">7 أفلاك | يتسع لـ 14 إلكتروناً كحد أقصى <span class="cite">[cite: 7]</span></div>
+        </div>
+      </div>
+
+      <div class="formula-box">
+        <div class="formula-eq">عدد الأفلاك في المستوى الرئيس = n²</div>
+        <p style="font-size:0.92rem; color:#166534; font-weight:700; margin-top:4px;">
+          المستوى الأول: 1² = 1 فلك | المستوى الثاني: 2² = 4 أفلاك | المستوى الثالث: 3² = 9 أفلاك | المستوى الرابع: 4² = 16 فلكاً <span class="cite">[cite: 7]</span>
+        </p>
+      </div>
+
+      <h3>ملخص المستويات الأربعة الأولى (جدول 4-1)</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>عدد الكم الرئيس (n)</th>
+              <th>المستويات الثانوية</th>
+              <th>عدد المستويات الفرعية (الأفلاك)</th>
+              <th>مجموع الأفلاك الكلي (n²)</th>
+              <th>السعة القصوى من الإلكترونات (2n²)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><b>n = 1</b></td><td>s</td><td>1</td><td><b>1</b></td><td>2 إلكترون</td></tr>
+            <tr><td><b>n = 2</b></td><td>s, p</td><td>1 + 3</td><td><b>4</b></td><td>8 إلكترونات</td></tr>
+            <tr><td><b>n = 3</b></td><td>s, p, d</td><td>1 + 3 + 5</td><td><b>9</b></td><td>18 إلكتروناً</td></tr>
+            <tr><td><b>n = 4</b></td><td>s, p, d, f</td><td>1 + 3 + 5 + 7</td><td><b>16</b></td><td>32 إلكتروناً</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="concept-box" style="background:#f1f5f9; border-color:#cbd5e1;">
+        <b>💡 ملاحظة ذهبية:</b> لاحظ دائماً أن عدد المستويات الفرعية (الأفلاك) في كل مستوى ثانوي هو <b>عدد فردي دائماً</b>: (s = 1، p = 3، d = 5، f = 7) <span class="cite">[cite: 7]</span>.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ════════ TAB 4: الاختبار التفاعلي ════════ -->
+  <section id="t4" class="tab-pane">
+    <div class="quiz-header">
+      <h3>🎯 10 أسئلة امتحانية على مستويات ذرة الهيدروجين</h3>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">اختبار شامل يقيس استيعابك للمفردات والقوانين والجداول المعتمدة</p>
+      
+      <div class="progress-wrap">
+        <div class="progress-bar" id="pBar"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="pCount">التقدم: 0 / 10</span>
+        <span id="pScore">الدرجة: 0</span>
+      </div>
+    </div>
+
+    <div id="quizBox"></div>
+
+    <div class="result-banner" id="resBanner">
+      <div class="res-score" id="resVal">0 / 10</div>
+      <h3 id="resTitle" style="color: var(--navy); margin-bottom: 6px;"></h3>
+      <p id="resDesc" style="color: var(--muted); font-size: 0.98rem;"></p>
+      <button class="res-btn" onclick="restartQuiz()">🔄 إعادة الاختبار</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating Score Capsule -->
+<div class="score-capsule">
+  <span style="color: var(--emerald);">✔ صحيح: <b id="lblOk">0</b></span>
+  <span style="color: #cbd5e1;">|</span>
+  <span style="color: var(--rose);">✖ خطأ: <b id="lblBad">0</b></span>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+const QUESTIONS = [
+  {
+    q: "ما النسبة الاحتمالية التي اتفق الكيميائيون على رسم سطح المستوى لتحديد حدوده حول النواة؟",
+    opts: [
+      "50% داخل الحدود و50% خارجها",
+      "90% داخل الحدود و10% خارجها",
+      "100% قاطع ومؤكد دائماً",
+      "75% فقط عند خط الاستواء"
+    ],
+    ans: 1,
+    exp: "يرسم الكيميائيون سطحاً يحتوي على 90% (0.9) من الاحتمال الكلي لوجود الإلكترون داخل الحدود، و0.1 خارجها."
+  },
+  {
+    q: "ما الدلالة الفيزيائية المباشرة لعدد الكم الرئيس (n)؟",
+    opts: [
+      "يشير إلى شحنة النواة وعدد النيوترونات",
+      "يشير إلى الحجم النسبي وطاقة المستويات الذرية",
+      "يحدد سرعة الإلكترون فقط",
+      "يدل على اتجاه دوران الإلكترون حول نفسه"
+    ],
+    ans: 1,
+    exp: "عدد الكم الرئيس (n) يشير إلى الحجم النسبي للمستوى وطاقته؛ فكلما زادت n زاد حجم المستوى وزادت طاقة الذرة."
+  },
+  {
+    q: "ما الحرف اللاتيني الذي يمثل مستوى الطاقة الرئيس الأول (n = 1) لذرة الهيدروجين؟",
+    opts: ["المستوى L", "المستوى K", "المستوى M", "المستوى Q"],
+    ans: 1,
+    exp: "حسب التسميات المعتمدة في الجدول 2-1: n=1 هو K، n=2 هو L، n=3 هو M، n=4 هو N، وهكذا حتى n=7 وهو Q."
+  },
+  {
+    q: "كم عدداً لمستويات الطاقة الثانوية يحتوي عليه مستوى الطاقة الرئيس الثالث (n = 3)؟",
+    opts: [
+      "مستوى ثانوي واحد فقط",
+      "مستويان ثانويان",
+      "ثلاثة مستويات ثانوية (s, p, d)",
+      "تسعة مستويات ثانوية"
+    ],
+    ans: 2,
+    exp: "عدد المستويات الثانوية في المستويات الرئيسة الأربعة الأولى يساوي قيمة n، إذن المستوى n = 3 يحتوي على 3 مستويات ثانوية هي s و p و d."
+  },
+  {
+    q: "بناءً على تشبيه صفوف مقاعد المسرح الأثري، ما وجه الشبه بينها وبين مستويات الطاقة في الذرة؟",
+    opts: [
+      "كلاهما له مسافات رأسية متساوية دائماً",
+      "تتزايد المستويات الثانوية للطاقة كلما زادت قيمة n وابتعدنا عن النواة مثلما تزداد المقاعد في الصفوف العليا",
+      "لا يوجد إلكترونات في المستويات المرتفعة",
+      "المقاعد السفلية تستوعب إلكترونات أكثر"
+    ],
+    ans: 1,
+    exp: "مثلما تتسع الصفوف العليا لمقاعد أكثر في المسرح الأثري، فإن مستويات الطاقة الأبعد عن النواة تحوي مستويات ثانوية أكثر."
+  },
+  {
+    q: "ما أقصى عدد من الإلكترونات يمكن أن يستوعبه أي مستوى فرعي (فلك واحد) في الذرة؟",
+    opts: ["إلكترون واحد فقط", "إلكترونان كحد أقصى (2)", "6 إلكترونات", "14 إلكتروناً"],
+    ans: 1,
+    exp: "القاعدة الثابتة تنص على أن كل مستوى فرعي (فلك واحد) يحتوي على إلكترونين كحد أعلى مهما كان نوعه."
+  },
+  {
+    q: "ما الشكل الهندسي للمستويات الفرعية من النوع s؟",
+    opts: [
+      "كروية الشكل ويزداد حجمها مع زيادة قيمة n",
+      "تتكون من فصين متعامدين",
+      "معقدة متعددة الفصوص",
+      "مستطيلة مسطحة"
+    ],
+    ans: 0,
+    exp: "جميع مستويات s الفرعية كروية الشكل، وتزداد أحجامها بزيادة العدد الكمي الرئيس (2s أكبر حجماً من 1s)."
+  },
+  {
+    q: "يتكون المستوى الثانوي p من 3 مستويات فرعية (px, py, pz)، فما أقصى سعة من الإلكترونات يستوعبها؟",
+    opts: ["2 إلكترون", "6 إلكترونات", "10 إلكترونات", "14 إلكتروناً"],
+    ans: 1,
+    exp: "بما أن المستوى الثانوي p يضم 3 أفلاك، وكل فلك يتسع لإلكترونين: 3 × 2 = 6 إلكترونات كحد أقصى."
+  },
+  {
+    q: "ما القانون الرياضي الذي يُحسب به مجموع المستويات الفرعية (الأفلاك الكلية) في أي مستوى رئيس (n)؟",
+    opts: ["2n", "n²", "2n²", "n + 2"],
+    ans: 1,
+    exp: "مجموع المستويات الفرعية في أي مستوى طاقة رئيس يساوي n² (مثال: المستوى الرابع يحوي 4² = 16 فلكاً فرعياً)."
+  },
+  {
+    q: "عندما تكتسب ذرة الهيدروجين في حالتها المستقرة كمية من الطاقة، إلى أين ينتقل إلكترونها الوحيد؟",
+    opts: [
+      "يسقط مباشرة داخل النواة وتتلاشى طاقته",
+      "ينتقل إلى أحد المستويات الفرعية الشاغرة مثل 2s أو 2p",
+      "يتحول فوراً إلى شعاع ضوئي مستمر",
+      "لا يمكنه الانتقال لأن ذرة الهيدروجين لها إلكترون وحيد"
+    ],
+    ans: 1,
+    exp: "يحتل إلكترون الهيدروجين المستوى 1s في الحالة المستقرة، وعند اكتساب الطاقة ينتقل إلى أحد المستويات الشاغرة (المتاحة) مثل 2s أو 2p."
+  }
+];
+
+let answersDone = 0;
+let correctCount = 0;
+let wrongCount = 0;
+const LETTERS = ['أ', 'ب', 'ج', 'د'];
+
+function renderQuiz() {
+  const container = document.getElementById('quizBox');
+  container.innerHTML = '';
+
+  QUESTIONS.forEach((qObj, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qCard-${qIdx}`;
+
+    const optsHtml = qObj.opts.map((optText, optIdx) => `
+      <button class="opt-btn" onclick="submitAnswer(${qIdx}, ${optIdx})">
+        <span class="opt-letter">${LETTERS[optIdx]}</span>
+        <span>${optText}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-badge">${qIdx + 1}</div>
+        <div class="q-title">${qObj.q}</div>
+      </div>
+      <div class="opts-stack" id="optGroup-${qIdx}">${optsHtml}</div>
+      <div class="q-explain" id="exp-${qIdx}">
+        <b>💡 الشرح والتوضيح:</b> ${qObj.exp}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function submitAnswer(qIdx, selectedIdx) {
+  const card = document.getElementById(`qCard-${qIdx}`);
+  const group = document.getElementById(`optGroup-${qIdx}`);
+  const buttons = group.querySelectorAll('.opt-btn');
+
+  if (buttons[0].disabled) return;
+
+  const correctIndex = QUESTIONS[qIdx].ans;
+  const isCorrect = (selectedIdx === correctIndex);
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === correctIndex) btn.classList.add('correct');
+    else if (idx === selectedIdx) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) {
+    correctCount++;
+    card.classList.add('ok');
+  } else {
+    wrongCount++;
+    card.classList.add('bad');
+  }
+
+  document.getElementById(`exp-${qIdx}`).classList.add('show');
+  answersDone++;
+  refreshStats();
+
+  if (answersDone === QUESTIONS.length) {
+    showResults();
+  }
+}
+
+function refreshStats() {
+  const pct = (answersDone / QUESTIONS.length) * 100;
+  document.getElementById('pBar').style.width = pct + '%';
+  document.getElementById('pCount').textContent = `التقدم: ${answersDone} / 10`;
+  document.getElementById('pScore').textContent = `الدرجة: ${correctCount}`;
+  document.getElementById('lblOk').textContent = correctCount;
+  document.getElementById('lblBad').textContent = wrongCount;
+}
+
+function showResults() {
+  const banner = document.getElementById('resBanner');
+  const scoreVal = document.getElementById('resVal');
+  const title = document.getElementById('resTitle');
+  const desc = document.getElementById('resDesc');
+
+  scoreVal.textContent = `${correctCount} / 10`;
+
+  if (correctCount >= 9) {
+    title.textContent = "🏆 إتقان تام ومبهر لمستويات الذرة والأفلاك!";
+    desc.textContent = "استيعاب كامل لقواعد أعداد الكم وأشكال وسعات المستويات الفرعية.";
+  } else if (correctCount >= 7) {
+    title.textContent = "⭐ مستوى رائع جداً!";
+    desc.textContent = "راجع فقط الأسئلة التي تعثرت فيها لترسيخ المفاهيم ونيل الدرجة النهائية.";
+  } else {
+    title.textContent = "📚 تحتاج لمراجعة سريعة لأشكال الأفلاك وقاعدة n².";
+    desc.textContent = "أعد قراءة الشرح بالبطاقات السابقة ثم أعد المحاولة لتطوير درجاتك.";
+  }
+
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function restartQuiz() {
+  answersDone = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  refreshStats();
+  document.getElementById('resBanner').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
