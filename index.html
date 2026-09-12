@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>بوابة الكيمياء — الفصل الدراسي الثاني</title>
+  <title>بوابة الكيمياء 2-1 — الفصل الدراسي الثاني</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f4f8fc;
       --card-bg: #ffffff;
       --navy: #091a2b;
       --navy-light: #132d4a;
-      --primary: #0e7c86;
-      --primary-tint: #e6f6f7;
-      --accent-orange: #d97706;
-      --accent-purple: #6a4c93;
-      --accent-blue: #0284c7;
+      --primary: #0284c7;
+      --primary-tint: #e0f2fe;
+      --teal: #0d9488;
+      --amber: #d97706;
+      --purple: #7c3aed;
+      --indigo: #4338ca;
+      --emerald: #059669;
+      --rose: #e11d48;
       --text-main: #1e293b;
       --text-muted: #64748b;
       --border: #e2e8f0;
@@ -29,23 +32,29 @@
       padding: 0;
     }
 
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
     body {
       font-family: 'Tajawal', sans-serif;
       background: var(--bg);
       color: var(--text-main);
-      line-height: 1.8;
+      line-height: 1.85;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      font-size: 1.05rem;
     }
 
     /* ══ HEADER ══ */
     header {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, var(--primary) 100%);
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 55%, var(--primary) 100%);
       color: #ffffff;
-      padding: 50px 20px 40px;
+      padding: clamp(35px, 6vw, 60px) 20px clamp(30px, 5vw, 45px);
       text-align: center;
-      box-shadow: 0 4px 20px rgba(9, 26, 43, 0.15);
+      box-shadow: 0 4px 20px rgba(9, 26, 43, 0.12);
       position: relative;
     }
 
@@ -53,34 +62,38 @@
       display: inline-block;
       background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 5px 16px;
+      padding: 5px 18px;
       border-radius: 50px;
       font-size: 0.9rem;
-      font-weight: 700;
-      color: #67e8f9;
+      font-weight: 800;
+      color: #7dd3fc;
       margin-bottom: 12px;
       backdrop-filter: blur(4px);
     }
 
     header h1 {
       font-family: 'Cairo', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-size: clamp(1.7rem, 4.5vw, 2.7rem);
       font-weight: 900;
       margin-bottom: 10px;
+      line-height: 1.35;
     }
 
+    header h1 span { color: #38bdf8; }
+
     header p {
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
       color: #e2e8f0;
-      max-width: 650px;
+      max-width: 680px;
       margin: 0 auto;
+      line-height: 1.7;
     }
 
     /* ══ MAIN CONTENT ══ */
     main {
-      max-width: 1000px;
-      margin: -25px auto 40px;
-      padding: 0 20px;
+      max-width: 1100px;
+      margin: -25px auto 50px;
+      padding: 0 16px;
       width: 100%;
       flex: 1;
     }
@@ -89,51 +102,53 @@
       background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 18px 24px;
+      padding: clamp(16px, 3.5vw, 22px);
       display: flex;
       align-items: center;
       gap: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-      margin-bottom: 30px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      margin-bottom: 28px;
     }
 
     .intro-icon {
-      font-size: 2rem;
+      font-size: 2.2rem;
       background: var(--primary-tint);
-      width: 54px;
-      height: 54px;
+      width: 58px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 14px;
       flex-shrink: 0;
     }
 
     .intro-text h3 {
       font-family: 'Cairo', sans-serif;
-      font-size: 1.1rem;
+      font-size: clamp(1.05rem, 3vw, 1.2rem);
       color: var(--navy);
       font-weight: 800;
+      margin-bottom: 4px;
     }
 
     .intro-text p {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       margin: 0;
+      line-height: 1.6;
     }
 
     /* ══ LESSONS GRID ══ */
     .lessons-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
     .lesson-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 24px;
+      padding: clamp(18px, 3vw, 24px);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -146,7 +161,6 @@
     .lesson-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
-      border-color: var(--primary);
     }
 
     .card-stripe {
@@ -157,23 +171,15 @@
       height: 5px;
     }
 
-    .card-1 .card-stripe { background: var(--accent-blue); }
-    .card-2 .card-stripe { background: var(--accent-orange); }
-    .card-3 .card-stripe { background: var(--accent-purple); }
-
     .lesson-num {
       display: inline-block;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 800;
-      padding: 3px 10px;
+      padding: 3px 12px;
       border-radius: 6px;
       margin-bottom: 12px;
       width: fit-content;
     }
-
-    .card-1 .lesson-num { background: #e0f2fe; color: var(--accent-blue); }
-    .card-2 .lesson-num { background: #fef3c7; color: var(--accent-orange); }
-    .card-3 .lesson-num { background: #f3e8ff; color: var(--accent-purple); }
 
     .lesson-title {
       font-family: 'Cairo', sans-serif;
@@ -181,13 +187,15 @@
       font-weight: 800;
       color: var(--navy);
       margin-bottom: 10px;
+      line-height: 1.4;
     }
 
     .lesson-desc {
-      font-size: 0.92rem;
+      font-size: 0.96rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       flex-grow: 1;
+      line-height: 1.7;
     }
 
     .topics-list {
@@ -198,9 +206,9 @@
     }
 
     .topics-list li {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-main);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -208,38 +216,87 @@
 
     .topics-list li::before {
       content: "•";
-      color: var(--primary);
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
 
     .btn-open {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: var(--navy);
+      gap: 10px;
       color: #ffffff;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 0.98rem;
       padding: 11px 18px;
       border-radius: 10px;
-      transition: background 0.2s ease;
+      transition: opacity 0.2s ease, transform 0.15s ease;
     }
 
-    .card-1 .btn-open:hover { background: var(--accent-blue); }
-    .card-2 .btn-open:hover { background: var(--accent-orange); }
-    .card-3 .btn-open:hover { background: var(--accent-purple); }
+    .btn-open:hover {
+      opacity: 0.92;
+      transform: scale(1.02);
+    }
+
+    /* ══ THEME ACCENTS FOR EACH CARD ══ */
+    /* Lesson 1: Cyan/Primary */
+    .c1 .card-stripe { background: var(--teal); }
+    .c1 .lesson-num { background: #ccfbf1; color: var(--teal); }
+    .c1 .topics-list li::before { color: var(--teal); }
+    .c1 .btn-open { background: var(--teal); }
+    .c1:hover { border-color: var(--teal); }
+
+    /* Lesson 2: Amber */
+    .c2 .card-stripe { background: var(--amber); }
+    .c2 .lesson-num { background: #fef3c7; color: var(--amber); }
+    .c2 .topics-list li::before { color: var(--amber); }
+    .c2 .btn-open { background: var(--amber); }
+    .c2:hover { border-color: var(--amber); }
+
+    /* Lesson 3: Purple */
+    .c3 .card-stripe { background: var(--purple); }
+    .c3 .lesson-num { background: #f3e8ff; color: var(--purple); }
+    .c3 .topics-list li::before { color: var(--purple); }
+    .c3 .btn-open { background: var(--purple); }
+    .c3:hover { border-color: var(--purple); }
+
+    /* Lesson 4: Indigo */
+    .c4 .card-stripe { background: var(--indigo); }
+    .c4 .lesson-num { background: #e0e7ff; color: var(--indigo); }
+    .c4 .topics-list li::before { color: var(--indigo); }
+    .c4 .btn-open { background: var(--indigo); }
+    .c4:hover { border-color: var(--indigo); }
+
+    /* Lesson 5: Blue/Cyan */
+    .c5 .card-stripe { background: var(--primary); }
+    .c5 .lesson-num { background: var(--primary-tint); color: var(--primary-dark); }
+    .c5 .topics-list li::before { color: var(--primary); }
+    .c5 .btn-open { background: var(--primary); }
+    .c5:hover { border-color: var(--primary); }
+
+    /* Lesson 6: Emerald */
+    .c6 .card-stripe { background: var(--emerald); }
+    .c6 .lesson-num { background: #d1fae5; color: var(--emerald); }
+    .c6 .topics-list li::before { color: var(--emerald); }
+    .c6 .btn-open { background: var(--emerald); }
+    .c6:hover { border-color: var(--emerald); }
+
+    /* Lesson 7: Rose/Navy */
+    .c7 .card-stripe { background: var(--rose); }
+    .c7 .lesson-num { background: #ffe4e6; color: var(--rose); }
+    .c7 .topics-list li::before { color: var(--rose); }
+    .c7 .btn-open { background: var(--rose); }
+    .c7:hover { border-color: var(--rose); }
 
     /* ══ FOOTER ══ */
     footer {
       text-align: center;
-      padding: 22px;
+      padding: 24px 16px;
       background: #ffffff;
       border-top: 1px solid var(--border);
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -247,30 +304,31 @@
 
   <header>
     <div class="badge">🔬 كيمياء 2-1 | المستوى الثانوي</div>
-    <h1>بوابة دروس الكيمياء التفاعلية</h1>
-    <p>الفصل الدراسي الثاني — وحدة الإلكترونات في الذرات، الشرح المبسط والأنشطة والاختبارات الذاتية</p>
+    <h1>بوابة دروس <span>الكيمياء التفاعلية</span></h1>
+    <p>الفصل الدراسي الثاني — وحدة الإلكترونات في الذرات: شروحات مدعمة بالأمثلة الحياتية، قوانين حسابية، واختبارات تفاعلية ذاتية لكل درس.</p>
   </header>
 
   <main>
     <div class="intro-banner">
-      <div class="intro-icon">📚</div>
+      <div class="intro-icon">💡</div>
       <div class="intro-text">
-        <h3>مرحباً بكم يا أبطال الكيمياء</h3>
-        <p>اختر الدرس للمطالعة وحل المسائل التدريبية والاختبارات التفاعلية المباشرة المرفقة بكل درس.</p>
+        <h3>أهلاً بكم يا علماء المستقبل</h3>
+        <p>اختر الدرس المطلوب لبدء المذاكرة والاستعداد للاختبارات عبر بنك الأسئلة التفاعلي المباشر المصاحب لكل موضوع.</p>
       </div>
     </div>
 
     <div class="lessons-grid">
+
       <!-- الدرس 1 -->
-      <div class="lesson-card card-1">
+      <div class="lesson-card c1">
         <div class="card-stripe"></div>
         <span class="lesson-num">الدرس 01</span>
         <h2 class="lesson-title">الضوء وطاقة الكم</h2>
-        <p class="lesson-desc">دراسة الخصائص الموجية للضوء وعلاقتها بالبنية الذرية، مع القوانين والحسابات الرياضية.</p>
+        <p class="lesson-desc">دراسة الخصائص الموجية للضوء، وقانون سرعة انتشار الموجات الكهرومغناطيسية، ومفهوم الطيف المستمر.</p>
         <ul class="topics-list">
           <li>الإشعاع الكهرومغناطيسي وخصائصه</li>
           <li>قانون سرعة الضوء c = λ · f</li>
-          <li>الطيف الكهرومغناطيسي المستمر</li>
+          <li>الطيف الكهرومغناطيسي المرئي</li>
           <li>اختبار تفاعلي ذاتي (10 أسئلة)</li>
         </ul>
         <a href="lesson%2001.html" class="btn-open">
@@ -280,15 +338,15 @@
       </div>
 
       <!-- الدرس 2 -->
-      <div class="lesson-card card-2">
+      <div class="lesson-card c2">
         <div class="card-stripe"></div>
         <span class="lesson-num">الدرس 02</span>
         <h2 class="lesson-title">الطبيعة المادية للضوء</h2>
-        <p class="lesson-desc">قصور النموذج الموجي، ومفهوم الكم عند ماكس بلانك، والتأثير الكهروضوئي لألبرت أينشتاين.</p>
+        <p class="lesson-desc">أسباب قصور النموذج الموجي، ومفهوم الكم عند بلانك، والتأثير الكهروضوئي وطبيعة الفوتون عند أينشتاين.</p>
         <ul class="topics-list">
-          <li>مفهوم الكم وفرضية بلانك</li>
+          <li>مفهوم الكم وفرضية ماكس بلانك</li>
           <li>معادلة طاقة الكم E = h · f</li>
-          <li>التأثير الكهروضوئي وطاقة الفوتون</li>
+          <li>التأثير الكهروضوئي وتردد العتبة</li>
           <li>اختبار تقييمي مع التغذية الراجعة</li>
         </ul>
         <a href="lesson%2002.html" class="btn-open">
@@ -298,15 +356,15 @@
       </div>
 
       <!-- الدرس 3 -->
-      <div class="lesson-card card-3">
+      <div class="lesson-card c3">
         <div class="card-stripe"></div>
         <span class="lesson-num">الدرس 03</span>
         <h2 class="lesson-title">طيف الانبعاث الذري</h2>
-        <p class="lesson-desc">كيف ينشأ ضوء النيون، وبصمة طيف الانبعاث للهيدروجين والعناصر، وتجربة اختبار اللهب.</p>
+        <p class="lesson-desc">كيف ينشأ ضوء النيون، وبصمة طيف انبعاث الهيدروجين (4 خطوط)، وتجربة اختبار لهب الفلزات في المختبر.</p>
         <ul class="topics-list">
-          <li>طيف انبعاث الهيدروجين (4 خطوط)</li>
-          <li>اختبار اللهب وتمييز الفلزات</li>
-          <li>طيف الامتصاص وتحليل النجوم</li>
+          <li>طيف الهيدروجين الخطي ومقارنته بالمستمر</li>
+          <li>اختبار كشف الفلزات بلون اللهب</li>
+          <li>طيف الامتصاص وتحليل غلاف النجوم</li>
           <li>اختبار فهم الدرس (10 أسئلة)</li>
         </ul>
         <a href="lesson%2003.html" class="btn-open">
@@ -314,11 +372,84 @@
           <span>←</span>
         </a>
       </div>
+
+      <!-- الدرس 4 -->
+      <div class="lesson-card c4">
+        <div class="card-stripe"></div>
+        <span class="lesson-num">الدرس 04</span>
+        <h2 class="lesson-title">نموذج بور للذرة</h2>
+        <p class="lesson-desc">حالة الاستقرار مقابل الإثارة، وتشبيه درجات السلم، وتفسير سلاسل طيف الهيدروجين (ليمان، بالمر، باشن) وحدود النموذج.</p>
+        <ul class="topics-list">
+          <li>مستويات الطاقة والعدد الكمي الرئيس n</li>
+          <li>سلاسل الهيدروجين الطيفية الثلاث</li>
+          <li>حساب أنصاف أقطار المدارات الدائرية</li>
+          <li>اختبار تقييمي شامل (10 أسئلة)</li>
+        </ul>
+        <a href="lesson%2004.html" class="btn-open">
+          <span>دخول الدرس الرابع</span>
+          <span>←</span>
+        </a>
+      </div>
+
+      <!-- الدرس 5 -->
+      <div class="lesson-card c5">
+        <div class="card-stripe"></div>
+        <span class="lesson-num">الدرس 05</span>
+        <h2 class="lesson-title">النموذج الميكانيكي الكمي</h2>
+        <p class="lesson-desc">موجات المادة لدي برولي، ومبدأ الشك لهايزنبرج وتجربة البالون، ومعادلة شرودنجر، ومفهوم السحابة الإلكترونية.</p>
+        <ul class="topics-list">
+          <li>معادلة دي برولي للموجة المادية</li>
+          <li>مبدأ هايزنبرج واستحالة تعيين المسار بدقة</li>
+          <li>السحابة الإلكترونية ونسبة الـ 90%</li>
+          <li>مقارنة النماذج الذرية واختبار فهم</li>
+        </ul>
+        <a href="lesson%2005.html" class="btn-open">
+          <span>دخول الدرس الخامس</span>
+          <span>←</span>
+        </a>
+      </div>
+
+      <!-- الدرس 6 -->
+      <div class="lesson-card c6">
+        <div class="card-stripe"></div>
+        <span class="lesson-num">الدرس 06</span>
+        <h2 class="lesson-title">مستويات ذرة الهيدروجين</h2>
+        <p class="lesson-desc">أعداد الكم، وتشبيه صفوف المسرح الأثري، وأشكال وسعات المستويات الفرعية (s, p, d, f) وقانون n² لحساب الأفلاك.</p>
+        <ul class="topics-list">
+          <li>المستويات الرئيسة ورموزها (K إلى Q)</li>
+          <li>تشبيه صفوف المسرح للمستويات الثانوية</li>
+          <li>أشكال الأفلاك الكروية والفصية وسعتها</li>
+          <li>اختبار تفاعلي ذاتي (10 أسئلة)</li>
+        </ul>
+        <a href="lesson%2006.html" class="btn-open">
+          <span>دخول الدرس السادس</span>
+          <span>←</span>
+        </a>
+      </div>
+
+      <!-- الدرس 7 -->
+      <div class="lesson-card c7">
+        <div class="card-stripe"></div>
+        <span class="lesson-num">الدرس 07</span>
+        <h2 class="lesson-title">قواعد التوزيع الإلكتروني</h2>
+        <p class="lesson-desc">القواعد الثلاث الحاكمة لترتيب الإلكترونات: مبدأ أوفباو، ومبدأ باولي لحركة الغزل، وقاعدة هوند وتشبيه ركاب الحافلة.</p>
+        <ul class="topics-list">
+          <li>مبدأ أوفباو وتسلسل ملء المستويات</li>
+          <li>مبدأ باولي والأسهم المتعاكسة (↑↓)</li>
+          <li>قاعدة هوند وتجنب تنافر الإلكترونات</li>
+          <li>اختبار تقييمي بنظام 10 أسئلة</li>
+        </ul>
+        <a href="lesson%2007.html" class="btn-open">
+          <span>دخول الدرس السابع</span>
+          <span>←</span>
+        </a>
+      </div>
+
     </div>
   </main>
 
   <footer>
-    منصة مادة الكيمياء — إعداد تعليمي للمراجعة والتدريب
+    منصة مادة الكيمياء 2-1 — إعداد وتطوير تعليمي للمراجعة والتقييم المستمر
   </footer>
 
 </body>
