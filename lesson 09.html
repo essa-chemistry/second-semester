@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 1: تطور الجدول الدوري الحديث — كيمياء 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --card-border: #e2e8f0;
+    --navy: #0f172a;
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --primary-soft: #e0f2fe;
+    --teal: #0d9488;
+    --teal-soft: #ccfbf1;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --purple: #7c3aed;
+    --purple-soft: #f3e8ff;
+    --rose: #e11d48;
+    --rose-soft: #ffe4e6;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    padding-bottom: 85px;
+    font-size: 1.05rem;
+  }
+
+  /* ═══ HERO HEADER ═══ */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #0d9488 100%);
+    color: #ffffff;
+    padding: clamp(30px, 5vw, 45px) 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #bae6fd;
+  }
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .hero h1 span { color: #5eead4; }
+  .hero p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #f1f5f9;
+    max-width: 620px;
+    margin: 0 auto 14px;
+    line-height: 1.6;
+  }
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* ═══ TABS NAVIGATION ═══ */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    border-bottom: 2px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+  }
+  .tbtn {
+    background: transparent;
+    border: 1.5px solid transparent;
+    color: var(--muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tbtn:hover {
+    color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .tbtn.active {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border-color: #7dd3fc;
+  }
+
+  /* ═══ WRAPPER & CARDS ═══ */
+  .container { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: clamp(16px, 3.5vw, 24px);
+    margin-bottom: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; width: 5px; height: 100%;
+    background: var(--primary);
+  }
+  .card.teal::after { background: var(--teal); }
+  .card.amber::after { background: var(--amber); }
+  .card.purple::after { background: var(--purple); }
+
+  .card h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.15rem, 3vw, 1.3rem);
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    color: var(--primary-dark);
+    margin: 14px 0 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .card p {
+    color: #334155;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .card ul li {
+    position: relative;
+    padding-right: 20px;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-size: 0.96rem;
+  }
+  .card ul li::before {
+    content: '◆';
+    position: absolute;
+    right: 0;
+    color: var(--primary);
+    font-size: 0.8rem;
+  }
+
+  .concept-box {
+    background: var(--primary-soft);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.98rem;
+  }
+  .concept-box b { color: var(--primary-dark); }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .subcard {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 14px;
+    background: #ffffff;
+  }
+  .subcard h4 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 14px 0;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 480px;
+  }
+  .data-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 10px 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    color: #1e293b;
+  }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+
+  /* ═══ QUIZ SYSTEM ═══ */
+  .quiz-header {
+    background: linear-gradient(135deg, #f0f9ff, #ccfbf1);
+    border: 1px solid #bae6fd;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .quiz-header h3 {
+    font-family: 'Cairo', sans-serif;
+    color: var(--navy);
+    font-size: 1.25rem;
+  }
+  .progress-wrap {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0 6px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--teal));
+    transition: width 0.3s ease;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .q-card {
+    background: var(--surface);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .q-card.ok { border-color: var(--emerald); }
+  .q-card.bad { border-color: var(--rose); }
+
+  .q-head { display: flex; gap: 10px; margin-bottom: 12px; }
+  .q-badge {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border: 1px solid #bae6fd;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .q-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .opts-stack { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    text-align: right;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #e0f2fe;
+    border-color: var(--primary);
+  }
+  .opt-letter {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--muted);
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .opt-btn.correct {
+    background: var(--emerald-soft);
+    border-color: var(--emerald);
+    color: var(--emerald);
+    font-weight: 800;
+  }
+  .opt-btn.correct .opt-letter {
+    background: var(--emerald);
+    color: #ffffff;
+    border-color: var(--emerald);
+  }
+  .opt-btn.wrong {
+    background: var(--rose-soft);
+    border-color: var(--rose);
+    color: var(--rose);
+    font-weight: 800;
+  }
+  .opt-btn.wrong .opt-letter {
+    background: var(--rose);
+    color: #ffffff;
+    border-color: var(--rose);
+  }
+  .opt-btn:disabled { cursor: default; }
+
+  .q-explain {
+    display: none;
+    margin-top: 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: #334155;
+    border-right: 4px solid var(--primary);
+    line-height: 1.6;
+  }
+  .q-explain.show { display: block; }
+  .q-explain b { color: var(--primary-dark); }
+
+  /* Floating Score Capsule */
+  .score-capsule {
+    position: fixed;
+    bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: #ffffff;
+    border: 1.5px solid var(--card-border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 50px;
+    padding: 6px 18px;
+    display: flex;
+    gap: 14px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    z-index: 1000;
+  }
+
+  /* Result Banner */
+  .result-banner {
+    display: none;
+    background: #ffffff;
+    border: 2px solid #bae6fd;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    margin-top: 18px;
+  }
+  .result-banner.show { display: block; }
+  .res-score {
+    font-family: 'Cairo', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .res-btn {
+    background: var(--primary);
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-badge">🔬 كيمياء 2 — الجدول الدوري الحديث</div>
+  <h1>تطور <span>الجدول الدوري الحديث</span></h1>
+  <p>ملخص سريع ومباشر لتاريخ تصنيف العناصر من لافوازييه إلى موزلي، مع بنية الجدول الدوري واختبار تفاعلي سريع.</p>
+  <div class="hero-tags">
+    <div class="tag">🛒 أهمية التصنيف</div>
+    <div class="tag">🎼 قانون الثمانيات</div>
+    <div class="tag">🔮 جدول مندليف وموزلي</div>
+    <div class="tag">✏️ 10 أسئلة سريعة</div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══ -->
+<nav class="nav-tabs">
+  <button class="tbtn active" onclick="switchTab('t1', this)">📜 تاريخ العلماء</button>
+  <button class="tbtn" onclick="switchTab('t2', this)">🧩 بنية الجدول الدوري</button>
+  <button class="tbtn" onclick="switchTab('t3', this)">⚡ أنواع العناصر</button>
+  <button class="tbtn" onclick="switchTab('t4', this)">📊 مقارنة العلماء</button>
+  <button class="tbtn" onclick="switchTab('t5', this)">✏️ اختبر نفسك (10 أسئلة)</button>
+</nav>
+
+<div class="container">
+
+  <!-- ════════ TAB 1: تاريخ العلماء ════════ -->
+  <main id="t1" class="tab-pane active">
+    <div class="card">
+      <h2>1) محطات تطور الجدول الدوري</h2>
+      <p>مثلما نُنسّق الفواكه بالسوبرماركت لتسهيل الوصول إليها، صُنفت العناصر لتسهيل دراستها:</p>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">1. لافوازييه (1789م)</h4>
+          <ul>
+            <li>جمع <b>33 عنصراً</b> في قائمة واحدة.</li>
+            <li>قسّمها إلى 4 فئات: (غازات، فلزات، لا فلزات، عناصر أرضية).</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">2. جون نيولاندز (1864م)</h4>
+          <ul>
+            <li>رتب العناصر تصاعدياً حسب <b>الكتلة الذرية</b>.</li>
+            <li>صاغ <b>«قانون الثمانيات»</b> (تكرار الخواص كل 8 عناصر).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--teal);">
+          <h4 style="color:var(--teal);">3. مندليف وماير (1869م)</h4>
+          <ul>
+            <li>ربطا بين الخواص والكتلة الذرية.</li>
+            <li><b>تميز مندليف:</b> تنبأ بعناصر مجهولة (مثل الجاليوم) وترك لها أماكن شاغرة.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--purple);">
+          <h4 style="color:var(--purple);">4. هنري موزلي (1913م)</h4>
+          <ul>
+            <li>رتب العناصر تصاعدياً حسب <b>العدد الذري</b> (عدد البروتونات).</li>
+            <li>حل عيوب جدول مندليف وضبط تدرج الخواص.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════ TAB 2: بنية الجدول الدوري ════════ -->
+  <section id="t2" class="tab-pane">
+    <div class="card teal">
+      <h2>2) بنية الجدول الدوري الحديث</h2>
+      <div class="concept-box">
+        <b>تدرج الخواص:</b> تكرار الخواص الفيزيائية والكيميائية عند ترتيب العناصر تصاعدياً وفق أعدادها الذرية.
+      </div>
+
+      <h3>تقسيمات الجدول الرئيسي:</h3>
+      <ul>
+        <li><b>المجموعات (الأعمدة):</b> 18 عموداً رأسياً، عناصر المجموعة الواحدة متشابهة بالخواص.</li>
+        <li><b>الدورات (الصفوف):</b> 7 صفوف أفقية.</li>
+        <li><b>العناصر الممثلة:</b> المجموعات (1, 2) ومن (13 إلى 18).</li>
+        <li><b>العناصر الانتقالية:</b> المجموعات من (3 إلى 12).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 3: أنواع العناصر ════════ -->
+  <section id="t3" class="tab-pane">
+    <div class="card purple">
+      <h2>3) تصنيف العناصر حسب خصائصها</h2>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">الفلزات</h4>
+          <ul>
+            <li>صلبة، لامعة، موصلة للحرارة والكهرباء، قابلة للطرق والسحب.</li>
+            <li><b>القلوية (المجموعة 1):</b> شديدة النشاط مثل Na و Li.</li>
+            <li><b>القلوية الأرضية (المجموعة 2):</b> سريعة التفاعل مثل Mg و Ca.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">اللافلزات وأشباه الفلزات</h4>
+          <ul>
+            <li><b>اللافلزات:</b> غازات أو صلبة هشة داكنة، رديئة التوصيل. (البروم Br هو اللافلز السائل الوحيد).</li>
+            <li><b>الهالوجينات (المجموعة 17):</b> شديدة التفاعل.</li>
+            <li><b>الغازات النبيلة (المجموعة 18):</b> خاملة جداً.</li>
+            <li><b>أشباه الفلزات:</b> تجمع الخواص، مثل السيليكون Si المستخدم بالشرائح الإلكترونية.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 4: مقارنة العلماء ════════ -->
+  <section id="t4" class="tab-pane">
+    <div class="card emerald">
+      <h2>4) ملخص العلماء بجدول سريع</h2>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>العالم</th>
+              <th>أساس الترتيب</th>
+              <th>أبرز فكرة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>لافوازييه</b></td>
+              <td>قائمة فئات</td>
+              <td>صنف 33 عنصراً في 4 فئات.</td>
+            </tr>
+            <tr>
+              <td><b>نيولاندز</b></td>
+              <td>الكتلة الذرية</td>
+              <td>قانون الثمانيات (تكرار الخواص كل 8 عناصر).</td>
+            </tr>
+            <tr>
+              <td><b>مندليف</b></td>
+              <td>الكتلة الذرية</td>
+              <td>تنبأ بعناصر مجهولة وترك لها أماكن فارغة.</td>
+            </tr>
+            <tr>
+              <td><b>موزلي</b></td>
+              <td>العدد الذري</td>
+              <td>الترتيب الحقيقي حسب عدد البروتونات.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 5: الاختبار التفاعلي ════════ -->
+  <section id="t5" class="tab-pane">
+    <div class="quiz-header">
+      <h3>🎯 اختبر نفسك في 10 أسئلة سريعة</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 2px;">اختر الإجابة المناسبة لكل سؤال للتأكد من فهمك للدرس</p>
+      
+      <div class="progress-wrap">
+        <div class="progress-bar" id="pBar"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="pCount">التقدم: 0 / 10</span>
+        <span id="pScore">الدرجة: 0</span>
+      </div>
+    </div>
+
+    <div id="quizBox"></div>
+
+    <div class="result-banner" id="resBanner">
+      <div class="res-score" id="resVal">0 / 10</div>
+      <h3 id="resTitle" style="color: var(--navy); margin-bottom: 4px;"></h3>
+      <p id="resDesc" style="color: var(--muted); font-size: 0.9rem;"></p>
+      <button class="res-btn" onclick="restartQuiz()">🔄 إعادة المحاولة</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating Score Capsule -->
+<div class="score-capsule">
+  <span style="color: var(--emerald);">✔ صحيح: <b id="lblOk">0</b></span>
+  <span style="color: #cbd5e1;">|</span>
+  <span style="color: var(--rose);">✖ خطأ: <b id="lblBad">0</b></span>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── 10 Balanced Questions ── */
+const QUESTIONS = [
+  {
+    q: "صاحب «قانون الثمانيات» الذي لاحظ تكرار خواص العناصر كل 8 عناصر هو العالم:",
+    opts: [
+      "جون نيولاندز",
+      "أنتوني لافوازييه",
+      "ديمتري مندليف",
+      "هنري موزلي"
+    ],
+    ans: 0,
+    exp: "وضع جون نيولاندز قانون الثمانيات سنة 1864م لتكرار الخواص كل 8 عناصر."
+  },
+  {
+    q: "ميزة جدول «مندليف» التي جعلته مقبولاً علمياً وعالمياً هي:",
+    opts: [
+      "ترتيب العناصر وفق الأعداد الذرية",
+      "تنبؤه بعناصر مجهولة وترك أماكن شاغرة لها",
+      "تقسيم العناصر إلى 4 فئات فقط",
+      "اعتماده على الكهروسالبية"
+    ],
+    ans: 1,
+    exp: "تميز مندليف بترك أماكن فارغة والتنبؤ الدقيق بخواص عناصر لم تكتشف بعد."
+  },
+  {
+    q: "رتب العالم «هنري موزلي» العناصر تصاعدياً في الجدول الدوري بناءً على:",
+    opts: [
+      "الكتلة الذرية",
+      "عدد النيوترونات",
+      "العدد الذري (عدد البروتونات)",
+      "الحجم الذري"
+    ],
+    ans: 2,
+    exp: "اكتشف موزلي العدد الذري ورتب العناصر بناءً عليه ليحل عيوب الجداول السابقة."
+  },
+  {
+    q: "يُعرف تكرار الخواص الكيميائية والفيزيائية للعناصر بانتظام عند ترتيبها تصاعدياً باسم:",
+    opts: [
+      "قانون حفظ الطاقة",
+      "قانون الثمانيات",
+      "الرابطة الأيونية",
+      "تدرج الخواص"
+    ],
+    ans: 3,
+    exp: "تدرج الخواص هو النمط الدوري المنتظم لتكرار خواص العناصر."
+  },
+  {
+    q: "تُسمى الأعمدة الرأسية في الجدول الدوري الحديث باسم:",
+    opts: [
+      "المجموعات (العائلات)",
+      "الدورات",
+      "السلاسل",
+      "الفئات"
+    ],
+    ans: 0,
+    exp: "تسمى الأعمدة الرأسية بالـ المجموعات وهي 18 مجموعة."
+  },
+  {
+    q: "تُسمى عناصر المجموعة الأولى في الجدول الدوري (ما عدا الهيدروجين) بـ:",
+    opts: [
+      "الغازات النبيلة",
+      "الفلزات القلوية",
+      "الهالوجينات",
+      "الفلزات القلوية الأرضية"
+    ],
+    ans: 1,
+    exp: "عناصر المجموعة 1 تسمى الفلزات القلوية وهي شديدة النشاط."
+  },
+  {
+    q: "اللافلز الوحيد الذي يوجد بالحالة السائلة في درجة حرارة الغرفة هو:",
+    opts: [
+      "الزئبق",
+      "الأكسجين",
+      "البروم",
+      "السيليكون"
+    ],
+    ans: 2,
+    exp: "البروم (Br) هو اللافلز السائل الوحيد (أما الزئبق ففلز سائل)."
+  },
+  {
+    q: "تُسمى عناصر المجموعة 17 شديدة التفاعل باسم:",
+    opts: [
+      "الفلزات القلوية",
+      "الغازات النبيلة",
+      "العناصر الانتقالية",
+      "الهالوجينات"
+    ],
+    ans: 3,
+    exp: "تضم المجموعة 17 الهالوجينات كالكلور والفلور."
+  },
+  {
+    q: "تُستخدم أشباه الفلزات مثل السيليكون (Si) بكثرة في صناعة:",
+    opts: [
+      "رقائق الحاسوب والخلايا الشمسية",
+      "أنابيب الغاز",
+      "لوحات النيون",
+      "معجون الأسنان"
+    ],
+    ans: 0,
+    exp: "السيليكون من أشباه الفلزات وهو أساس صناعة الإلكترونيات."
+  },
+  {
+    q: "يتكون الجدول الدوري الحديث من:",
+    opts: [
+      "18 دورة و 7 مجموعات",
+      "7 دورات و 18 مجموعة",
+      "8 دورات و 10 مجموعات",
+      "10 دورات و 10 مجموعات"
+    ],
+    ans: 1,
+    exp: "يتألف الجدول الدوري من 7 دورات أفقية و 18 مجموعة رأسية."
+  }
+];
+
+let answersDone = 0;
+let correctCount = 0;
+let wrongCount = 0;
+const LETTERS = ['أ', 'ب', 'ج', 'د'];
+
+function renderQuiz() {
+  const container = document.getElementById('quizBox');
+  container.innerHTML = '';
+
+  QUESTIONS.forEach((qObj, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qCard-${qIdx}`;
+
+    const optsHtml = qObj.opts.map((optText, optIdx) => `
+      <button class="opt-btn" onclick="submitAnswer(${qIdx}, ${optIdx})">
+        <span class="opt-letter">${LETTERS[optIdx]}</span>
+        <span>${optText}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-badge">${qIdx + 1}</div>
+        <div class="q-title">${qObj.q}</div>
+      </div>
+      <div class="opts-stack" id="optGroup-${qIdx}">${optsHtml}</div>
+      <div class="q-explain" id="exp-${qIdx}">
+        <b>💡 الشرح:</b> ${qObj.exp}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function submitAnswer(qIdx, selectedIdx) {
+  const card = document.getElementById(`qCard-${qIdx}`);
+  const group = document.getElementById(`optGroup-${qIdx}`);
+  const buttons = group.querySelectorAll('.opt-btn');
+
+  if (buttons[0].disabled) return;
+
+  const correctIndex = QUESTIONS[qIdx].ans;
+  const isCorrect = (selectedIdx === correctIndex);
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === correctIndex) btn.classList.add('correct');
+    else if (idx === selectedIdx) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) {
+    correctCount++;
+    card.classList.add('ok');
+  } else {
+    wrongCount++;
+    card.classList.add('bad');
+  }
+
+  document.getElementById(`exp-${qIdx}`).classList.add('show');
+  answersDone++;
+  refreshStats();
+
+  if (answersDone === QUESTIONS.length) {
+    showResults();
+  }
+}
+
+function refreshStats() {
+  const pct = (answersDone / QUESTIONS.length) * 100;
+  document.getElementById('pBar').style.width = pct + '%';
+  document.getElementById('pCount').textContent = `التقدم: ${answersDone} / 10`;
+  document.getElementById('pScore').textContent = `الدرجة: ${correctCount}`;
+  document.getElementById('lblOk').textContent = correctCount;
+  document.getElementById('lblBad').textContent = wrongCount;
+}
+
+function showResults() {
+  const banner = document.getElementById('resBanner');
+  const scoreVal = document.getElementById('resVal');
+  const title = document.getElementById('resTitle');
+  const desc = document.getElementById('resDesc');
+
+  scoreVal.textContent = `${correctCount} / 10`;
+
+  if (correctCount >= 9) {
+    title.textContent = "🏆 ممتاز جداً! أداء مالي وإتقان كامل للدرس.";
+    desc.textContent = "استيعاب رائع لمراحل تطور الجدول الدوري وبنيته.";
+  } else if (correctCount >= 7) {
+    title.textContent = "⭐ رائع! نتيجة ممتازة.";
+    desc.textContent = "راجع النقاط البسيطة المتبقية لتنال الدرجة الكاملة.";
+  } else {
+    title.textContent = "📚 تحتاج إلى مراجعة سريعة.";
+    desc.textContent = "أعد القراءة المباشرة بالبطاقات ثم حاول مرة أخرى.";
+  }
+
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function restartQuiz() {
+  answersDone = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  refreshStats();
+  document.getElementById('resBanner').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
