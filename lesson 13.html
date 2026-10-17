@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كتابة الصيغ الكيميائية للمركبات الأيونية - درس تفاعلي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b1e3a;--navy2:#122a4d;--gold:#d4af37;--cat:#e8f0ff;--catb:#4f8ef7;--an:#fff1e3;--anb:#e67e22;--bg:#f4f6fb;--text:#1c2536;--muted:#65708a;--good:#1fa463;--bad:#e0473c;--border:#e1e6f0;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Tajawal','Cairo',sans-serif;background:var(--bg);color:var(--text);direction:rtl;}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:34px 20px 26px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(212,175,55,.18),transparent 40%),radial-gradient(circle at 80% 80%,rgba(79,142,247,.18),transparent 45%);}
+.hero h1{margin:0 0 8px;font-size:1.8rem;font-weight:900;position:relative;}
+.hero p{margin:0;color:#c9d3ea;font-size:.93rem;position:relative;}
+.teacher{margin-top:14px;display:inline-block;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.4);color:var(--gold);padding:5px 16px;border-radius:999px;font-size:.85rem;position:relative;}
+.tabs{position:sticky;top:0;z-index:50;display:flex;background:#fff;border-bottom:2px solid var(--border);box-shadow:0 2px 8px rgba(11,30,58,.06);}
+.tab-btn{flex:1;padding:14px 6px;background:none;border:none;font-family:inherit;font-size:.92rem;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--gold);background:#faf7ee;}
+.wrap{max-width:1100px;margin:0 auto;padding:22px 16px 60px;}
+.panel{display:none;}.panel.active{display:block;animation:fade .3s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2.t{font-size:1.15rem;font-weight:800;color:var(--navy);margin:0 0 4px;}
+.sub{color:var(--muted);font-size:.88rem;margin:0 0 16px;}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px;}
+.card h3{margin:0 0 10px;font-size:1rem;color:var(--navy);}
+.ions{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;}
+.ion{border-radius:10px;padding:8px 6px;text-align:center;border:2px solid;cursor:pointer;transition:.15s;font-family:inherit;}
+.ion.c{background:var(--cat);border-color:#c9dcff;}.ion.a{background:var(--an);border-color:#ffd9b3;}
+.ion:hover{transform:translateY(-2px);}
+.ion.sel.c{border-color:var(--catb);box-shadow:0 0 0 3px rgba(79,142,247,.25);}
+.ion.sel.a{border-color:var(--anb);box-shadow:0 0 0 3px rgba(230,126,34,.25);}
+.ion .sym{display:block;font-size:1.15rem;font-weight:800;direction:ltr;color:var(--navy);}
+.ion .nm{display:block;font-size:.75rem;color:var(--muted);margin-top:2px;}
+sub,sup{line-height:0;}
+.result{text-align:center;padding:18px;}
+.formula{font-size:2.4rem;font-weight:800;direction:ltr;color:var(--navy);}
+.fname{font-size:1.05rem;color:var(--muted);margin-top:4px;font-weight:700;}
+.steps{display:grid;gap:8px;margin-top:14px;text-align:right;}
+.step{display:flex;gap:10px;align-items:flex-start;background:#f4f6fb;border-radius:10px;padding:10px 12px;font-size:.9rem;}
+.step b.n{flex:0 0 26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;}
+.step .ltr{direction:ltr;display:inline-block;font-weight:700;}
+.setbtns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.sbtn{padding:8px 14px;border-radius:999px;border:2px solid var(--border);background:#fff;font-family:inherit;font-weight:700;font-size:.82rem;cursor:pointer;}
+.sbtn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.tracker{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;font-weight:700;font-size:.85rem;}
+.bar{flex:1;height:8px;background:#eef1f8;border-radius:6px;overflow:hidden;}.fill{height:100%;background:linear-gradient(90deg,var(--gold),#f0d77b);width:0;transition:.3s;}
+.gridwrap{overflow:auto;border:1px solid var(--border);border-radius:12px;background:#fff;max-height:70vh;}
+table.g{border-collapse:separate;border-spacing:0;min-width:100%;}
+table.g th,table.g td{border-bottom:1px solid var(--border);border-left:1px solid var(--border);padding:6px;text-align:center;}
+table.g thead th{position:sticky;top:0;background:var(--cat);z-index:3;font-size:.95rem;min-width:84px;}
+table.g thead th small{display:block;font-weight:400;font-size:.68rem;color:var(--muted);}
+table.g tbody th{position:sticky;right:0;background:var(--an);z-index:2;min-width:96px;font-size:.95rem;}
+table.g tbody th small{display:block;font-weight:400;font-size:.68rem;color:var(--muted);}
+table.g thead th:first-child{right:0;z-index:4;background:#fff;}
+.gi{width:78px;padding:7px 4px;border:2px solid var(--border);border-radius:8px;text-align:center;font-family:inherit;font-size:.92rem;direction:ltr;}
+.gi:focus{outline:none;border-color:var(--navy);}
+.gi.ok{background:#e9f9ef;border-color:var(--good);color:var(--good);font-weight:700;}
+.gi.no{background:#fdeceb;border-color:var(--bad);color:var(--bad);}
+.gi.shown{background:#fff7dd;border-color:var(--gold);}
+.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.btn{padding:10px 18px;border:none;border-radius:10px;font-family:inherit;font-weight:700;cursor:pointer;font-size:.88rem;}
+.bp{background:var(--navy);color:#fff;}.bg{background:#eef1f8;color:var(--text);}
+.score-float{position:sticky;top:50px;z-index:40;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;margin-bottom:14px;font-weight:800;font-size:.85rem;display:flex;justify-content:space-between;}
+.qtext{font-size:1.02rem;font-weight:800;color:var(--navy);margin-bottom:14px;line-height:1.9;}
+.qtext .ltr{direction:ltr;display:inline-block;}
+.opts{display:grid;gap:8px;}
+.opt{padding:11px 14px;border:2px solid var(--border);border-radius:10px;cursor:pointer;font-weight:700;text-align:center;font-size:1.05rem;}
+.opt.ltr{direction:ltr;}
+.opt:hover{border-color:var(--navy);}
+.opt.correct{background:#e9f9ef;border-color:var(--good);color:var(--good);}
+.opt.wrong{background:#fdeceb;border-color:var(--bad);color:var(--bad);}
+.expl{display:none;margin-top:12px;background:#f4f6fb;border-radius:10px;padding:10px 12px;font-size:.88rem;line-height:1.8;}
+.res{display:none;background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;}
+.res.show{display:block;}.res .st{font-size:1.6rem;color:var(--gold);}
+.note{font-size:.8rem;color:var(--muted);margin-top:8px;}
+
+.ihead{text-align:center;margin-bottom:8px;}
+.ihead .f{font-size:1.7rem;font-weight:800;direction:ltr;color:var(--navy);}
+.ihead .nm{color:var(--muted);font-weight:700;font-size:.95rem;}
+.src{display:inline-block;margin-top:6px;font-size:.72rem;padding:2px 10px;border-radius:999px;background:#eef1f8;color:var(--muted);font-weight:700;}
+.src.est{background:#fff4d6;color:#8a6500;}
+.irow{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.9rem;line-height:1.75;}
+.irow:last-of-type{border-bottom:none;}
+.ik{flex:0 0 112px;font-weight:800;color:var(--navy);}
+.iv{flex:1;}
+.tb{display:inline-block;padding:1px 10px;border-radius:999px;font-size:.75rem;font-weight:800;color:#fff;margin-left:6px;}
+.t0{background:var(--good);}.t1{background:#e69a1f;}.t2{background:var(--bad);}
+.warn{background:#fff4d6;border:1px solid #f0d77b;border-radius:10px;padding:8px 10px;font-size:.84rem;margin-bottom:8px;color:#6b4f00;line-height:1.7;}
+.ifoot{font-size:.76rem;color:var(--muted);margin-top:10px;line-height:1.8;}
+td.gc{position:relative;}
+.ib{display:none;position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:.62rem;cursor:pointer;padding:0;line-height:18px;}
+.mbg{display:none;position:fixed;inset:0;background:rgba(11,30,58,.55);z-index:200;align-items:center;justify-content:center;padding:14px;}
+.mbg.show{display:flex;}
+.mbox{background:#fff;border-radius:16px;max-width:540px;width:100%;max-height:88vh;overflow:auto;padding:16px;}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>⚗️ كتابة الصيغ الكيميائية للمركبات الأيونية</h1>
+  <p>تعرّف على الأيونات، ثم ابنِ الصيغة بطريقة تبادل الشحنات، وتدرّب على الجدول واختبر نفسك</p>
+  <div class="teacher">إعداد المعلم: عيسى الخلف</div>
+</div>
+<div class="tabs">
+  <button class="tab-btn active" data-tab="ions">الأيونات</button>
+  <button class="tab-btn" data-tab="build">بناء الصيغة</button>
+  <button class="tab-btn" data-tab="grid">جدول التدريب</button>
+  <button class="tab-btn" data-tab="quiz">اختبار</button>
+</div>
+<div class="wrap">
+
+<div class="panel active" id="p-ions">
+  <h2 class="t">الأيونات الشائعة وشحناتها</h2>
+  <p class="sub">المركب الأيوني يتكوّن من كاتيون موجب وأنيون سالب، ومجموع شحناته صفر. احفظ هذه الأيونات أولًا.</p>
+  <div class="card"><h3>🔵 كاتيونات المجموعات الرئيسية</h3><div class="ions" id="i-catmain"></div></div>
+  <div class="card"><h3>🔵 كاتيونات أخرى (انتقالية ومتعددة الذرات)</h3><div class="ions" id="i-cattrans"></div></div>
+  <div class="card"><h3>🟠 أنيونات بسيطة (أحادية الذرة)</h3><div class="ions" id="i-ansimple"></div></div>
+  <div class="card"><h3>🟠 أنيونات متعددة الذرات</h3><div class="ions" id="i-anpoly"></div></div>
+</div>
+
+<div class="panel" id="p-build">
+  <h2 class="t">ابنِ الصيغة بنفسك</h2>
+  <p class="sub">اختر كاتيونًا ثم أنيونًا، وشاهد خطوات كتابة الصيغة بطريقة تبادل الشحنات.</p>
+  <div class="card"><h3>1) اختر الكاتيون</h3><div class="ions" id="b-cat"></div></div>
+  <div class="card"><h3>2) اختر الأنيون</h3><div class="ions" id="b-an"></div></div>
+  <div class="card result">
+    <div class="formula" id="b-formula"></div>
+    <div class="fname" id="b-name"></div>
+    <div class="steps" id="b-steps"></div>
+  </div>
+  <div class="card" id="b-info"></div>
+</div>
+
+<div class="panel" id="p-grid">
+  <h2 class="t">جدول التدريب</h2>
+  <p class="sub">اكتب صيغة المركب الناتج عن اتحاد الكاتيون (أعلى) مع الأنيون (يمين). اكتب الأرقام عادية (مثال: Al2(SO4)3).</p>
+  <div class="setbtns" id="setbtns"></div>
+  <div class="tracker"><span id="g-lab">0 / 0</span><div class="bar"><div class="fill" id="g-fill"></div></div></div>
+  <div class="gridwrap"><table class="g" id="g-table"></table></div>
+  <div class="actions">
+    <button class="btn bp" onclick="gridCheck()">تحقق من إجاباتي</button>
+    <button class="btn bg" onclick="gridReveal()">إظهار الحل</button>
+    <button class="btn bg" onclick="gridClear()">مسح الجدول</button>
+  </div>
+  <div class="note">للمركبات المتعددة الذرات: ضع الأيون بين قوسين إذا زاد عدده عن 1، مثل Ca(OH)2. مركبات الهيدروجين مع N أو P تُقبل بالصيغتين (NH3 أو H3N). بعد الإجابة الصحيحة (أو إظهار الحل) يظهر زر ⓘ في الخانة لعرض المعلومات العلمية للمركب.</div>
+</div>
+
+<div class="panel" id="p-quiz">
+  <div class="score-float"><span id="q-prog"></span><span id="q-score"></span></div>
+  <div class="card" id="q-card"></div>
+  <div class="res" id="q-res"><div class="st" id="q-stars"></div><div id="q-txt"></div><button class="btn bg" style="margin-top:14px" onclick="startQuiz()">إعادة الاختبار</button></div>
+</div>
+</div>
+
+<div class="mbg" id="modal" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="mbox"><div id="m-body"></div><button class="btn bp" style="width:100%;margin-top:12px" onclick="document.getElementById('modal').classList.remove('show')">إغلاق</button></div>
+</div>
+<script>
+/* ---------- DATA ---------- */
+const mainC=[
+ {s:"H",c:1,n:"الهيدروجين"},{s:"Li",c:1,n:"الليثيوم"},{s:"Na",c:1,n:"الصوديوم"},{s:"K",c:1,n:"البوتاسيوم"},
+ {s:"Be",c:2,n:"البريليوم"},{s:"Mg",c:2,n:"المغنيسيوم"},{s:"Ca",c:2,n:"الكالسيوم"},{s:"Ba",c:2,n:"الباريوم"},
+ {s:"B",c:3,n:"البورون"},{s:"Al",c:3,n:"الألومنيوم"}];
+const transC=[
+ {s:"Cr",c:2,n:"الكروم (II)"},{s:"Cr",c:3,n:"الكروم (III)"},{s:"Fe",c:2,n:"الحديد (II)"},{s:"Fe",c:3,n:"الحديد (III)"},
+ {s:"Cu",c:1,n:"النحاس (I)"},{s:"Cu",c:2,n:"النحاس (II)"},{s:"Ag",c:1,n:"الفضة"},{s:"Zn",c:2,n:"الخارصين"},
+ {s:"Hg",c:2,n:"الزئبق (II)"},{s:"NH4",c:1,n:"الأمونيوم",poly:true}];
+const simpleA=[
+ {s:"F",c:1,n:"فلوريد"},{s:"Cl",c:1,n:"كلوريد"},{s:"Br",c:1,n:"بروميد"},{s:"I",c:1,n:"يوديد"},
+ {s:"O",c:2,n:"أكسيد"},{s:"S",c:2,n:"كبريتيد"},{s:"N",c:3,n:"نيتريد"},{s:"P",c:3,n:"فوسفيد"}];
+const polyA=[
+ {s:"NO2",c:1,n:"نيتريت",poly:true},{s:"NO3",c:1,n:"نترات",poly:true},{s:"OH",c:1,n:"هيدروكسيد",poly:true},
+ {s:"CN",c:1,n:"سيانيد",poly:true},{s:"MnO4",c:1,n:"برمنجنات",poly:true},{s:"HCO3",c:1,n:"بيكربونات",poly:true},
+ {s:"CO3",c:2,n:"كربونات",poly:true},{s:"SO3",c:2,n:"كبريتيت",poly:true},{s:"SO4",c:2,n:"كبريتات",poly:true},
+ {s:"CrO4",c:2,n:"كرومات",poly:true},{s:"Cr2O7",c:2,n:"ثنائي كرومات",poly:true},{s:"PO4",c:3,n:"فوسفات",poly:true}];
+const allC=[...mainC,...transC], allA=[...simpleA,...polyA];
+
+/* ---------- HELPERS ---------- */
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const fmt=s=>s.replace(/(\d+)/g,'<sub>$1</sub>');
+const ionH=(i,pos)=>`<span class="ltr" style="direction:ltr;display:inline-block">${fmt(i.s)}<sup>${i.c>1?i.c:""}${pos?"+":"−"}</sup></span>`;
+const part=(i,n)=>n===1?i.s:(i.poly?`(${i.s})${n}`:`${i.s}${n}`);
+function calc(cat,an){
+  const g=gcd(cat.c,an.c), nc=an.c/g, na=cat.c/g;
+  let f=part(cat,nc)+part(an,na), alts=[], water=false;
+  if(cat.s==="H"&&an.s==="OH"){f="H2O";alts=["HOH"];water=true;}
+  else if(cat.s==="H"&&(an.s==="N"||an.s==="P")){alts=[an.s+"H3"];}
+  else if(cat.s==="H"&&an.s==="HCO3"){f="H2CO3";}
+  return {f,alts,nc,na,g,water};
+}
+const nameOf=(cat,an)=>calc(cat,an).water?"الماء (أكسيد الهيدروجين)":`${an.n} ${cat.n}`;
+const norm=s=>s.replace(/[₀-₉]/g,d=>String.fromCharCode(d.charCodeAt(0)-8320)).replace(/\s+/g,"").toLowerCase();
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+/* ---------- COMPOUND PROPERTIES DB ---------- */
+/* t:[مستوى السمية 0=منخفضة 1=متوسطة 2=عالية , نص] ; ns = ليس صلبًا في الظروف العادية */
+const DB={
+/* هاليدات */
+"NaCl":{c:"أبيض / عديم اللون (بلورات مكعبة)",st:"صلب بلوري",mp:"801 °م",hd:"2.5",sol:"ذائب جدًا (≈ 36 غ/100 مل ماء)",t:[0,"منخفضة بالكميات المعتادة؛ الإفراط يرفع ضغط الدم"],u:"ملح الطعام وحفظ الأغذية، وتصنيع الكلور وهيدروكسيد الصوديوم"},
+"KCl":{c:"أبيض / عديم اللون",st:"صلب بلوري",mp:"770 °م",hd:"2",sol:"ذائب (≈ 34 غ/100 مل)",t:[0,"منخفضة؛ ارتفاع البوتاسيوم في الدم خطر على القلب"],u:"سماد بوتاسي، بديل لملح الطعام، علاج نقص البوتاسيوم"},
+"LiCl":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"605 °م",sol:"ذائب جدًا (≈ 83 غ/100 مل)",t:[1,"متوسطة؛ الليثيوم يؤثر في الجهاز العصبي بالجرعات العالية"],u:"إنتاج فلز الليثيوم، مجفف للهواء، لحام الألومنيوم"},
+"NaBr":{c:"أبيض",st:"صلب بلوري",mp:"747 °م",sol:"ذائب جدًا (≈ 91 غ/100 مل)",t:[0,"منخفضة"],u:"تحضير مركبات البروم، التصوير الضوئي، سوائل الحفر"},
+"KBr":{c:"أبيض / عديم اللون",st:"صلب بلوري",mp:"734 °م",hd:"2",sol:"ذائب (≈ 65 غ/100 مل)",t:[0,"منخفضة؛ الاستعمال المزمن قد يسبب تسمم البروميد"],u:"أقراص التحليل بالأشعة تحت الحمراء، التصوير الضوئي"},
+"NaI":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"661 °م",sol:"ذائب جدًا (≈ 180 غ/100 مل)",t:[0,"منخفضة بالكميات المعتادة"],u:"كواشف الكشف عن الإشعاع (بلورات NaI)، التحضير الكيميائي"},
+"KI":{c:"أبيض / عديم اللون",st:"صلب بلوري",mp:"681 °م",sol:"ذائب جدًا (≈ 140 غ/100 مل)",t:[0,"منخفضة بالكميات المعتادة"],u:"إضافة لملح الطعام المُيوَّد، حماية الغدة الدرقية في الطوارئ النووية"},
+"NaF":{c:"أبيض",st:"صلب بلوري",mp:"993 °م",sol:"ذائب قليلًا (≈ 4 غ/100 مل)",t:[2,"عالية بالجرعات الكبيرة؛ التعرض المزمن يسبب التسمم الفلوري"],u:"تفلور مياه الشرب ومعاجين الأسنان بتراكيز ضئيلة"},
+"LiF":{c:"أبيض",st:"صلب بلوري",mp:"845 °م",sol:"قليل الذوبان (≈ 0.13 غ/100 مل)",t:[1,"متوسطة"],u:"بصريات الأشعة فوق البنفسجية، أملاح الفلورايد المنصهرة في المفاعلات"},
+"CaF2":{c:"عديم اللون / أبيض (الفلوريت يظهر بألوان كثيرة)",st:"صلب بلوري",mp:"1418 °م",hd:"4",sol:"شبه غير ذائب (≈ 0.0016 غ/100 مل)",t:[0,"منخفضة (لعدم ذوبانه)"],u:"تحضير HF، عدسات بصرية، مادة مُصهِّرة في صناعة الصلب"},
+"MgF2":{c:"أبيض",st:"صلب",mp:"1263 °م",sol:"قليل الذوبان جدًا",t:[0,"منخفضة"],u:"طلاءات مضادة للانعكاس في العدسات"},
+"AlF3":{c:"أبيض",st:"صلب",mp:"يتسامى ≈ 1291 °م",sol:"قليل الذوبان (≈ 0.5 غ/100 مل)",t:[1,"متوسطة"],u:"مُصهِر في إنتاج الألومنيوم بالتحليل الكهربائي"},
+"MgCl2":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"714 °م",sol:"ذائب جدًا (≈ 54 غ/100 مل)",t:[0,"منخفضة"],u:"تخثير التوفو (نيغاري)، إذابة الجليد، إنتاج المغنيسيوم"},
+"CaCl2":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"772 °م",sol:"ذائب جدًا (≈ 75 غ/100 مل)، ويُطلق حرارة",t:[0,"منخفضة؛ مهيّج للعين والجلد"],u:"إذابة الجليد على الطرق، مجفف، مادة مضافة غذائية"},
+"BaCl2":{c:"أبيض",st:"صلب بلوري",mp:"962 °م",sol:"ذائب (≈ 36 غ/100 مل)",t:[2,"عالية؛ أملاح الباريوم الذائبة سامة"],u:"كاشف مخبري للكشف عن الكبريتات، ألعاب نارية خضراء"},
+"AlCl3":{c:"أبيض مصفرّ",st:"صلب",mp:"يتسامى ≈ 180 °م",sol:"يتفاعل بعنف مع الماء ويُطلق HCl",t:[1,"متوسطة؛ مُسبِّب للتآكل في وجود الرطوبة"],u:"حفّاز فريدل–كرافتس، مضاد تعرّق (مشتقاته)"},
+"ZnCl2":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"290 °م",sol:"ذائب جدًا (≈ 430 غ/100 مل)",t:[1,"متوسطة؛ مُسبِّب للتآكل"],u:"مادة لحام (فلكس)، حفظ الأخشاب، البطاريات الجافة"},
+"CuCl2":{c:"أصفر بنّي (لامائي) / أزرق مخضر (متميّه)",st:"صلب",mp:"498 °م",sol:"ذائب (≈ 75 غ/100 مل)",t:[1,"متوسطة؛ ضار عند البلع، سام للأحياء المائية"],u:"حفّاز، صبغات، ألعاب نارية زرقاء مخضرّة"},
+"CuCl":{c:"أبيض (يتحول للأخضر بالأكسدة)",st:"صلب",mp:"430 °م",sol:"غير ذائب تقريبًا",t:[1,"متوسطة"],u:"حفّاز، مُمتصّ لغاز CO"},
+"FeCl2":{c:"أخضر باهت",st:"صلب",mp:"677 °م",sol:"ذائب (≈ 65 غ/100 مل)",t:[1,"متوسطة"],u:"معالجة المياه، عامل مختزل"},
+"FeCl3":{c:"أخضر داكن (لامائي)، ومحلوله أصفر بنّي",st:"صلب",mp:"306 °م",sol:"ذائب جدًا (≈ 92 غ/100 مل)",t:[1,"متوسطة؛ مُهيّج ومُسبِّب للتآكل"],u:"حفر الدوائر الإلكترونية المطبوعة، تخثير الشوائب في المياه"},
+"CrCl3":{c:"بنفسجي (لامائي) / أخضر (متميّه)",st:"صلب",mp:"1152 °م",sol:"لامائيه شبه غير ذائب، والمتميّه ذائب",t:[1,"متوسطة (Cr³⁺ أقل سمية بكثير من Cr⁶⁺)"],u:"طلاء الكروم، حفّاز"},
+"HgCl2":{c:"أبيض",st:"صلب بلوري",mp:"276 °م",sol:"ذائب قليلًا (≈ 7 غ/100 مل)",t:[2,"عالية جدًا؛ مركب زئبق سام ومُسبِّب للتآكل"],u:"كان يُستعمل مطهّرًا وحافظًا، أما اليوم فمحدود جدًا"},
+"AgCl":{c:"أبيض (يسوّد بالضوء)",st:"صلب",mp:"455 °م",hd:"2–3",sol:"غير ذائب (≈ 0.0002 غ/100 مل)",t:[0,"منخفضة (لعدم ذوبانه)"],u:"التصوير الضوئي، أقطاب الفضة/كلوريد الفضة"},
+"AgBr":{c:"أصفر باهت",st:"صلب",mp:"432 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"أفلام التصوير الضوئي"},
+"AgI":{c:"أصفر",st:"صلب",mp:"558 °م",sol:"غير ذائب",t:[0,"منخفضة (يمثل خطرًا بيئيًا بسبب الفضة)"],u:"استمطار السحب (تلقيح السحب)"},
+/* أكاسيد */
+"Li2O":{c:"أبيض",st:"صلب",mp:"1438 °م",sol:"يتفاعل مع الماء ويكوّن LiOH",t:[1,"مُسبِّب للتآكل"],u:"زجاج وسيراميك خاص"},
+"Na2O":{c:"أبيض",st:"صلب",mp:"يتسامى ≈ 1275 °م",sol:"يتفاعل بعنف مع الماء ويكوّن NaOH",t:[1,"مُسبِّب للتآكل"],u:"مكوّن في الزجاج"},
+"K2O":{c:"أصفر باهت",st:"صلب",mp:"يتفكك عند ≈ 740 °م",sol:"يتفاعل بعنف مع الماء ويكوّن KOH",t:[1,"مُسبِّب للتآكل"],u:"مقياس لمحتوى البوتاسيوم في الأسمدة والإسمنت"},
+"MgO":{c:"أبيض",st:"صلب",mp:"2852 °م",hd:"5.5–6",sol:"شبه غير ذائب (≈ 0.0006 غ/100 مل)",t:[0,"منخفضة؛ استنشاق دخانه يسبب حمّى الأبخرة"],u:"بطانة الأفران (مادة حرارية)، مضاد للحموضة، عزل"},
+"CaO":{c:"أبيض",st:"صلب",mp:"2613 °م",hd:"3.5",sol:"يتفاعل مع الماء (الجير المطفأ) ويُطلق حرارة",t:[1,"متوسطة؛ مُسبِّب للتآكل والحروق"],u:"الإسمنت، صناعة الصلب، تجفيف الغازات (الجير الحي)"},
+"BaO":{c:"أبيض مصفرّ",st:"صلب",mp:"1923 °م",sol:"يتفاعل مع الماء ويكوّن Ba(OH)₂",t:[2,"عالية؛ مركب باريوم سام"],u:"طلاء الكاثود، الزجاج"},
+"BeO":{c:"أبيض",st:"صلب",mp:"2507 °م",hd:"9",sol:"غير ذائب",t:[2,"عالية جدًا؛ غباره يسبب مرض البريليوم الرئوي"],u:"سيراميك عالي التوصيل الحراري للإلكترونيات"},
+"Al2O3":{c:"أبيض (الياقوت أحمر والياقوت الأزرق بشوائب)",st:"صلب",mp:"2072 °م",hd:"9 (الكوراندوم)",sol:"غير ذائب",t:[0,"منخفضة؛ غير سام"],u:"مواد كاشطة (صنفرة)، أحجار كريمة، إنتاج الألومنيوم، سيراميك"},
+"ZnO":{c:"أبيض (يصفرّ بالتسخين)",st:"صلب",mp:"1975 °م",hd:"4–5",sol:"غير ذائب في الماء",t:[0,"منخفضة؛ استنشاق أبخرته يسبب حمّى الأبخرة المعدنية"],u:"واقيات الشمس، المراهم، الدهانات، تقوية المطاط"},
+"CuO":{c:"أسود",st:"صلب",mp:"1326 °م",hd:"≈ 3.5",sol:"غير ذائب",t:[1,"متوسطة؛ ضار عند البلع"],u:"صبغ الزجاج والفخار (أزرق/أخضر)، حفّاز، أكسدة المركبات العضوية"},
+"Cu2O":{c:"أحمر",st:"صلب",mp:"1232 °م",sol:"غير ذائب",t:[1,"متوسطة"],u:"دهانات مضادة للتطفل البحري، مبيد فطري، زجاج أحمر"},
+"FeO":{c:"أسود",st:"صلب",mp:"1377 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"صبغات، وسيط في صناعة الحديد"},
+"Fe2O3":{c:"أحمر بنّي (الصدأ)",st:"صلب",mp:"≈ 1565 °م",hd:"5–6",sol:"غير ذائب",t:[0,"منخفضة"],u:"الصدأ، خام الحديد (الهيماتيت)، صبغة حمراء، مواد صقل"},
+"Cr2O3":{c:"أخضر",st:"صلب",mp:"2435 °م",hd:"8–8.5",sol:"غير ذائب",t:[0,"منخفضة (Cr³⁺)"],u:"صبغة خضراء، مواد صقل، مواد حرارية"},
+"Ag2O":{c:"بنّي مسوّد",st:"صلب",mp:"يتفكك عند ≈ 280 °م",sol:"قليل الذوبان جدًا",t:[1,"متوسطة"],u:"بطاريات أكسيد الفضة، تحضير كاشف تولنز"},
+"HgO":{c:"أحمر / أصفر",st:"صلب",mp:"يتفكك عند ≈ 500 °م",sol:"غير ذائب تقريبًا",t:[2,"عالية جدًا؛ مركب زئبق سام"],u:"استُعمل في البطاريات وتجارب لافوازيه (إطلاق الأكسجين بالتسخين)"},
+"B2O3":{c:"عديم اللون (زجاجي)",st:"صلب زجاجي",mp:"≈ 450 °م",sol:"ذائب جزئيًا ويكوّن حمض البوريك",t:[1,"متوسطة"],u:"زجاج البيركس (البورسيليكات)، السيراميك، مثبط للحريق"},
+/* كبريتيدات */
+"Na2S":{c:"أبيض مصفرّ",st:"صلب",mp:"1176 °م",sol:"ذائب (≈ 19 غ/100 مل)",t:[1,"متوسطة؛ يُطلق H₂S السام مع الأحماض"],u:"إزالة الشعر من الجلود، تعويم الخامات، صناعة الورق"},
+"ZnS":{c:"أبيض (الاسفاليريت يكون داكنًا)",st:"صلب",mp:"≈ 1850 °م",hd:"3.5–4",sol:"غير ذائب",t:[0,"منخفضة"],u:"مواد مُشعّة ومتوهجة (فوسفور) للشاشات والدهانات، بصريات الأشعة تحت الحمراء"},
+"Ag2S":{c:"أسود",st:"صلب",mp:"825 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"سبب اسوداد الفضة (التلطخ)، خامات الفضة"},
+"FeS":{c:"بنّي مسوّد",st:"صلب",mp:"1194 °م",sol:"غير ذائب",t:[0,"منخفضة (يُطلق H₂S مع الأحماض)"],u:"تحضير H₂S في المختبر"},
+"HgS":{c:"أحمر (الزنجفر)",st:"صلب",mp:"يتسامى ≈ 583 °م",hd:"2–2.5",sol:"غير ذائب",t:[2,"عالية؛ خام الزئبق"],u:"صبغة الزنجفر قديمًا، المصدر الرئيس للزئبق"},
+"CuS":{c:"أسود",st:"صلب",mp:"يتفكك عند ≈ 220 °م",sol:"غير ذائب",t:[1,"متوسطة"],u:"حفّاز، مؤشر لوجود Cu²⁺ في التحليل الكيفي"},
+"Al2S3":{c:"أصفر رمادي",st:"صلب",mp:"≈ 1100 °م",sol:"يتفاعل مع الماء ويُطلق H₂S",t:[1,"متوسطة؛ يُطلق H₂S السام مع الرطوبة"],u:"تطبيقات بحثية محدودة"},
+/* هيدروكسيدات */
+"NaOH":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"318 °م",sol:"ذائب جدًا (≈ 111 غ/100 مل)، ويُطلق حرارة",t:[2,"عالية؛ مُسبِّب للتآكل ويسبب حروقًا شديدة"],u:"صناعة الصابون والورق، منظفات المجاري، معالجة الألومنيوم"},
+"KOH":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"360 °م",sol:"ذائب جدًا (≈ 121 غ/100 مل)",t:[2,"عالية؛ مُسبِّب للتآكل"],u:"الصابون اللين، البطاريات القلوية، حفّاز الديزل الحيوي"},
+"LiOH":{c:"أبيض",st:"صلب",mp:"462 °م",sol:"ذائب (≈ 12.8 غ/100 مل)",t:[1,"متوسطة؛ مُسبِّب للتآكل"],u:"بطاريات الليثيوم، امتصاص CO₂ في المركبات الفضائية"},
+"Ca(OH)2":{c:"أبيض",st:"صلب (مسحوق)",mp:"يفقد الماء عند ≈ 580 °م",sol:"قليل الذوبان (≈ 0.17 غ/100 مل) ومحلوله ماء الجير",t:[1,"متوسطة؛ مُهيّج"],u:"الكشف عن CO₂ (ماء الجير)، الملاط، معادلة حموضة التربة، معالجة المياه"},
+"Mg(OH)2":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 350 °م",sol:"قليل الذوبان جدًا",t:[0,"منخفضة"],u:"حليب المغنيسيا: مضاد للحموضة وملين"},
+"Ba(OH)2":{c:"أبيض",st:"صلب",mp:"407 °م",sol:"ذائب (≈ 3.9 غ/100 مل)",t:[2,"عالية؛ مُسبِّب للتآكل وسام"],u:"معايرات مخبرية، ماء الباريتا للكشف عن CO₂"},
+"Al(OH)3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 300 °م",sol:"غير ذائب (مذبذب: يذوب في الحمض والقاعدة)",t:[0,"منخفضة"],u:"مضاد للحموضة، معالجة المياه، مثبط للحريق"},
+"Cu(OH)2":{c:"أزرق باهت",st:"صلب",mp:"يتفكك عند ≈ 80 °م",sol:"غير ذائب",t:[1,"متوسطة"],u:"صبغات، مبيد فطري، الكشف عن السكريات المختزلة (بنديكت/فهلنج)"},
+"Fe(OH)3":{c:"بنّي محمرّ",st:"صلب (راسب هلامي)",mp:"يتفكك بالتسخين",sol:"غير ذائب",t:[0,"منخفضة"],u:"إزالة الشوائب من المياه، صبغات"},
+"NH4OH":{c:"عديم اللون (محلول)",st:"سائل (محلول النشادر NH₃)",mp:"—",ns:1,sol:"محلول مائي للأمونيا",t:[1,"متوسطة؛ مُهيّج ومُسبِّب للتآكل، رائحته نفّاذة"],u:"منظفات منزلية، أسمدة، مختبرات التحليل الكيفي"},
+/* أملاح الأمونيوم */
+"NH4Cl":{c:"أبيض",st:"صلب بلوري",mp:"يتسامى ≈ 338 °م",hd:"1.5–2",sol:"ذائب (≈ 37 غ/100 مل)",t:[1,"منخفضة–متوسطة؛ مُهيّج"],u:"البطاريات الجافة، مادة لحام، سماد، أدوية السعال"},
+"NH4NO3":{c:"أبيض",st:"صلب بلوري",mp:"169 °م",sol:"ذائب جدًا (≈ 190 غ/100 مل)",t:[1,"متوسطة؛ مؤكسِد قوي وخطر الانفجار عند التسخين"],u:"سماد نيتروجيني، كمادات الثلج الفورية، المتفجرات"},
+"(NH4)2SO4":{c:"أبيض",st:"صلب بلوري",mp:"يتفكك عند > 235 °م",sol:"ذائب (≈ 74 غ/100 مل)",t:[0,"منخفضة"],u:"سماد نيتروجيني، ترسيب البروتينات"},
+"(NH4)2CO3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 58 °م",sol:"ذائب",t:[1,"متوسطة؛ مُهيّج، يُطلق NH₃"],u:"أملاح الإفاقة، مادة رافعة في الخَبز"},
+/* نترات ونتريت */
+"NaNO3":{c:"أبيض",st:"صلب بلوري",mp:"308 °م",hd:"1.5–2",sol:"ذائب جدًا (≈ 91 غ/100 مل)",t:[1,"متوسطة؛ مؤكسِد"],u:"سماد، حافظ للأغذية (E251)، متفجرات، تخزين الطاقة الشمسية"},
+"KNO3":{c:"أبيض",st:"صلب بلوري",mp:"334 °م",hd:"2",sol:"ذائب (≈ 38 غ/100 مل)، ويزداد مع الحرارة",t:[1,"متوسطة؛ مؤكسِد"],u:"سماد، بارود، حافظ للأغذية (الملح الصخري)"},
+"Ca(NO3)2":{c:"أبيض",st:"صلب (يمتص الرطوبة)",mp:"561 °م",sol:"ذائب جدًا (> 100 غ/100 مل)",t:[1,"متوسطة؛ مؤكسِد"],u:"سماد نيتروجيني وكالسيومي"},
+"Ba(NO3)2":{c:"أبيض",st:"صلب بلوري",mp:"592 °م",sol:"ذائب (≈ 10 غ/100 مل)",t:[2,"عالية؛ مركب باريوم سام ومؤكسِد"],u:"ألعاب نارية خضراء"},
+"AgNO3":{c:"عديم اللون / أبيض",st:"صلب بلوري",mp:"212 °م",sol:"ذائب جدًا (≈ 256 غ/100 مل)",t:[1,"متوسطة؛ مُسبِّب للتآكل ويصبغ الجلد بالأسود"],u:"الكشف عن الهاليدات، التصوير الضوئي، المرايا، مطهّر"},
+"Cu(NO3)2":{c:"أزرق (متميّه)",st:"صلب",mp:"يتفكك بالتسخين",sol:"ذائب جدًا",t:[1,"متوسطة؛ مؤكسِد وضار عند البلع"],u:"حفّاز، ألعاب نارية، الحفر على المعادن"},
+"NaNO2":{c:"أبيض مصفرّ",st:"صلب",mp:"271 °م",sol:"ذائب (≈ 85 غ/100 مل)",t:[2,"عالية؛ سام بالجرعات الكبيرة"],u:"معالجة اللحوم (بكميات ضئيلة)، صناعة الأصباغ"},
+/* سيانيدات */
+"NaCN":{c:"أبيض",st:"صلب",mp:"563 °م",sol:"ذائب (≈ 48 غ/100 مل)",t:[2,"عالية جدًا؛ قاتل بجرعات صغيرة"],u:"استخلاص الذهب والفضة، الطلاء الكهربائي"},
+"KCN":{c:"أبيض",st:"صلب",mp:"634 °م",sol:"ذائب جدًا (≈ 72 غ/100 مل)",t:[2,"عالية جدًا؛ قاتل بجرعات صغيرة"],u:"الطلاء الكهربائي، استخلاص المعادن"},
+"KMnO4":{c:"بنفسجي داكن",st:"صلب بلوري",mp:"يتفكك عند ≈ 240 °م",sol:"ذائب (≈ 6.4 غ/100 مل) ومحلوله بنفسجي",t:[1,"متوسطة؛ مؤكسِد قوي ويصبغ الجلد"],u:"مطهّر، معالجة المياه، معايرات الأكسدة والاختزال"},
+/* كربونات وبيكربونات */
+"NaHCO3":{c:"أبيض",st:"صلب (مسحوق)",mp:"يتفكك من ≈ 50 °م",sol:"ذائب (≈ 9.6 غ/100 مل)",t:[0,"منخفضة"],u:"صودا الخَبز، مضاد للحموضة، طفايات الحريق، التنظيف"},
+"KHCO3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 100–120 °م",sol:"ذائب (≈ 22 غ/100 مل)",t:[0,"منخفضة"],u:"مضاد للحموضة، طفايات الحريق الجافة"},
+"Na2CO3":{c:"أبيض",st:"صلب (مسحوق)",mp:"851 °م",sol:"ذائب (≈ 21 غ/100 مل)",t:[0,"منخفضة؛ مُهيّج قلوي"],u:"صناعة الزجاج والصابون، تليين المياه (الصودا آش)"},
+"K2CO3":{c:"أبيض",st:"صلب",mp:"891 °م",sol:"ذائب جدًا (≈ 112 غ/100 مل)",t:[0,"منخفضة؛ مُهيّج"],u:"الصابون اللين، الزجاج، الأسمدة"},
+"Li2CO3":{c:"أبيض",st:"صلب",mp:"723 °م",sol:"قليل الذوبان (≈ 1.3 غ/100 مل)",t:[1,"متوسطة؛ دواء ذو هامش أمان ضيق"],u:"علاج الاضطراب ثنائي القطب، بطاريات الليثيوم، السيراميك"},
+"CaCO3":{c:"أبيض (الكالسايت عديم اللون)",st:"صلب",mp:"يتفكك عند ≈ 825 °م إلى CaO وCO₂",hd:"3 (الكالسايت)",sol:"شبه غير ذائب (≈ 0.0013 غ/100 مل)، ويذوب في الأحماض",t:[0,"منخفضة"],u:"الحجر الجيري والرخام والطباشير، الإسمنت، مضاد للحموضة، مكمل كالسيوم"},
+"MgCO3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 350 °م",hd:"3.5–4.5 (المغنسيت)",sol:"قليل الذوبان جدًا",t:[0,"منخفضة"],u:"مسحوق اللاعبين (الجمباز)، مضاد للحموضة، مواد حرارية"},
+"BaCO3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 1360 °م",hd:"3–3.5 (الويذرايت)",sol:"شبه غير ذائب (≈ 0.0024 غ/100 مل)، ويذوب في الأحماض",t:[2,"عالية؛ سام لأنه يذوب في حمض المعدة"],u:"سمّ فئران، طلاءات السيراميك، الزجاج"},
+"H2CO3":{c:"عديم اللون (محلول)",st:"لا يوجد نقيًا؛ يتكوّن من CO₂ + H₂O",mp:"—",ns:1,sol:"موجود في المحلول فقط (حمض ضعيف)",t:[0,"منخفضة"],u:"المشروبات الغازية، كربنة الماء، نظام منظّم الدم"},
+/* كبريتات وكبريتيت */
+"Na2SO4":{c:"أبيض",st:"صلب",mp:"884 °م",sol:"ذائب (≈ 19 غ/100 مل عند 20 °م)",t:[0,"منخفضة"],u:"المنظفات، الزجاج، ملح غلوبر (ملين)"},
+"K2SO4":{c:"أبيض",st:"صلب",mp:"1069 °م",sol:"ذائب (≈ 12 غ/100 مل)",t:[0,"منخفضة"],u:"سماد بوتاسي خالٍ من الكلور"},
+"MgSO4":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 1137 °م",sol:"ذائب (≈ 35 غ/100 مل)",t:[0,"منخفضة"],u:"ملح إبسوم (حمامات، ملين)، سماد"},
+"CaSO4":{c:"أبيض",st:"صلب",mp:"1460 °م",hd:"2 (الجبس) / 3.5 (الأنهيدريت)",sol:"قليل الذوبان (≈ 0.2 غ/100 مل)",t:[0,"منخفضة"],u:"الجبس وجص باريس والألواح الجبسية، ضابط تصلّب الإسمنت"},
+"BaSO4":{c:"أبيض",st:"صلب",mp:"1580 °م",hd:"3–3.5 (الباريت)",sol:"غير ذائب (≈ 0.00024 غ/100 مل)",t:[0,"منخفضة رغم احتوائه على الباريوم، لعدم ذوبانه"],u:"وجبة الباريوم في تصوير الأشعة السينية، سوائل الحفر، صبغة بيضاء"},
+"Al2(SO4)3":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 770 °م",sol:"ذائب (≈ 36 غ/100 مل)",t:[0,"منخفضة؛ مُهيّج"],u:"تنقية المياه (ترويق)، صناعة الورق، مثبّت للأصباغ"},
+"CuSO4":{c:"أبيض رمادي (لامائي) / أزرق (متميّه CuSO₄·5H₂O)",st:"صلب بلوري",mp:"يتفكك عند > 560 °م",sol:"ذائب (≈ 20 غ/100 مل)",t:[1,"متوسطة؛ ضار عند البلع وسام للأحياء المائية"],u:"مبيد فطري (خليط بوردو)، الطلاء الكهربائي، الكشف عن الماء"},
+"ZnSO4":{c:"أبيض",st:"صلب",mp:"يتفكك عند ≈ 680 °م",sol:"ذائب (≈ 54 غ/100 مل)",t:[1,"متوسطة؛ ضار وضار للعين"],u:"مكمل الزنك، سماد، الطلاء الكهربائي"},
+"FeSO4":{c:"أخضر باهت (متميّه)",st:"صلب بلوري",mp:"يتفكك عند ≈ 680 °م",sol:"ذائب (≈ 26 غ/100 مل)",t:[1,"متوسطة؛ الجرعات الزائدة خطرة (خاصة على الأطفال)"],u:"علاج فقر الدم، معالجة المياه، الحبر"},
+"Na2SO3":{c:"أبيض",st:"صلب",mp:"يتفكك بالتسخين الشديد",sol:"ذائب (≈ 27 غ/100 مل)",t:[1,"متوسطة؛ قد يسبب حساسية"],u:"حافظ للأغذية، إزالة الكلور، مُظهِّر في التصوير"},
+/* فوسفات */
+"Na3PO4":{c:"أبيض",st:"صلب",mp:"1583 °م",sol:"ذائب (≈ 12 غ/100 مل)",t:[1,"متوسطة؛ مُهيّج قلوي"],u:"منظفات، تليين المياه، مادة مضافة غذائية"},
+"Ca3(PO4)2":{c:"أبيض",st:"صلب",mp:"1670 °م",sol:"غير ذائب (≈ 0.002 غ/100 مل)",t:[0,"منخفضة"],u:"المكوّن الرئيس للعظام والأسنان، تصنيع الأسمدة الفوسفاتية، مكمل كالسيوم"},
+"AlPO4":{c:"أبيض",st:"صلب",mp:"> 1460 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"مضاد للحموضة، سيراميك، حفّاز"},
+"Zn3(PO4)2":{c:"أبيض",st:"صلب",mp:"≈ 900 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"طلاءات مضادة للصدأ، أسمنت الأسنان"},
+"Ag3PO4":{c:"أصفر",st:"صلب",mp:"849 °م",sol:"غير ذائب",t:[0,"منخفضة"],u:"الكشف عن الفوسفات (راسب أصفر)، مستحلبات التصوير"},
+/* كرومات */
+"Na2CrO4":{c:"أصفر",st:"صلب",mp:"792 °م",sol:"ذائب (≈ 87 غ/100 مل)",t:[2,"عالية؛ مركب كروم سداسي مسرطن"],u:"مثبط للتآكل، صباغة الجلود"},
+"K2CrO4":{c:"أصفر",st:"صلب",mp:"968 °م",sol:"ذائب (≈ 63 غ/100 مل)",t:[2,"عالية؛ مركب كروم سداسي مسرطن"],u:"كاشف في معايرة موهر للهاليدات"},
+"K2Cr2O7":{c:"برتقالي محمرّ",st:"صلب بلوري",mp:"398 °م",sol:"ذائب (≈ 12 غ/100 مل)",t:[2,"عالية جدًا؛ مسرطن ومؤكسِد وسام"],u:"عامل مؤكسِد في المختبر، دبغ الجلود، حفظ الأخشاب"},
+"BaCrO4":{c:"أصفر",st:"صلب",mp:"يتفكك بالتسخين",sol:"غير ذائب",t:[2,"عالية؛ باريوم وكروم سداسي"],u:"صبغة صفراء، ألعاب نارية"},
+"Ag2CrO4":{c:"أحمر قرميدي",st:"صلب",mp:"يتفكك بالتسخين",sol:"غير ذائب",t:[1,"متوسطة"],u:"دليل نقطة النهاية في معايرة موهر (راسب أحمر)"},
+/* نيتريدات وفوسفيدات */
+"BN":{c:"أبيض",st:"صلب",mp:"≈ 2973 °م (يتسامى)",hd:"h-BN ناعم (مزلِّق)، وc-BN قريب من الألماس (≈ 9.5)",sol:"غير ذائب",t:[0,"منخفضة"],u:"مزلِّقات، أدوات قطع فائقة الصلابة، مستحضرات التجميل"},
+"AlN":{c:"أبيض / أصفر باهت",st:"صلب",mp:"≈ 2200 °م",sol:"غير ذائب (يتحلل ببطء بالرطوبة)",t:[0,"منخفضة"],u:"ركائز إلكترونية موصلة للحرارة، مصابيح LED"},
+"Mg3N2":{c:"أصفر مخضر",st:"صلب",mp:"≈ 1500 °م (يتفكك)",sol:"يتفاعل مع الماء ويُنتج NH₃ وMg(OH)₂",t:[1,"متوسطة؛ يُطلق النشادر مع الماء"],u:"تحضير الأمونيا مخبريًا، سيراميك"},
+"Li3N":{c:"أحمر بنّي / أحمر ياقوتي",st:"صلب",mp:"813 °م",sol:"يتفاعل مع الماء ويُنتج NH₃",t:[1,"متوسطة؛ مُسبِّب للتآكل"],u:"أبحاث بطاريات الليثيوم وتخزين الهيدروجين"},
+"Ca3N2":{c:"بنّي محمرّ",st:"صلب",mp:"1195 °م",sol:"يتفاعل مع الماء ويُنتج NH₃",t:[1,"متوسطة؛ مُسبِّب للتآكل"],u:"تحضير النشادر، مادة بحثية"},
+"Zn3P2":{c:"رمادي داكن",st:"صلب",mp:"420 °م",sol:"غير ذائب، ويُطلق PH₃ السام مع الأحماض",t:[2,"عالية جدًا"],u:"سمّ قوارض"},
+"AlP":{c:"أصفر رمادي",st:"صلب",mp:"يتفكك بالرطوبة",sol:"يتفاعل مع الماء ويُطلق PH₃ السام",t:[2,"عالية جدًا"],u:"تبخير الحبوب المخزّنة (مبيد حشري)"},
+"Ca3P2":{c:"بنّي محمرّ",st:"صلب",mp:"≈ 1600 °م",sol:"يتفاعل مع الماء ويُطلق PH₃ السام",t:[2,"عالية؛ يُطلق فوسفين سامًا"],u:"إشارات الإنقاذ البحرية قديمًا"},
+/* مركبات الهيدروجين */
+"H2O":{c:"عديم اللون",st:"سائل",mp:"0 °م (يغلي عند 100 °م)",ns:1,sol:"المذيب العام الأهم",t:[0,"غير سام"],u:"الحياة، الشرب، المذيب العام، الصناعة"},
+"HF":{c:"عديم اللون",st:"غاز / سائل مدخّن (يغلي عند 19.5 °م)",mp:"−84 °م",ns:1,sol:"يمتزج بالماء ويكوّن حمض الهيدروفلوريك (ضعيف)",t:[2,"عالية جدًا؛ يخترق الجلد ويرتبط بالكالسيوم"],u:"حفر الزجاج، تصنيع مركبات الفلور"},
+"HCl":{c:"عديم اللون",st:"غاز",mp:"−114 °م",ns:1,sol:"ذائب جدًا ويكوّن حمض الهيدروكلوريك (قوي)",t:[2,"عالية؛ مُسبِّب للتآكل والغاز مُهيّج للرئتين"],u:"حمض المعدة، تنظيف المعادن، تحضير الكلوريدات وPVC"},
+"HBr":{c:"عديم اللون",st:"غاز",mp:"−87 °م",ns:1,sol:"ذائب جدًا ويكوّن حمض الهيدروبروميك (قوي)",t:[2,"عالية؛ مُسبِّب للتآكل"],u:"تحضير البروميدات، حفّاز"},
+"HI":{c:"عديم اللون",st:"غاز",mp:"−51 °م",ns:1,sol:"ذائب جدًا ويكوّن حمض الهيدرويوديك (قوي)",t:[2,"عالية؛ مُسبِّب للتآكل"],u:"عامل مختزل، تحضير اليوديدات"},
+"H2S":{c:"عديم اللون",st:"غاز (رائحة البيض الفاسد)",mp:"−86 °م",ns:1,sol:"قليل الذوبان (≈ 0.4 غ/100 مل)",t:[2,"عالية جدًا؛ قاتل بتراكيز عالية ويُفقد حاسة الشم"],u:"إنتاج الكبريت، الكشف الكيفي عن الأيونات الفلزية"},
+"NH3":{c:"عديم اللون",st:"غاز (رائحة نفّاذة)",mp:"−78 °م",ns:1,sol:"ذائب جدًا (≈ 50 غ/100 غ ماء)",t:[2,"عالية؛ مُهيّج ومُسبِّب للتآكل"],u:"الأسمدة (اليوريا)، المنظفات، المبرِّدات، حمض النيتريك"},
+"PH3":{c:"عديم اللون",st:"غاز (رائحة الثوم/السمك)",mp:"−133 °م",ns:1,sol:"قليل الذوبان",t:[2,"عالية جدًا؛ غاز سام وقابل للاشتعال"],u:"مبخّر للحبوب، تطعيم أشباه الموصلات"},
+"HNO3":{c:"عديم اللون (يصفرّ عند تفككه)",st:"سائل",mp:"−42 °م",ns:1,sol:"يمتزج بالماء (حمض قوي)",t:[2,"عالية؛ مُسبِّب للتآكل ومؤكسِد، يصبغ الجلد بالأصفر"],u:"الأسمدة والمتفجرات، الماء الملكي، حفر المعادن"},
+"H2SO4":{c:"عديم اللون (سائل زيتي)",st:"سائل",mp:"10 °م",ns:1,sol:"يمتزج بالماء مع انطلاق حرارة (أضف الحمض إلى الماء)",t:[2,"عالية؛ مُسبِّب للتآكل وحروق شديدة"],u:"بطاريات السيارات، الأسمدة، تكرير النفط، أكثر المواد الكيميائية إنتاجًا"},
+"H3PO4":{c:"عديم اللون",st:"صلب بلوري أو سائل شرابي",mp:"42 °م",sol:"ذائب جدًا",t:[1,"متوسطة؛ مُسبِّب للتآكل عند التركيز العالي"],u:"المشروبات الغازية، الأسمدة، مزيلات الصدأ"},
+"HCN":{c:"عديم اللون",st:"سائل متطاير (يغلي عند 26 °م)",mp:"−13 °م",ns:1,sol:"يمتزج بالماء (حمض ضعيف)",t:[2,"عالية جدًا؛ قاتل"],u:"تصنيع البلاستيك (أكريلونيتريل)، التعدين"}
+};
+
+const T_LABEL=["منخفضة","متوسطة","عالية"];
+const CAT_COLOR={"Cr2":"أزرق","Cr3":"بنفسجي / أخضر","Fe2":"أخضر باهت","Fe3":"أصفر بنّي","Cu2":"أزرق / أخضر"};
+const AN_COLOR={MnO4:"بنفسجي",CrO4:"أصفر",Cr2O7:"برتقالي"};
+
+/* ---------- COMPOUND INFO ---------- */
+function lookup(c,a){const r=calc(c,a);for(const k of [r.f,...r.alts]){if(DB[k])return DB[k];}return null;}
+function genericInfo(c,a){
+  const g1=["Li","Na","K"].includes(c.s)||c.s==="NH4";
+  const col=AN_COLOR[a.s]||CAT_COLOR[c.s+c.c]||"أبيض / عديم اللون (غالبًا)";
+  let sol;
+  if((a.s==="N"||a.s==="P")&&!g1)sol="يتفاعل مع الماء غالبًا";
+  else if(g1&&a.s!=="N"&&a.s!=="P")sol="ذائب في الماء (أملاح الفلزات القلوية والأمونيوم ذائبة عادةً)";
+  else if(["NO3","NO2","MnO4"].includes(a.s))sol="ذائب في الماء عادةً";
+  else if(["Cl","Br"].includes(a.s))sol=(c.s==="Ag"||(c.s==="Cu"&&c.c===1))?"غير ذائب أو شبه غير ذائب":"ذائب في الماء عادةً";
+  else if(a.s==="I")sol=(["Ag","Hg"].includes(c.s)||(c.s==="Cu"&&c.c===1))?"غير ذائب أو شبه غير ذائب":"ذائب في الماء عادةً";
+  else if(a.s==="SO4")sol=["Ba","Ca","Ag"].includes(c.s)?"غير ذائب أو قليل الذوبان":"ذائب في الماء عادةً";
+  else if(["CO3","PO4","SO3","S","OH","O"].includes(a.s))sol="غير ذائب أو قليل الذوبان غالبًا";
+  else sol="يختلف بحسب المركب";
+  let t=[-1,"غير محددة؛ تُعامل المواد الكيميائية بحذر في المختبر"];
+  if(c.s==="Hg"||a.s==="CN"||["CrO4","Cr2O7"].includes(a.s))t=[2,"عالية على الأرجح (زئبق / سيانيد / كروم سداسي)"];
+  else if(c.s==="Ba")t=[2,"عالية إن كان المركب ذائبًا في الماء أو في حمض المعدة"];
+  else if(["Cu","Zn","Ag","Cr"].includes(c.s))t=[1,"متوسطة على الأرجح"];
+  return {c:col,st:"صلب أيوني غالبًا",mp:"مرتفعة عادةً (روابط أيونية قوية)",sol,t,u:"لا توجد بيانات تفصيلية لهذا المركب في الدرس",gen:1};
+}
+function infoFor(c,a){return lookup(c,a)||genericInfo(c,a);}
+function hardText(d){return d.hd?d.hd+" (مقياس موس)":(d.ns?"لا ينطبق (ليس صلبًا في الظروف العادية)":"—");}
+function infoHTML(c,a){
+  const r=calc(c,a),d=infoFor(c,a),lvl=d.t[0];
+  const tb=lvl>=0?`<span class="tb t${lvl}">${T_LABEL[lvl]}</span>`:`<span class="tb" style="background:#8a94a8">غير محددة</span>`;
+  const rows=[["🎨 اللون والحالة",`${d.c} — ${d.st}`],["🔥 الانصهار",d.mp||"—"],["💎 الصلابة",hardText(d)],["💧 الذوبان في الماء",d.sol],["☠️ السمية",tb+" "+d.t[1]],["🏭 الاستخدامات",d.u]]
+    .map(([k,v])=>`<div class="irow"><div class="ik">${k}</div><div class="iv">${v}</div></div>`).join("");
+  return `<div class="ihead"><div class="f">${fmt(r.f)}</div><div class="nm">${nameOf(c,a)}</div><span class="src${d.gen?" est":""}">${d.gen?"تقدير عام":"بيانات مرجعية تقريبية"}</span></div>`
+    +(lvl===2?`<div class="warn">⚠️ مركب عالي الخطورة؛ لا يُستعمل في المختبر إلا بإشراف المعلم ومع وسائل الوقاية.</div>`:"")
+    +rows
+    +`<div class="ifoot">${d.gen?"هذا المركب غير مُدرج في البطاقات التفصيلية، والقيم تقديرات عامة مبنية على قواعد الذوبان وألوان الأيونات. ":""}الصلابة بمقياس موس (1 الأطرى ← 10 الأصلب) وتخص المعدن الطبيعي المقابل. القيم تقريبية لأغراض تعليمية، وتختلف بحسب النقاء والظروف.</div>`;
+}
+function showInfo(c,a){
+  document.getElementById("m-body").innerHTML="<h3 style='margin:0 0 8px;color:var(--navy);font-size:1rem'>📋 معلومات علمية عن المركب</h3>"+infoHTML(c,a);
+  document.getElementById("modal").classList.add("show");
+}
+function infoLine(c,a){
+  const d=lookup(c,a);if(!d)return "";
+  return `<br><b>معلومة علمية:</b> اللون: ${d.c}. الاستخدام: ${d.u}.`;
+}
+
+/* ---------- TABS ---------- */
+document.querySelectorAll(".tab-btn").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".tab-btn").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");document.getElementById("p-"+b.dataset.tab).classList.add("active");
+});
+
+/* ---------- TAB 1: REFERENCE ---------- */
+function chips(id,list,pos,onclick){
+  const box=document.getElementById(id);
+  list.forEach((i,k)=>{
+    const d=document.createElement("button");
+    d.className="ion "+(pos?"c":"a");
+    d.innerHTML=`<span class="sym">${ionH(i,pos)}</span><span class="nm">${i.n}</span>`;
+    if(onclick)d.onclick=()=>onclick(i,d,box);
+    box.appendChild(d);
+  });
+}
+chips("i-catmain",mainC,true);chips("i-cattrans",transC,true);
+chips("i-ansimple",simpleA,false);chips("i-anpoly",polyA,false);
+
+/* ---------- TAB 2: BUILDER ---------- */
+let selC=mainC[2], selA=simpleA[1];
+function pick(kind){
+  return (i,el,box)=>{
+    box.querySelectorAll(".ion").forEach(x=>x.classList.remove("sel"));
+    el.classList.add("sel");
+    if(kind==="c")selC=i;else selA=i;
+    renderBuild();
+  };
+}
+chips("b-cat",allC,true,pick("c"));chips("b-an",allA,false,pick("a"));
+function markSel(){
+  document.querySelectorAll("#b-cat .ion")[allC.indexOf(selC)].classList.add("sel");
+  document.querySelectorAll("#b-an .ion")[allA.indexOf(selA)].classList.add("sel");
+}
+function renderBuild(){
+  const r=calc(selC,selA);
+  document.getElementById("b-formula").innerHTML=fmt(r.f);
+  document.getElementById("b-name").textContent=nameOf(selC,selA);
+  const S=[];
+  S.push(`اكتب الكاتيون ثم الأنيون: <span class="ltr">${ionH(selC,true)} ${ionH(selA,false)}</span>`);
+  S.push(`نتبادل قيمتي الشحنتين (بدون الإشارة): رقم الكاتيون السفلي = ${selA.c}، ورقم الأنيون السفلي = ${selC.c}.`);
+  if(r.g>1)S.push(`نختصر الرقمين على القاسم المشترك ${r.g} فيصبح عدد الكاتيون ${r.nc} وعدد الأنيون ${r.na}.`);
+  else S.push(`لا يوجد قاسم مشترك أكبر من 1، فنبقي الرقمين كما هما (الكاتيون: ${r.nc}، الأنيون: ${r.na}).`);
+  if((selC.poly&&r.nc>1)||(selA.poly&&r.na>1))S.push("الأيون متعدد الذرات الذي عدده أكبر من 1 نضعه بين قوسين ثم نكتب الرقم خارج القوس.");
+  if(r.water)S.push("الناتج H<sub>2</sub>O وهو الماء (يُكتب HOH ثم يُختصر).");
+  if(r.alts.length&&!r.water)S.push(`يمكن كتابة الصيغة أيضًا بعد إعادة ترتيب الرمزين: <span class="ltr">${fmt(r.alts[0])}</span>.`);
+  S.push(`نتحقق: مجموع الشحنات = ${r.nc} × (+${selC.c}) + ${r.na} × (−${selA.c}) = ${r.nc*selC.c-r.na*selA.c} ✔`);
+  document.getElementById("b-steps").innerHTML=S.map((t,i)=>`<div class="step"><b class="n">${i+1}</b><div>${t}</div></div>`).join("");
+  document.getElementById("b-info").innerHTML="<h3>📋 معلومات علمية عن المركب</h3>"+infoHTML(selC,selA);
+}
+markSel();renderBuild();
+
+/* ---------- TAB 3: GRID ---------- */
+const sets={
+ 1:{t:"المجموعات الرئيسية × أيونات بسيطة",C:mainC,A:simpleA},
+ 2:{t:"المجموعات الرئيسية × متعددة الذرات",C:mainC,A:polyA},
+ 3:{t:"انتقالية وأمونيوم × أيونات بسيطة",C:transC,A:simpleA},
+ 4:{t:"انتقالية وأمونيوم × متعددة الذرات",C:transC,A:polyA}};
+let curSet=1;const store={};
+const setbtns=document.getElementById("setbtns");
+Object.keys(sets).forEach(k=>{
+  const b=document.createElement("button");b.className="sbtn"+(k==1?" active":"");b.textContent=sets[k].t;
+  b.onclick=()=>{curSet=+k;document.querySelectorAll(".sbtn").forEach(x=>x.classList.remove("active"));b.classList.add("active");buildGrid();};
+  setbtns.appendChild(b);
+});
+const key=(ci,ai)=>`${curSet}-${ci}-${ai}`;
+function accepted(c,a){const r=calc(c,a);return [r.f,...r.alts].map(norm);}
+function applyState(inp,st){inp.classList.remove("ok","no","shown");if(st)inp.classList.add(st);const b=inp.nextElementSibling;if(b)b.style.display=(st==="ok"||st==="shown")?"block":"none";}
+function buildGrid(){
+  const {C,A}=sets[curSet];
+  let h="<thead><tr><th>الأنيون ↓ / الكاتيون →</th>"+C.map(c=>`<th>${ionH(c,true)}<small>${c.n}</small></th>`).join("")+"</tr></thead><tbody>";
+  A.forEach((a,ai)=>{
+    h+=`<tr><th>${ionH(a,false)}<small>${a.n}</small></th>`;
+    C.forEach((c,ci)=>{h+=`<td class="gc"><input class="gi" data-ci="${ci}" data-ai="${ai}" autocomplete="off" spellcheck="false"><button class="ib" title="معلومات علمية">ⓘ</button></td>`;});
+    h+="</tr>";
+  });
+  document.getElementById("g-table").innerHTML=h+"</tbody>";
+  document.querySelectorAll(".gi").forEach(inp=>{
+    const k=key(inp.dataset.ci,inp.dataset.ai),s=store[k];
+    if(s){inp.value=s.v;applyState(inp,s.st);}
+    inp.addEventListener("change",()=>checkOne(inp));
+  });
+  document.querySelectorAll(".ib").forEach(b=>{const inp=b.previousElementSibling;b.onclick=()=>showInfo(C[inp.dataset.ci],A[inp.dataset.ai]);});
+  prog();
+}
+function checkOne(inp){
+  const {C,A}=sets[curSet],k=key(inp.dataset.ci,inp.dataset.ai);
+  const v=inp.value.trim();
+  if(!v){delete store[k];applyState(inp,null);prog();return;}
+  const ok=accepted(C[inp.dataset.ci],A[inp.dataset.ai]).includes(norm(v));
+  store[k]={v,st:ok?"ok":"no"};applyState(inp,ok?"ok":"no");prog();
+}
+function prog(){
+  const {C,A}=sets[curSet];let n=0;
+  for(let ci=0;ci<C.length;ci++)for(let ai=0;ai<A.length;ai++){if(store[key(ci,ai)]?.st==="ok")n++;}
+  const tot=C.length*A.length;
+  document.getElementById("g-lab").textContent=`${n} / ${tot} صحيحة`;
+  document.getElementById("g-fill").style.width=(n/tot*100)+"%";
+}
+function gridCheck(){document.querySelectorAll(".gi").forEach(checkOne);}
+function gridReveal(){
+  const {C,A}=sets[curSet];
+  document.querySelectorAll(".gi").forEach(inp=>{
+    const k=key(inp.dataset.ci,inp.dataset.ai);
+    if(store[k]?.st==="ok")return;
+    const f=calc(C[inp.dataset.ci],A[inp.dataset.ai]).f;
+    inp.value=f;store[k]={v:f,st:"shown"};applyState(inp,"shown");
+  });
+  prog();
+}
+function gridClear(){Object.keys(store).forEach(k=>{if(k.startsWith(curSet+"-"))delete store[k];});buildGrid();}
+buildGrid();
+
+/* ---------- TAB 4: QUIZ ---------- */
+let Q=[],qi=0,qs=0,done=false;
+function formulaOptions(c,a){
+  const r=calc(c,a),correct=r.f,cand=new Set();
+  cand.add(part(c,a.c)+part(a,c.c));                       // بدون اختصار/تبادل
+  cand.add(part(c,r.na)+part(a,r.nc));                      // أرقام معكوسة
+  cand.add(part(c,r.nc*2)+part(a,r.na*2));                  // غير مختصرة
+  cand.add(c.s+(r.nc>1?r.nc:"")+a.s+(r.na>1?r.na:""));      // بلا أقواس
+  cand.add(part(c,1)+part(a,Math.max(1,a.c)));
+  cand.add(part(c,Math.max(1,c.c))+part(a,1));
+  cand.add(part(c,1)+part(a,1));
+  cand.delete(correct);
+  let wrong=shuffle([...cand]);
+  while(wrong.length<3){const x=allC[Math.floor(Math.random()*allC.length)],y=allA[Math.floor(Math.random()*allA.length)];const f=calc(x,y).f;if(f!==correct&&!wrong.includes(f))wrong.push(f);}
+  return shuffle([correct,...wrong.slice(0,3)]);
+}
+function nameOptions(c,a){
+  const correct=nameOf(c,a),set=new Set();
+  allA.forEach(x=>{if(x!==a)set.add(nameOf(c,x));});
+  allC.forEach(x=>{if(x!==c&&x.s!=="H")set.add(nameOf(x,a));});
+  set.delete(correct);
+  return shuffle([correct,...shuffle([...set]).slice(0,3)]);
+}
+function startQuiz(){
+  const pairs=[];
+  const pool=allC.filter(c=>c.s!=="H");
+  while(pairs.length<10){
+    const c=pool[Math.floor(Math.random()*pool.length)],a=allA[Math.floor(Math.random()*allA.length)];
+    if(!pairs.some(p=>p[0]===c&&p[1]===a))pairs.push([c,a]);
+  }
+  Q=pairs.map(([c,a],i)=>{
+    const r=calc(c,a);
+    const steps=`${ionH(c,true)} + ${ionH(a,false)} ← نتبادل الشحنات${r.g>1?" ونختصر":""} ← <span class="ltr" style="direction:ltr;display:inline-block">${fmt(r.f)}</span> (${nameOf(c,a)})${infoLine(c,a)}`;
+    if(i<7)return{type:"f",html:`ما الصيغة الكيميائية للمركب الأيوني الناتج من اتحاد الكاتيون ${ionH(c,true)} (${c.n}) مع الأنيون ${ionH(a,false)} (${a.n})؟`,opts:formulaOptions(c,a),ans:r.f,ex:steps};
+    return{type:"n",html:`ما اسم المركب الأيوني <span class="ltr" style="direction:ltr;display:inline-block">${fmt(r.f)}</span> الناتج من اتحاد الكاتيون ${ionH(c,true)} (${c.n}) مع الأنيون ${ionH(a,false)} (${a.n})؟`,opts:nameOptions(c,a),ans:nameOf(c,a),ex:steps};
+  });
+  qi=0;qs=0;
+  document.getElementById("q-card").style.display="block";
+  document.querySelector(".score-float").style.display="flex";
+  document.getElementById("q-res").classList.remove("show");
+  renderQ();
+}
+function renderQ(){
+  if(qi>=Q.length){
+    document.getElementById("q-card").style.display="none";
+    document.querySelector(".score-float").style.display="none";
+    document.getElementById("q-res").classList.add("show");
+    document.getElementById("q-stars").textContent="⭐".repeat(Math.max(1,Math.round(qs/Q.length*5)));
+    document.getElementById("q-txt").textContent=`نتيجتك: ${qs} من ${Q.length}`;
+    return;
+  }
+  done=false;const q=Q[qi];
+  document.getElementById("q-prog").textContent=`السؤال ${qi+1} / ${Q.length}`;
+  document.getElementById("q-score").textContent=`النقاط: ${qs}`;
+  const card=document.getElementById("q-card");
+  card.innerHTML=`<div class="qtext">${q.html}</div><div class="opts">${q.opts.map((o,i)=>`<div class="opt ${q.type==="f"?"ltr":""}" data-i="${i}">${q.type==="f"?fmt(o):o}</div>`).join("")}</div><div class="expl" id="q-ex"><b>الحل:</b> ${q.ex}</div><div style="text-align:left;margin-top:14px"><button class="btn bp" id="q-next" disabled onclick="qi++;renderQ()">التالي</button></div>`;
+  card.querySelectorAll(".opt").forEach(el=>el.onclick=()=>{
+    if(done)return;done=true;
+    const v=q.opts[el.dataset.i];
+    card.querySelectorAll(".opt").forEach(o=>{if(q.opts[o.dataset.i]===q.ans)o.classList.add("correct");});
+    if(v===q.ans)qs++;else el.classList.add("wrong");
+    document.getElementById("q-score").textContent=`النقاط: ${qs}`;
+    document.getElementById("q-ex").style.display="block";
+    document.getElementById("q-next").disabled=false;
+  });
+}
+startQuiz();
+</script>
+</body>
+</html>
