@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 2: تدرج خواص العناصر — كيمياء 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --card-border: #e2e8f0;
+    --navy: #0f172a;
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --primary-soft: #e0f2fe;
+    --teal: #0d9488;
+    --teal-soft: #ccfbf1;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --purple: #7c3aed;
+    --purple-soft: #f3e8ff;
+    --rose: #e11d48;
+    --rose-soft: #ffe4e6;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    padding-bottom: 85px;
+    font-size: 1.05rem;
+  }
+
+  /* ═══ HERO HEADER ═══ */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #0d9488 100%);
+    color: #ffffff;
+    padding: clamp(30px, 5vw, 45px) 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #bae6fd;
+  }
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .hero h1 span { color: #5eead4; }
+  .hero p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #f1f5f9;
+    max-width: 620px;
+    margin: 0 auto 14px;
+    line-height: 1.6;
+  }
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* ═══ TABS NAVIGATION ═══ */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    border-bottom: 2px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+  }
+  .tbtn {
+    background: transparent;
+    border: 1.5px solid transparent;
+    color: var(--muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tbtn:hover {
+    color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .tbtn.active {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border-color: #7dd3fc;
+  }
+
+  /* ═══ WRAPPER & CARDS ═══ */
+  .container { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: clamp(16px, 3.5vw, 24px);
+    margin-bottom: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; width: 5px; height: 100%;
+    background: var(--primary);
+  }
+  .card.teal::after { background: var(--teal); }
+  .card.amber::after { background: var(--amber); }
+  .card.purple::after { background: var(--purple); }
+
+  .card h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.15rem, 3vw, 1.3rem);
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    color: var(--primary-dark);
+    margin: 14px 0 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .card p {
+    color: #334155;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .card ul li {
+    position: relative;
+    padding-right: 20px;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-size: 0.96rem;
+  }
+  .card ul li::before {
+    content: '◆';
+    position: absolute;
+    right: 0;
+    color: var(--primary);
+    font-size: 0.8rem;
+  }
+
+  .concept-box {
+    background: var(--primary-soft);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.98rem;
+  }
+  .concept-box b { color: var(--primary-dark); }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .subcard {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 14px;
+    background: #ffffff;
+  }
+  .subcard h4 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+
+  /* ═══ VISUAL DIAGRAMS & ILLUSTRATIONS ═══ */
+  .diagram-container {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .diagram-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .svg-box {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 14px 0;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 480px;
+  }
+  .data-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 10px 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    color: #1e293b;
+  }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+
+  /* ═══ QUIZ SYSTEM ═══ */
+  .quiz-header {
+    background: linear-gradient(135deg, #f0f9ff, #ccfbf1);
+    border: 1px solid #bae6fd;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .quiz-header h3 {
+    font-family: 'Cairo', sans-serif;
+    color: var(--navy);
+    font-size: 1.25rem;
+  }
+  .progress-wrap {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0 6px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--teal));
+    transition: width 0.3s ease;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .q-card {
+    background: var(--surface);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .q-card.ok { border-color: var(--emerald); }
+  .q-card.bad { border-color: var(--rose); }
+
+  .q-head { display: flex; gap: 10px; margin-bottom: 12px; }
+  .q-badge {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border: 1px solid #bae6fd;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .q-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .opts-stack { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    text-align: right;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #e0f2fe;
+    border-color: var(--primary);
+  }
+  .opt-letter {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--muted);
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .opt-btn.correct {
+    background: var(--emerald-soft);
+    border-color: var(--emerald);
+    color: var(--emerald);
+    font-weight: 800;
+  }
+  .opt-btn.correct .opt-letter {
+    background: var(--emerald);
+    color: #ffffff;
+    border-color: var(--emerald);
+  }
+  .opt-btn.wrong {
+    background: var(--rose-soft);
+    border-color: var(--rose);
+    color: var(--rose);
+    font-weight: 800;
+  }
+  .opt-btn.wrong .opt-letter {
+    background: var(--rose);
+    color: #ffffff;
+    border-color: var(--rose);
+  }
+  .opt-btn:disabled { cursor: default; }
+
+  .q-explain {
+    display: none;
+    margin-top: 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: #334155;
+    border-right: 4px solid var(--primary);
+    line-height: 1.6;
+  }
+  .q-explain.show { display: block; }
+  .q-explain b { color: var(--primary-dark); }
+
+  /* Floating Score Capsule */
+  .score-capsule {
+    position: fixed;
+    bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: #ffffff;
+    border: 1.5px solid var(--card-border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 50px;
+    padding: 6px 18px;
+    display: flex;
+    gap: 14px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    z-index: 1000;
+  }
+
+  /* Result Banner */
+  .result-banner {
+    display: none;
+    background: #ffffff;
+    border: 2px solid #bae6fd;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    margin-top: 18px;
+  }
+  .result-banner.show { display: block; }
+  .res-score {
+    font-family: 'Cairo', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .res-btn {
+    background: var(--primary);
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-badge">🔬 كيمياء 2 — تدرج الخواص</div>
+  <h1>تدرج <span>خواص العناصر</span></h1>
+  <p>ملخص سريع ومباشر مع رسومات توضيحية ممتازة لأنماط التغير في أنصاف الأقطار، طاقة التأين، الكهروسالبية، والقاعدة الثمانية في الجدول الدوري.</p>
+  <div class="hero-tags">
+    <div class="tag">📏 نصف القطر الذري والأيوني</div>
+    <div class="tag">⚡ طاقة التأين الأولى</div>
+    <div class="tag">🧲 الكهروسالبية (باولنج)</div>
+    <div class="tag">🎯 القاعدة الثمانية</div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══ -->
+<nav class="nav-tabs">
+  <button class="tbtn active" onclick="switchTab('t1', this)">📏 نصف القطر الذري والأيوني</button>
+  <button class="tbtn" onclick="switchTab('t2', this)">⚡ طاقة التأين</button>
+  <button class="tbtn" onclick="switchTab('t3', this)">🧲 الكهروسالبية والقاعدة الثمانية</button>
+  <button class="tbtn" onclick="switchTab('t4', this)">📊 مخطط الاتجاهات الشامل</button>
+  <button class="tbtn" onclick="switchTab('t5', this)">✏️ اختبر نفسك (10 أسئلة)</button>
+</nav>
+
+<div class="container">
+
+  <!-- ════════ TAB 1: نصف القطر ════════ -->
+  <main id="t1" class="tab-pane active">
+    <div class="card">
+      <h2>1) نصف قطر الذرة والأيون (Atomic & Ionic Radius)</h2>
+
+      <!-- رسم تعبيري لمفهوم نصف القطر -->
+      <div class="diagram-container">
+        <div class="diagram-title">💡 مفهوم نصف القطر في الفلزات واللافلزات</div>
+        <svg class="svg-box" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Metal Atomic Radius -->
+          <g transform="translate(20, 10)">
+            <circle cx="60" cy="70" r="45" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+            <circle cx="150" cy="70" r="45" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+            <circle cx="60" cy="70" r="4" fill="#0369a1"/>
+            <circle cx="150" cy="70" r="4" fill="#0369a1"/>
+            <line x1="60" y1="70" x2="150" y2="70" stroke="#0f172a" stroke-width="2" stroke-dasharray="4"/>
+            <line x1="60" y1="70" x2="105" y2="70" stroke="#e11d48" stroke-width="3"/>
+            <text x="105" y="138" font-family="Tajawal" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">نصف قطر الفلز (في البلورة)</text>
+            <text x="82" y="62" font-family="Tajawal" font-size="11" font-weight="bold" fill="#e11d48" text-anchor="middle">r</text>
+          </g>
+
+          <!-- Divider -->
+          <line x1="255" y1="20" x2="255" y2="140" stroke="#cbd5e1" stroke-width="2"/>
+
+          <!-- Non-metal Covalent Radius -->
+          <g transform="translate(270, 10)">
+            <circle cx="70" cy="70" r="45" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" opacity="0.8"/>
+            <circle cx="140" cy="70" r="45" fill="#ccfbf1" stroke="#0d9488" stroke-width="2" opacity="0.8"/>
+            <circle cx="70" cy="70" r="4" fill="#0f172a"/>
+            <circle cx="140" cy="70" r="4" fill="#0f172a"/>
+            <line x1="70" y1="70" x2="140" y2="70" stroke="#0f172a" stroke-width="2" stroke-dasharray="4"/>
+            <line x1="70" y1="70" x2="105" y2="70" stroke="#e11d48" stroke-width="3"/>
+            <text x="105" y="138" font-family="Tajawal" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">نصف قطر اللافلز (جزيء ثنائي الذرة)</text>
+            <text x="87" y="62" font-family="Tajawal" font-size="11" font-weight="bold" fill="#e11d48" text-anchor="middle">r</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">أ) نصف القطر الذري</h4>
+          <ul>
+            <li><b>في الفلزات:</b> نصف المسافة بين نواتين متجاورتين بالبلورة.</li>
+            <li><b>في اللافلزات:</b> نصف المسافة بين نوى ذرات متطابقة متحدة كيميائياً.</li>
+            <li><b>عبر الدورة (يمين):</b> <b>يتناقص</b> لزيادة شحنة النواة وجذبها للإلكترونات.</li>
+            <li><b>عبر المجموعة (أسفل):</b> <b>يزداد</b> لزيادة مستويات الطاقة وحجب النواة.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">ب) نصف القطر الأيوني</h4>
+          <ul>
+            <li><b>الأيون الموجب (فقد إلكترون):</b> <b>أصغر</b> من ذراتها المتعادلة بفقدان مستوى خارجي وقلة التنافر.</li>
+            <li><b>الأيون السالب (كسب إلكترون):</b> <b>أكبر</b> من ذراتها المتعادلة لتزايد تنافر الإلكترونات.</li>
+            <li><b>الاتجاه العام:</b> يتناقص حجم الأيونات الموجبة ثم السالبة عبر الدورة، ويزداد كلاهما للأسفل.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- رسم مقارنة الأيون والذرة -->
+      <div class="diagram-container">
+        <div class="diagram-title">⚖️ مقارنة حجم الأيون بحجم ذرته المتعادلة</div>
+        <svg class="svg-box" viewBox="0 0 500 130" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cation formation -->
+          <g transform="translate(30, 15)">
+            <circle cx="45" cy="45" r="38" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <text x="45" y="50" font-family="Tajawal" font-size="12" font-weight="bold" text-anchor="middle">ذرة Na</text>
+
+            <text x="105" y="50" font-family="Tajawal" font-size="18" font-weight="bold" fill="#0284c7" text-anchor="middle">←</text>
+
+            <circle cx="160" cy="45" r="22" fill="#0284c7" stroke="#0369a1" stroke-width="2"/>
+            <text x="160" y="50" font-family="Tajawal" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">أيون Na⁺</text>
+            <text x="100" y="105" font-family="Tajawal" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">الأيون الموجب أصغر حجماً</text>
+          </g>
+
+          <line x1="245" y1="15" x2="245" y2="115" stroke="#cbd5e1" stroke-width="2"/>
+
+          <!-- Anion formation -->
+          <g transform="translate(270, 15)">
+            <circle cx="35" cy="45" r="24" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+            <text x="35" y="50" font-family="Tajawal" font-size="11" font-weight="bold" text-anchor="middle">ذرة Cl</text>
+
+            <text x="85" y="50" font-family="Tajawal" font-size="18" font-weight="bold" fill="#0d9488" text-anchor="middle">←</text>
+
+            <circle cx="150" cy="45" r="42" fill="#0d9488" stroke="#0f172a" stroke-width="2"/>
+            <text x="150" y="50" font-family="Tajawal" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">أيون Cl⁻</text>
+            <text x="95" y="105" font-family="Tajawal" font-size="11" font-weight="bold" fill="#0d9488" text-anchor="middle">الأيون السالب أكبر حجماً</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════ TAB 2: طاقة التأين ════════ -->
+  <section id="t2" class="tab-pane">
+    <div class="card teal">
+      <h2>2) طاقة التأين (Ionization Energy)</h2>
+      <div class="concept-box">
+        <b>طاقة التأين:</b> الطاقة اللازمة لانتزاع إلكترون من ذرة العنصر في الحالة الغازية.
+      </div>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--teal);">
+          <h4 style="color:var(--teal);">الاتجاه والتغير</h4>
+          <ul>
+            <li><b>عبر الدورة (يمين):</b> <b>تزداد</b> بسبب زيادة شحنة النواة وقوة جذبها للإلكترونات.</li>
+            <li><b>عبر المجموعة (أسفل):</b> <b>تقل</b> لكبر حجم الذرة وابتعاد الإلكترونات عن النواة.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--purple);">
+          <h4 style="color:var(--purple);">انتزاع أكثر من إلكترون</h4>
+          <ul>
+            <li>تحدث قفزة كبيرة جداً بطاقة التأين عند البدء بانتزاع إلكترونات المستويات الداخلية المكتملة.</li>
+            <li>مثال: Li له إلكترون تكافؤ واحد، لذا طاقة تأينه الثانية قفزت بشكل هائل.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 3: الكهروسالبية والقاعدة الثمانية ════════ -->
+  <section id="t3" class="tab-pane">
+    <div class="card purple">
+      <h2>3) الكهروسالبية والقاعدة الثمانية</h2>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">الكهروسالبية (Electronegativity)</h4>
+          <ul>
+            <li>مدى قابلية ذرات العنصر على جذب إلكترونات الرابطة الكيميائية.</li>
+            <li><b>القيم:</b> تتراوح من 0.7 (مثل السيزيوم والفرانسيوم) إلى 3.98 (الفلور F الأكبر كهروسالبية).</li>
+            <li><b>ملاحظة:</b> الغازات النبيلة لم تعين لها قيم كهروسالبية لندرة مركباتها.</li>
+            <li><b>التغير:</b> <b>تزداد</b> عبر الدورة، و<b>تقل</b> عبر المجموعة لأسفل.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">القاعدة الثمانية (Octet Rule)</h4>
+          <ul>
+            <li>تكتسب الذرة الإلكترونات أو تفقدها أو تشارك بها لتحصل على <b>8 إلكترونات تكافؤ</b> في مستوى طاقتها الأخير.</li>
+            <li>الاستثناء: عناصر الدورة الأولى (تحتاج لإلكترونين فقط للوصول للاستقرار).</li>
+            <li>اليمين يكتسب لتكوين أيونات سالبة، واليسار يفقد لتكوين أيونات موجبة.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 4: المخطط الشامل ════════ -->
+  <section id="t4" class="tab-pane">
+    <div class="card emerald">
+      <h2>4) المخطط البصري الشامل لاتجهات خواص الجدول الدوري</h2>
+      <p>رسم تخطيطي مبتكر يوضح اتجاهات التغير للخصائص الأربع الأساسية عبر الدورات والمجموعات:</p>
+
+      <!-- الرسم التوضيحي المبتكر للجدول الدوري مع الأسهم -->
+      <div class="diagram-container" style="background:#ffffff; border-color:#0284c7;">
+        <div class="diagram-title" style="font-size:1.05rem; color:#0369a1;">🗺️ خارطة اتجاهات الخواص بالجدول الدوري</div>
+        <svg class="svg-box" viewBox="0 0 540 310" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mini Periodic Table Background Outline -->
+          <g fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5">
+            <!-- Group 1,2 -->
+            <rect x="70" y="60" width="30" height="150" rx="3"/>
+            <rect x="100" y="85" width="30" height="125" rx="3"/>
+            <!-- Transition Metals -->
+            <rect x="135" y="110" width="150" height="100" rx="3" fill="#f1f5f9"/>
+            <!-- Main Groups 13-18 -->
+            <rect x="290" y="85" width="150" height="125" rx="3"/>
+            <rect x="410" y="60" width="30" height="25" rx="3" fill="#e0f2fe"/> <!-- He -->
+          </g>
+
+          <!-- Top Horizontal Arrow (Left to Right) -->
+          <g>
+            <line x1="70" y1="35" x2="425" y2="35" stroke="#0284c7" stroke-width="4" stroke-linecap="round"/>
+            <polygon points="435,35 420,28 420,42" fill="#0284c7"/>
+            <text x="250" y="24" font-family="Tajawal" font-size="12" font-weight="900" fill="#0369a1" text-anchor="middle">عبر الدورة (من اليسار إلى اليمين) ➔</text>
+          </g>
+
+          <!-- Top Labels for Horizontal Direction -->
+          <text x="250" y="52" font-family="Tajawal" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">▲ تزداد: طاقة التأين | الكهروسالبية</text>
+          <text x="250" y="235" font-family="Tajawal" font-size="11" font-weight="bold" fill="#e11d48" text-anchor="middle">▼ يتناقص: نصف القطر الذري والأيوني</text>
+
+          <!-- Right Vertical Arrow (Top to Bottom) -->
+          <g>
+            <line x1="465" y1="60" x2="465" y2="200" stroke="#d97706" stroke-width="4" stroke-linecap="round"/>
+            <polygon points="465,210 458,195 472,195" fill="#d97706"/>
+          </g>
+
+          <!-- Right Side Vertical Text -->
+          <g transform="translate(485, 135) rotate(90)">
+            <text x="0" y="0" font-family="Tajawal" font-size="12" font-weight="900" fill="#b45309" text-anchor="middle">عبر المجموعة (من الأعلى للأسفل) ➔</text>
+          </g>
+
+          <g transform="translate(510, 135) rotate(90)">
+            <text x="0" y="0" font-family="Tajawal" font-size="10" font-weight="bold" fill="#059669" text-anchor="middle">▲ يزداد: نصف القطر الذري والأيوني</text>
+          </g>
+          <g transform="translate(525, 135) rotate(90)">
+            <text x="0" y="0" font-family="Tajawal" font-size="10" font-weight="bold" fill="#e11d48" text-anchor="middle">▼ تقل: طاقة التأين | الكهروسالبية</text>
+          </g>
+
+          <!-- Bottom Summary Box -->
+          <rect x="70" y="250" width="370" height="45" rx="8" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="1"/>
+          <text x="255" y="270" font-family="Tajawal" font-size="11" font-weight="bold" fill="#0f172a" text-anchor="middle">قاعدة ذهبية: نصف القطر يتغير بشكل عكسي تماماً</text>
+          <text x="255" y="286" font-family="Tajawal" font-size="11" font-weight="bold" fill="#0284c7" text-anchor="middle">مع طاقة التأين والكهروسالبية!</text>
+        </svg>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>الخاصية</th>
+              <th>عبر الدورة (من اليسار إلى اليمين)</th>
+              <th>عبر المجموعة (من الأعلى إلى الأسفل)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>نصف قطر الذرة</b></td>
+              <td><b>يتناقص</b> (لزيادة شحنة النواة الموجبة)</td>
+              <td><b>يزداد</b> (لزيادة مستويات الطاقة الرئيسة)</td>
+            </tr>
+            <tr>
+              <td><b>نصف قطر الأيون</b></td>
+              <td><b>يتناقص</b> للموجبة ثم ينقص للسالبة</td>
+              <td><b>يزداد</b> (لكلا الأيونات الموجبة والسالبة)</td>
+            </tr>
+            <tr>
+              <td><b>طاقة التأين</b></td>
+              <td><b>تزداد</b> (لزيادة قوة جذب النواة)</td>
+              <td><b>تتناقص</b> (لزيادة الحجم وابتعاد الإلكترونات)</td>
+            </tr>
+            <tr>
+              <td><b>الكهروسالبية</b></td>
+              <td><b>تزداد</b></td>
+              <td><b>تتناقص</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 5: الاختبار التفاعلي ════════ -->
+  <section id="t5" class="tab-pane">
+    <div class="quiz-header">
+      <h3>🎯 اختبر نفسك في 10 أسئلة سريعة</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 2px;">اختر الإجابة المناسبة لكل سؤال للتأكد من فهمك للدرس</p>
+      
+      <div class="progress-wrap">
+        <div class="progress-bar" id="pBar"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="pCount">التقدم: 0 / 10</span>
+        <span id="pScore">الدرجة: 0</span>
+      </div>
+    </div>
+
+    <div id="quizBox"></div>
+
+    <div class="result-banner" id="resBanner">
+      <div class="res-score" id="resVal">0 / 10</div>
+      <h3 id="resTitle" style="color: var(--navy); margin-bottom: 4px;"></h3>
+      <p id="resDesc" style="color: var(--muted); font-size: 0.9rem;"></p>
+      <button class="res-btn" onclick="restartQuiz()">🔄 إعادة المحاولة</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating Score Capsule -->
+<div class="score-capsule">
+  <span style="color: var(--emerald);">✔ صحيح: <b id="lblOk">0</b></span>
+  <span style="color: #cbd5e1;">|</span>
+  <span style="color: var(--rose);">✖ خطأ: <b id="lblBad">0</b></span>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── 10 Balanced Questions ── */
+const QUESTIONS = [
+  {
+    q: "عند الانتقال من اليسار إلى اليمين عبر الدورة الواحدة في الجدول الدوري، فإن نصف قطر الذرة عادة:",
+    opts: [
+      "يتناقص",
+      "يزداد",
+      "يبقى ثابتاً",
+      "يتضاعف"
+    ],
+    ans: 0,
+    exp: "يتناقص نصف القطر الذري عبر الدورة بسبب زيادة شحنة النواة الموجبة مع ثبات مستويات الطاقة."
+  },
+  {
+    q: "ماذا يحدث لحجم ذرة الصوديوم عند تحولها إلى أيون موجب Na⁺؟",
+    opts: [
+      "يزداد حجمها",
+      "يصغر حجمها",
+      "يبقى حجمها كما هو",
+      "يتضاعف قطرها"
+    ],
+    ans: 1,
+    exp: "يصغر حجم الذرة عند تكوين أيون موجب بسبب فقدان إلكترون التكافؤ وقلة التنافر بين الإلكترونات."
+  },
+  {
+    q: "تُعرف الطاقة اللازمة لانتزاع إلكترون من ذرة العنصر في الحالة الغازية باسم:",
+    opts: [
+      "الكهروسالبية",
+      "طاقة التنشيط",
+      "طاقة التأين",
+      "الرابطة الأيونية"
+    ],
+    ans: 2,
+    exp: "طاقة التأين هي المقدار اللازم لانتزاع إلكترون من ذرة في الحالة الغازية."
+  },
+  {
+    q: "أي العناصر الكيميائية التالية يمتلك أعلى قيمة كهروسالبية في الجدول الدوري (بقيمة 3.98)؟",
+    opts: [
+      "السيزيوم Cs",
+      "الصوديوم Na",
+      "النيون Ne",
+      "الفلور F"
+    ],
+    ans: 3,
+    exp: "عنصر الفلور F هو أعلى العناصر كهروسالبية بقيمة 3.98 على مقياس باولنج."
+  },
+  {
+    q: "تنص القاعدة الثمانية على أن الذرة تسعى للحصول على ثمانية إلكترونات تكافؤ في مستوى طاقتها الأخير لتصل للحالة الأكثر استقراراً، ويستثنى منها عناصر:",
+    opts: [
+      "الدورة الأولى",
+      "الهالوجينات",
+      "الفلزات القلوية",
+      "الدورة الرابعة"
+    ],
+    ans: 0,
+    exp: "تستثنى عناصر الدورة الأولى لأن مستوى طاقتها الأول يكتمل بإلكترونين فقط."
+  },
+  {
+    q: "عند كسب الذرة لإلكترون وتكوين أيون سالب، فإن نصف قطر الأيون يكون:",
+    opts: [
+      "أصغر من نصف قطر ذرتها المتعادلة",
+      "أكبر من نصف قطر ذرتها المتعادلة",
+      "مساوياً لنصف قطر ذرتها المتعادلة",
+      "صفراً"
+    ],
+    ans: 1,
+    exp: "عند كسب إلكترون يزداد التنافر في مستوى الطاقة الخارجي مما يزيد من حجم الأيون السالب."
+  },
+  {
+    q: "عند الانتقال من أعلى إلى أسفل في المجموعة الواحدة بالجدول الدوري، فإن طاقة التأين الأولى عادة:",
+    opts: [
+      "تزداد",
+      "تتضاعف",
+      "تقل",
+      "تبقى ثابته"
+    ],
+    ans: 2,
+    exp: "تقل طاقة التأين لأسفل بسبب زيادة حجم الذرة وابتعاد إلكترونات التكافؤ عن النواة."
+  },
+  {
+    q: "سبب عدم تعيين قيم الكهروسالبية لعناصر الغازات النبيلة هو:",
+    opts: [
+      "أنها عناصر سائلة دائماً",
+      "أن أعدادها الذرية صغيرة جداً",
+      "أنها لا تحوي بروتونات",
+      "لأنها تشكل عدداً قليلاً جداً من المركبات وتوزيعها مكتمل"
+    ],
+    ans: 3,
+    exp: "الغازات النبيلة خاملة وتوزيعها مكتمل وتشكل مركبـات قليلة جداً فلم تحدد لها كهروسالبية."
+  },
+  {
+    q: "أي الأسباب التالية يؤدي لزيادة نصف قطر الذرة عند الانتقال من الأعلى لأسفل المجموعة؟",
+    opts: [
+      "زيادة عدد مستويات الطاقة الرئيسة",
+      "نقصان عدد البروتونات",
+      "زيادة الكهروسالبية",
+      "نقصان عدد الإلكترونات"
+    ],
+    ans: 0,
+    exp: "يزداد نصف القطر عبر المجموعة لزيادة عدد مستويات الطاقة الرئيسة (n) مما يبعد الإلكترونات."
+  },
+  {
+    q: "تحدث قفزة كبيرة جداً في طاقة التأين عندما تبدأ الذرة بانتزاع إلكترون من:",
+    opts: [
+      "مستوى التكافؤ الأخير",
+      "مستوى طاقة داخلي مكتمل بالكامل",
+      "أيون سالب",
+      "ذرة هيدروجين"
+    ],
+    ans: 1,
+    exp: "تتطلب عملية انتزاع إلكترون من مستوى مكتمل داخلي طاقة هائلة لشدة ارتباطه بالنواة."
+  }
+];
+
+let answersDone = 0;
+let correctCount = 0;
+let wrongCount = 0;
+const LETTERS = ['أ', 'ب', 'ج', 'د'];
+
+function renderQuiz() {
+  const container = document.getElementById('quizBox');
+  container.innerHTML = '';
+
+  QUESTIONS.forEach((qObj, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qCard-${qIdx}`;
+
+    const optsHtml = qObj.opts.map((optText, optIdx) => `
+      <button class="opt-btn" onclick="submitAnswer(${qIdx}, ${optIdx})">
+        <span class="opt-letter">${LETTERS[optIdx]}</span>
+        <span>${optText}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-badge">${qIdx + 1}</div>
+        <div class="q-title">${qObj.q}</div>
+      </div>
+      <div class="opts-stack" id="optGroup-${qIdx}">${optsHtml}</div>
+      <div class="q-explain" id="exp-${qIdx}">
+        <b>💡 الشرح:</b> ${qObj.exp}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function submitAnswer(qIdx, selectedIdx) {
+  const card = document.getElementById(`qCard-${qIdx}`);
+  const group = document.getElementById(`optGroup-${qIdx}`);
+  const buttons = group.querySelectorAll('.opt-btn');
+
+  if (buttons[0].disabled) return;
+
+  const correctIndex = QUESTIONS[qIdx].ans;
+  const isCorrect = (selectedIdx === correctIndex);
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === correctIndex) btn.classList.add('correct');
+    else if (idx === selectedIdx) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) {
+    correctCount++;
+    card.classList.add('ok');
+  } else {
+    wrongCount++;
+    card.classList.add('bad');
+  }
+
+  document.getElementById(`exp-${qIdx}`).classList.add('show');
+  answersDone++;
+  refreshStats();
+
+  if (answersDone === QUESTIONS.length) {
+    showResults();
+  }
+}
+
+function refreshStats() {
+  const pct = (answersDone / QUESTIONS.length) * 100;
+  document.getElementById('pBar').style.width = pct + '%';
+  document.getElementById('pCount').textContent = `التقدم: ${answersDone} / 10`;
+  document.getElementById('pScore').textContent = `الدرجة: ${correctCount}`;
+  document.getElementById('lblOk').textContent = correctCount;
+  document.getElementById('lblBad').textContent = wrongCount;
+}
+
+function showResults() {
+  const banner = document.getElementById('resBanner');
+  const scoreVal = document.getElementById('resVal');
+  const title = document.getElementById('resTitle');
+  const desc = document.getElementById('resDesc');
+
+  scoreVal.textContent = `${correctCount} / 10`;
+
+  if (correctCount >= 9) {
+    title.textContent = "🏆 ممتاز جداً! أداء مالي وإتقان كامل للدرس.";
+    desc.textContent = "استيعاب رائع لأنماط وتدرج الخواص بالجدول الدوري.";
+  } else if (correctCount >= 7) {
+    title.textContent = "⭐ رائع! نتيجة ممتازة.";
+    desc.textContent = "راجع النقاط البسيطة المتبقية لتنال الدرجة الكاملة.";
+  } else {
+    title.textContent = "📚 تحتاج إلى مراجعة سريعة.";
+    desc.textContent = "أعد القراءة المباشرة بالبطاقات ثم حاول مرة أخرى.";
+  }
+
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function restartQuiz() {
+  answersDone = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  refreshStats();
+  document.getElementById('resBanner').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
