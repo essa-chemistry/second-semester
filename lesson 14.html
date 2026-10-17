@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الدرس 14: الروابط الفلزية وخواص الفلزات — كيمياء 2-1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --card-border: #e2e8f0;
+    --navy: #0f172a;
+    --primary: #0284c7;
+    --primary-dark: #0369a1;
+    --primary-soft: #e0f2fe;
+    --teal: #0d9488;
+    --teal-soft: #ccfbf1;
+    --amber: #d97706;
+    --amber-soft: #fef3c7;
+    --emerald: #059669;
+    --emerald-soft: #ecfdf5;
+    --purple: #7c3aed;
+    --purple-soft: #f3e8ff;
+    --rose: #e11d48;
+    --rose-soft: #ffe4e6;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.85;
+    padding-bottom: 85px;
+    font-size: 1.05rem;
+  }
+
+  /* ═══ HERO HEADER ═══ */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #0d9488 100%);
+    color: #ffffff;
+    padding: clamp(30px, 5vw, 45px) 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: #bae6fd;
+  }
+  .hero h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .hero h1 span { color: #5eead4; }
+  .hero p {
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #f1f5f9;
+    max-width: 620px;
+    margin: 0 auto 14px;
+    line-height: 1.6;
+  }
+  .hero-tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  /* ═══ TABS NAVIGATION ═══ */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    background: #ffffff;
+    border-bottom: 2px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
+  }
+  .tbtn {
+    background: transparent;
+    border: 1.5px solid transparent;
+    color: var(--muted);
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tbtn:hover {
+    color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .tbtn.active {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border-color: #7dd3fc;
+  }
+
+  /* ═══ WRAPPER & CARDS ═══ */
+  .container { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: clamp(16px, 3.5vw, 24px);
+    margin-bottom: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; width: 5px; height: 100%;
+    background: var(--primary);
+  }
+  .card.teal::after { background: var(--teal); }
+  .card.amber::after { background: var(--amber); }
+  .card.purple::after { background: var(--purple); }
+
+  .card h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: clamp(1.15rem, 3vw, 1.3rem);
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    color: var(--primary-dark);
+    margin: 14px 0 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .card p {
+    color: #334155;
+    font-size: 0.98rem;
+    margin-bottom: 10px;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .card ul li {
+    position: relative;
+    padding-right: 20px;
+    margin-bottom: 8px;
+    color: #1e293b;
+    font-size: 0.96rem;
+  }
+  .card ul li::before {
+    content: '◆';
+    position: absolute;
+    right: 0;
+    color: var(--primary);
+    font-size: 0.8rem;
+  }
+
+  .concept-box {
+    background: var(--primary-soft);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.98rem;
+  }
+  .concept-box b { color: var(--primary-dark); }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .subcard {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 14px;
+    background: #ffffff;
+  }
+  .subcard h4 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: var(--navy);
+  }
+
+  /* ═══ VISUAL DIAGRAMS & ILLUSTRATIONS ═══ */
+  .diagram-container {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 14px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .diagram-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .svg-box {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 14px 0;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 480px;
+  }
+  .data-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 10px 12px;
+    font-weight: 800;
+    text-align: center;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    color: #1e293b;
+  }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+
+  /* ═══ QUIZ SYSTEM ═══ */
+  .quiz-header {
+    background: linear-gradient(135deg, #f0f9ff, #ccfbf1);
+    border: 1px solid #bae6fd;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .quiz-header h3 {
+    font-family: 'Cairo', sans-serif;
+    color: var(--navy);
+    font-size: 1.25rem;
+  }
+  .progress-wrap {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0 6px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), var(--teal));
+    transition: width 0.3s ease;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .q-card {
+    background: var(--surface);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .q-card.ok { border-color: var(--emerald); }
+  .q-card.bad { border-color: var(--rose); }
+
+  .q-head { display: flex; gap: 10px; margin-bottom: 12px; }
+  .q-badge {
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+    border: 1px solid #bae6fd;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+  }
+  .q-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .opts-stack { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.92rem;
+    text-align: right;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #e0f2fe;
+    border-color: var(--primary);
+  }
+  .opt-letter {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: var(--muted);
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .opt-btn.correct {
+    background: var(--emerald-soft);
+    border-color: var(--emerald);
+    color: var(--emerald);
+    font-weight: 800;
+  }
+  .opt-btn.correct .opt-letter {
+    background: var(--emerald);
+    color: #ffffff;
+    border-color: var(--emerald);
+  }
+  .opt-btn.wrong {
+    background: var(--rose-soft);
+    border-color: var(--rose);
+    color: var(--rose);
+    font-weight: 800;
+  }
+  .opt-btn.wrong .opt-letter {
+    background: var(--rose);
+    color: #ffffff;
+    border-color: var(--rose);
+  }
+  .opt-btn:disabled { cursor: default; }
+
+  .q-explain {
+    display: none;
+    margin-top: 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: #334155;
+    border-right: 4px solid var(--primary);
+    line-height: 1.6;
+  }
+  .q-explain.show { display: block; }
+  .q-explain b { color: var(--primary-dark); }
+
+  /* Floating Score Capsule */
+  .score-capsule {
+    position: fixed;
+    bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: #ffffff;
+    border: 1.5px solid var(--card-border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    border-radius: 50px;
+    padding: 6px 18px;
+    display: flex;
+    gap: 14px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    z-index: 1000;
+  }
+
+  /* Result Banner */
+  .result-banner {
+    display: none;
+    background: #ffffff;
+    border: 2px solid #bae6fd;
+    border-radius: 16px;
+    padding: 24px 18px;
+    text-align: center;
+    margin-top: 18px;
+  }
+  .result-banner.show { display: block; }
+  .res-score {
+    font-family: 'Cairo', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+    margin-bottom: 4px;
+  }
+  .res-btn {
+    background: var(--primary);
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-badge">🔬 كيمياء 2-1 — الفصل 3: الروابط الفلزية وخواص الفلزات</div>
+  <h1>الروابط <span>الفلزية وخواص الفلزات</span></h1>
+  <p>شرح مبسط ومباشر لنموذج بحر الإلكترونات، والروابط الفلزية، والخصائص الفيزيائية المتميزة للفلزات والتطبيقات التجارية للسبائك.</p>
+  <div class="hero-tags">
+    <div class="tag">🌊 نموذج بحر الإلكترونات</div>
+    <div class="tag">⚡ التوصيل والصلابة والغليان</div>
+    <div class="tag">🔨 الطرق والسحب</div>
+    <div class="tag">⚙️ السبائك واستخداماتها التجارية</div>
+  </div>
+</header>
+
+<!-- ══ NAV TABS ══ -->
+<nav class="nav-tabs">
+  <button class="tbtn active" onclick="switchTab('t1', this)">🌊 بحر الإلكترونات والترابط</button>
+  <button class="tbtn" onclick="switchTab('t2', this)">⚡ الخواص الفيزيائية للفلزات</button>
+  <button class="tbtn" onclick="switchTab('t3', this)">⚙️ السبائك الفلزية والتطبيقات</button>
+  <button class="tbtn" onclick="switchTab('t4', this)">📊 مقارنة الروابط والمركبات</button>
+  <button class="tbtn" onclick="switchTab('t5', this)">✏️ اختبر نفسك (10 أسئلة)</button>
+</nav>
+
+<div class="container">
+
+  <!-- ════════ TAB 1: بحر الإلكترونات والترابط ════════ -->
+  <main id="t1" class="tab-pane active">
+    <div class="card">
+      <h2>1) الترابط الفلزي ونموذج بحر الإلكترونات</h2>
+
+      <div class="concept-box">
+        <b>الرابطة الفلزية (Metallic Bond):</b> قوة التجاذب الناشئة بين أيونات الفلز الموجبة وبحر الإلكترونات حرة الحركة في الشبكة الفلزية.
+      </div>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">أ) نموذج بحر الإلكترونات</h4>
+          <ul>
+            <li>تتداخل مستويات الطاقة الخارجية لذرات الفلز في الحالة الصلبة.</li>
+            <li>تساهم كافة الذرات بإلكترونات تكافؤها لتكوين "بحر" يحيط بالأيونات الموجبة.</li>
+            <li>تحاط كل ذرة في الشبكة الفلزية بـ 8 إلى 12 ذرة أخرى.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">ب) الإلكترونات الحرة الحركة</h4>
+          <ul>
+            <li>الإلكترونات الخارجية لا ترتبط بذرة محدودة، بل تنتقل بسهولة من ذرة لأخرى.</li>
+            <li>تُسمى بـ <b>الإلكترونات الحرة (Delocalized Electrons)</b>.</li>
+            <li>ترتبط الأيونات الموجبة مع بحر الشحنات السالبة بفضل قوى التجاذب الكهروستاتيكي.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- رسم تخطيطي لنموذج بحر الإلكترونات -->
+      <div class="diagram-container">
+        <div class="diagram-title">💡 نموذج بحر الإلكترونات حرة الحركة في الشبكة الفلزية</div>
+        <svg class="svg-box" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Sea -->
+          <rect x="20" y="20" width="480" height="120" rx="12" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+          
+          <!-- Positive Cations -->
+          <g fill="#e11d48" stroke="#ffffff" stroke-width="2">
+            <!-- Row 1 -->
+            <circle cx="60" cy="50" r="16"/><text x="60" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="140" cy="50" r="16"/><text x="140" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="220" cy="50" r="16"/><text x="220" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="300" cy="50" r="16"/><text x="300" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="380" cy="50" r="16"/><text x="380" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="460" cy="50" r="16"/><text x="460" y="55" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            
+            <!-- Row 2 -->
+            <circle cx="60" cy="110" r="16"/><text x="60" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="140" cy="110" r="16"/><text x="140" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="220" cy="110" r="16"/><text x="220" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="300" cy="110" r="16"/><text x="300" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="380" cy="110" r="16"/><text x="380" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+            <circle cx="460" cy="110" r="16"/><text x="460" y="115" font-family="Tajawal" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">+</text>
+          </g>
+
+          <!-- Electrons (-) -->
+          <g fill="#0284c7" font-family="Tajawal" font-size="11" font-weight="bold">
+            <circle cx="100" cy="35" r="7" fill="#0284c7"/><text x="100" y="38" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="180" cy="75" r="7" fill="#0284c7"/><text x="180" y="78" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="260" cy="35" r="7" fill="#0284c7"/><text x="260" y="38" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="340" cy="80" r="7" fill="#0284c7"/><text x="340" y="83" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="420" cy="35" r="7" fill="#0284c7"/><text x="420" y="38" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="100" cy="85" r="7" fill="#0284c7"/><text x="100" y="88" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="260" cy="125" r="7" fill="#0284c7"/><text x="260" y="128" fill="#fff" text-anchor="middle">-</text>
+            <circle cx="420" cy="125" r="7" fill="#0284c7"/><text x="420" y="128" fill="#fff" text-anchor="middle">-</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </main>
+
+  <!-- ════════ TAB 2: الخواص الفيزيائية للفلزات ════════ -->
+  <section id="t2" class="tab-pane">
+    <div class="card teal">
+      <h2>2) تفسير الخواص الفيزيائية للفلزات</h2>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--teal);">
+          <h4 style="color:var(--teal);">أ) درجات الانصهار والغليان</h4>
+          <ul>
+            <li>درجات الانصهار مرتفعة ولكنها أقل بكثير من درجات الغليان.</li>
+            <li><b>السبب:</b> الانصهار يحتاج طاقة لتحريك الأيونات فوق بعضها، بينما الغليان يتطلب فصل الأيونات تماماً عن بحر الإلكترونات مما يحتاج طاقة هائلة.</li>
+            <li>تباين ملحوظ: الزئبق سائل عند درجة حرارة الغرفة والتنجستن ينصهر عند 3422°C (فتيل المصابيح).</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">ب) الطرق والسحب واللمعان</h4>
+          <ul>
+            <li><b>قابلية الطرق والسحب:</b> عند الطرق، تتحرك الأيونات عبر الإلكترونات الحرة دون أن تتكسر البلورة لأن الإلكترونات تستمر بجذب الأيونات.</li>
+            <li><b>البريق واللمعان:</b> تفاعل الإلكترونات الحرة مع الضوء عبر امتصاصه وإطلاق الفوتونات.</li>
+            <li><b>التوصيل الكهربائي والحراري:</b> حركة الإلكترونات ينقل الحرارة بسرعة وينتج تياراً عند فرق الجهد.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subcard" style="margin-top:10px; border-right: 4px solid var(--purple);">
+        <h4 style="color:var(--purple);">ج) الصلابة والقوة</h4>
+        <ul>
+          <li>تزداد الصلابة والقوة كلما زاد عدد إلكترونات التكافؤ الحرة الحركة.</li>
+          <li><b>الفلزات الانتقالية (كالحديد والكروم):</b> صلبة وقوية لمشاركة إلكترونات المستوى الداخلي d مع المستوى الخارجي s.</li>
+          <li><b>الفلزات القلوية (كالصوديوم والليثيوم):</b> لينة لامتلاكها إلكترون تكافؤ واحداً فقط في المستوى s.</li>
+        </ul>
+      </div>
+
+      <!-- جدول درجات الانصهار والغليان -->
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>العنصر الفلزي</th>
+              <th>درجة الانصهار (°C)</th>
+              <th>درجة الغليان (°C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>الليثيوم Li</b></td>
+              <td>180</td>
+              <td>1347</td>
+            </tr>
+            <tr>
+              <td><b>القصدير Sn</b></td>
+              <td>232</td>
+              <td>2623</td>
+            </tr>
+            <tr>
+              <td><b>الألومنيوم Al</b></td>
+              <td>660</td>
+              <td>2467</td>
+            </tr>
+            <tr>
+              <td><b>الفضة Ag</b></td>
+              <td>961</td>
+              <td>2155</td>
+            </tr>
+            <tr>
+              <td><b>النحاس Cu</b></td>
+              <td>1083</td>
+              <td>2570</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 3: السبائك الفلزية والتطبيقات ════════ -->
+  <section id="t3" class="tab-pane">
+    <div class="card purple">
+      <h2>3) السبائك الفلزية وخصائصها التجارية</h2>
+
+      <div class="concept-box">
+        <b>السبيكة (Metal Alloy):</b> خليط من العناصر ذات الخواص الفلزية الفريدة، وتتميز بخصائص تختلف وتتفوق على عناصرها المكونة لها.
+      </div>
+
+      <div class="grid2">
+        <div class="subcard" style="border-right: 4px solid var(--primary);">
+          <h4 style="color:var(--primary);">أ) خواص السبائك ومميزاتها</h4>
+          <ul>
+            <li>من السهل إدخال ذرات عناصر مختلفة داخل الشبكة الفلزية للفلز الأصلي.</li>
+            <li>تختلف خواص السبيكة عن عناصرها؛ فالفولاذ (حديد + كربون) أكثر قوة وصلابة من الحديد النقي.</li>
+            <li>تتغير خواص بعض السبائك بحسب طرائق المعالجة الحرارية والتبريد.</li>
+          </ul>
+        </div>
+
+        <div class="subcard" style="border-right: 4px solid var(--amber);">
+          <h4 style="color:var(--amber);">ب) أمثلة الاستخدامات الشائعة</h4>
+          <ul>
+            <li><b>سبيكة التيتانيوم:</b> (تيتانيوم + ألومنيوم + فاناديوم) لهياكل الدراجات الهوائية.</li>
+            <li><b>النيكو (Alnico):</b> لصناعة المغناطيسات القوية.</li>
+            <li><b>الفولاذ المقاوم للصدأ:</b> للمغاسل وأدوات المائدة الجراحية.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- جدول السبائك التجارية من الكتاب -->
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>اسم السبيكة التجارية</th>
+              <th>التركيب الكيميائي</th>
+              <th>أبرز الاستعمالات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>النيكو (Alnico)</b></td>
+              <td>50% Fe, 20% Al, 20% Ni, 10% Co</td>
+              <td>المغناطيسات القوية</td>
+            </tr>
+            <tr>
+              <td><b>البراس (النحاس الأصفر)</b></td>
+              <td>67-90% Cu, 10-33% Zn</td>
+              <td>السباكة والأدوات العامة والإضاءة</td>
+            </tr>
+            <tr>
+              <td><b>البرونز (النحاس الأحمر)</b></td>
+              <td>70-95% Cu, 1-25% Zn, 1-18% Sn</td>
+              <td>الأجراس والميداليات والتماثيل</td>
+            </tr>
+            <tr>
+              <td><b>الفولاذ المقاوم للصدأ (Stainless Steel)</b></td>
+              <td>73-79% Fe, 14-18% Cr, 7-9% Ni</td>
+              <td>المغاسل والأدوات والمعدات الطبية</td>
+            </tr>
+            <tr>
+              <td><b>الذهب عيار 10 قراريط</b></td>
+              <td>42% Au, 12-20% Ag, 37-46% Cu</td>
+              <td>المجوهرات والحلي الذهبية</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 4: مقارنة الروابط والمركبات ════════ -->
+  <section id="t4" class="tab-pane">
+    <div class="card emerald">
+      <h2>4) مقارنة شاملة بين الروابط الفلزية والأيونية</h2>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>وجه المقارنة</th>
+              <th>الروابط الأيونية (المركبات الأيونية)</th>
+              <th>الروابط الفلزية (الفلزات)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>طبيعة التجاذب</b></td>
+              <td>تجاذب بين أيونات موجبة وأيونات سالبة ثابتة بالشبكة.</td>
+              <td>تجاذب بين الأيونات الموجبة وبحر الإلكترونات الحرة.</td>
+            </tr>
+            <tr>
+              <td><b>أثناء الطرق بالمطرقة</b></td>
+              <td><b>هشة وتتفتت</b> (بسبب تقابل الشحنات المتشابهة فتتنافر).</td>
+              <td><b>قابلة للطرق والسحب</b> (تتحرك الأيونات دون أن تنفصل بلورة الفلز).</td>
+            </tr>
+            <tr>
+              <td><b>التوصيل الكهربائي</b></td>
+              <td>توصيل بالحالة السائلة أو المحلول فقط (الإلكتروليتات).</td>
+              <td>موصلة ممتازة بالحالتين الصلبة والسائلة لحرية حركة الإلكترونات.</td>
+            </tr>
+            <tr>
+              <td><b>حالة الإلكترونات</b></td>
+              <td>منتقلة بشكل كامل وثابت بين الذرات المحددة.</td>
+              <td>حرة الحركة وغير مرتبطة بذرة محددة.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ TAB 5: الاختبار التفاعلي ════════ -->
+  <section id="t5" class="tab-pane">
+    <div class="quiz-header">
+      <h3>🎯 اختبر نفسك في 10 أسئلة سريعة</h3>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 2px;">اختر الإجابة المناسبة لكل سؤال للتأكد من فهمك لدرس الروابط الفلزية وخواص الفلزات</p>
+      
+      <div class="progress-wrap">
+        <div class="progress-bar" id="pBar"></div>
+      </div>
+      <div class="progress-labels">
+        <span id="pCount">التقدم: 0 / 10</span>
+        <span id="pScore">الدرجة: 0</span>
+      </div>
+    </div>
+
+    <div id="quizBox"></div>
+
+    <div class="result-banner" id="resBanner">
+      <div class="res-score" id="resVal">0 / 10</div>
+      <h3 id="resTitle" style="color: var(--navy); margin-bottom: 4px;"></h3>
+      <p id="resDesc" style="color: var(--muted); font-size: 0.9rem;"></p>
+      <button class="res-btn" onclick="restartQuiz()">🔄 إعادة المحاولة</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Floating Score Capsule -->
+<div class="score-capsule">
+  <span style="color: var(--emerald);">✔ صحيح: <b id="lblOk">0</b></span>
+  <span style="color: #cbd5e1;">|</span>
+  <span style="color: var(--rose);">✖ خطأ: <b id="lblBad">0</b></span>
+</div>
+
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── 10 Balanced Questions ── */
+const QUESTIONS = [
+  {
+    q: "تُعرف قوة التجاذب بين الأيونات الموجبة للفلزات والإلكترونات حرة الحركة في الشبكة الفلزية باسم:",
+    opts: [
+      "الرابطة الأيونية",
+      "الرابطة التساهمية",
+      "الرابطة الفلزية",
+      "الرابطة الهيدروجينية"
+    ],
+    ans: 2,
+    exp: "الرابطة الفلزية هي قوة التجاذب الناتجة بين أيونات الفلز الموجبة وبحر الإلكترونات حرة الحركة."
+  },
+  {
+    q: "تسمى الإلكترونات التي لا ترتبط بذرة محددة ويمكنها الانتقال بسهولة في الفلز بـ:",
+    opts: [
+      "الإلكترونات الثابتة",
+      "الإلكترونات الحرة",
+      "إلكترونات النواة",
+      "الأيونات السالبة"
+    ],
+    ans: 1,
+    exp: "تُعرف بالإلكترونات حرة الحركة (Delocalized Electrons) لأنها تنتقل بحرية داخل بحر الإلكترونات."
+  },
+  {
+    q: "لماذا تكون درجات غليان الفلزات مرتفعة جداً مقارنة بدرجات انصهارها؟",
+    opts: [
+      "لأن الانصهار يفقد الفلز إلكتروناته",
+      "لأن الغليان يتطلب فصل الذرات تماماً عن بحر الإلكترونات مما يحتاج طاقة هائلة",
+      "لأن الأيونات تصبح سالبة عند الانصهار",
+      "لأن حركة الإلكترونات تتوقف أثناء الانصهار"
+    ],
+    ans: 1,
+    exp: "في الغليان يجب فصل الذرات كلياً عن بحر الإلكترونات والأيونات المجاورة بينما الانصهار يحتاج طاقة أقل لتحريكها فوق بعضها."
+  },
+  {
+    q: "خاصية الفلزات التي تجعلها قابلة للتحول إلى صفائح عند طرقها بالمطرقة تُعرف بـ:",
+    opts: [
+      "خاصية السحب",
+      "خاصية الطرق",
+      "خاصية الهشاشة",
+      "التأين"
+    ],
+    ans: 1,
+    exp: "قابلية الطرق تعني إمكانية تحويل الفلز إلى صفائح رقيقة دون أن يتكسر."
+  },
+  {
+    q: "أي الفلزات التالية يُستخدم في فتيل المصباح الكهربائي بسبب ارتفاع درجة انصهاره العالية جداً (3422°C)؟",
+    opts: [
+      "الزئبق Hg",
+      "التنجستن W",
+      "النحاس Cu",
+      "الصوديوم Na"
+    ],
+    ans: 1,
+    exp: "يُصنع فتيل المصابيح الكهربائية من التنجستن W لدرجة انصهاره العالية جداً."
+  },
+  {
+    q: "تتميز الفلزات الانتقالية (كالحديد والكروم) بصلابة وقوة عالية مقارنة بالفلزات القلوية بسبب:",
+    opts: [
+      "زيادة عدد إلكترونات التكافؤ حرة الحركة بمشاركة إلكترونات المستوى الداخلي d",
+      "قلة عدد الإلكترونات الحرة",
+      "انخفاض درجات انصهارها",
+      "أنها تشكل أيونات سالبة"
+    ],
+    ans: 0,
+    exp: "تزداد الصلابة بزيادة أعداد الإلكترونات الحرة بمشاركة إلكترونات المستوى d الداخلي مع المستوى ns."
+  },
+  {
+    q: "تُعرف السبيكة الفلزية بأنها:",
+    opts: [
+      "مركب أيوني نقي",
+      "خليط من العناصر ذات الخواص الفلزية الفريدة",
+      "عنصر لا فلزي نقي",
+      "محلول كهروليتي سائل"
+    ],
+    ans: 1,
+    exp: "السبيكة هي خليط من العناصر ذات الخواص الفلزية الفريدة وتتكون بسهولة لإمكانية إدخال عناصر في الشبكة الفلزية."
+  },
+  {
+    q: "سبيكة النيكو (Alnico) تتكون من الحديد والألومنيوم والنيكل والكوبالت وتُستخدم في صناعة:",
+    opts: [
+      "المغناطيسات القوية",
+      "المغاسل والأدوات الجراحية",
+      "الحلي الذهبية",
+      "الميداليات والأجراس"
+    ],
+    ans: 0,
+    exp: "تُستخدم سبيكة النيكو بشكل رئيسي في تصنيع المغناطيسات القوية."
+  },
+  {
+    q: "تنتج خاصية البريق واللمعان في الفلزات نتيجة:",
+    opts: [
+      "تفاعل الإلكترونات الحرة مع الضوء عبر امتصاصه وإطلاق الفوتونات",
+      "ثبات الأيونات الموجبة",
+      "تكون شبكة أيونية صلبة",
+      "انخفاض التوصيل الحراري"
+    ],
+    ans: 0,
+    exp: "تتفاعل الإلكترونات الحرة مع الضوء الساقط عليها بامتصاصه ثم إطلاق الفوتونات مما يعطي البريق واللمعان."
+  },
+  {
+    q: "ما التغير الذي يطرأ على الحديد عند إضافة الكربون إليه لتكوين سبيكة الفولاذ؟",
+    opts: [
+      "يصبح الفولاذ أكثر قوة وصلابة من الحديد النقي",
+      "يصبح الفولاذ سائلاً عند درجة حرارة الغرفة",
+      "يفقد الفولاذ قدرته على توصيل الكهرباء تماماً",
+      "يتحول إلى مركب هش يتفتت بسهولة"
+    ],
+    ans: 0,
+    exp: "إضافة الكربون للحديد يمنح سبيكة الفولاذ قوة وصلابة إضافية مقارنة بالحديد النقي."
+  }
+];
+
+let answersDone = 0;
+let correctCount = 0;
+let wrongCount = 0;
+const LETTERS = ['أ', 'ب', 'ج', 'د'];
+
+function renderQuiz() {
+  const container = document.getElementById('quizBox');
+  container.innerHTML = '';
+
+  QUESTIONS.forEach((qObj, qIdx) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = `qCard-${qIdx}`;
+
+    const optsHtml = qObj.opts.map((optText, optIdx) => `
+      <button class="opt-btn" onclick="submitAnswer(${qIdx}, ${optIdx})">
+        <span class="opt-letter">${LETTERS[optIdx]}</span>
+        <span>${optText}</span>
+      </button>
+    `).join('');
+
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-badge">${qIdx + 1}</div>
+        <div class="q-title">${qObj.q}</div>
+      </div>
+      <div class="opts-stack" id="optGroup-${qIdx}">${optsHtml}</div>
+      <div class="q-explain" id="exp-${qIdx}">
+        <b>💡 الشرح:</b> ${qObj.exp}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function submitAnswer(qIdx, selectedIdx) {
+  const card = document.getElementById(`qCard-${qIdx}`);
+  const group = document.getElementById(`optGroup-${qIdx}`);
+  const buttons = group.querySelectorAll('.opt-btn');
+
+  if (buttons[0].disabled) return;
+
+  const correctIndex = QUESTIONS[qIdx].ans;
+  const isCorrect = (selectedIdx === correctIndex);
+
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === correctIndex) btn.classList.add('correct');
+    else if (idx === selectedIdx) btn.classList.add('wrong');
+  });
+
+  if (isCorrect) {
+    correctCount++;
+    card.classList.add('ok');
+  } else {
+    wrongCount++;
+    card.classList.add('bad');
+  }
+
+  document.getElementById(`exp-${qIdx}`).classList.add('show');
+  answersDone++;
+  refreshStats();
+
+  if (answersDone === QUESTIONS.length) {
+    showResults();
+  }
+}
+
+function refreshStats() {
+  const pct = (answersDone / QUESTIONS.length) * 100;
+  document.getElementById('pBar').style.width = pct + '%';
+  document.getElementById('pCount').textContent = `التقدم: ${answersDone} / 10`;
+  document.getElementById('pScore').textContent = `الدرجة: ${correctCount}`;
+  document.getElementById('lblOk').textContent = correctCount;
+  document.getElementById('lblBad').textContent = wrongCount;
+}
+
+function showResults() {
+  const banner = document.getElementById('resBanner');
+  const scoreVal = document.getElementById('resVal');
+  const title = document.getElementById('resTitle');
+  const desc = document.getElementById('resDesc');
+
+  scoreVal.textContent = `${correctCount} / 10`;
+
+  if (correctCount >= 9) {
+    title.textContent = "🏆 ممتاز جداً! أداء مثالي وإتقان كامل للدرس.";
+    desc.textContent = "استيعاب رائع للروابط الفلزية ونموذج بحر الإلكترونات والسبائك.";
+  } else if (correctCount >= 7) {
+    title.textContent = "⭐ رائع! نتيجة ممتازة.";
+    desc.textContent = "راجع النقاط البسيطة المتبقية لتنال الدرجة الكاملة.";
+  } else {
+    title.textContent = "📚 تحتاج إلى مراجعة سريعة.";
+    desc.textContent = "أعد القراءة المباشرة بالبطاقات ثم حاول مرة أخرى.";
+  }
+
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function restartQuiz() {
+  answersDone = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  refreshStats();
+  document.getElementById('resBanner').classList.remove('show');
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+</body>
+</html>
+```<FollowUp>
+<Suggest>هل يمكنك تجربة فتح الصفحة الآن والتأكد من عدم وجود أي رموز مزعجة؟</Suggest>
+</FollowUp>
+
+<ElicitationsGroup>
+<Elicit id="1" prompt="هل تفضل أستاذ عيسى التجهيز للدرس القادم أم لديك ملاحظة أخرى بخصوص الملف الحالي؟"/>
+</ElicitationsGroup>
